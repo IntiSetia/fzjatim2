@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="26adaf74-23de-4681-be40-ebe64327affa" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/webServers.xml" afterPath="$PROJECT_DIR$/.idea/webServers.xml" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/application/config/routes.php" afterPath="$PROJECT_DIR$/application/config/routes.php" />
+      <change beforePath="$PROJECT_DIR$/application/controllers/HrPerformance.php" afterPath="$PROJECT_DIR$/application/controllers/HrPerformance.php" />
+      <change beforePath="$PROJECT_DIR$/application/views/aside.php" afterPath="$PROJECT_DIR$/application/views/aside.php" />
+      <change beforePath="$PROJECT_DIR$/application/views/hr/import_data_hr_wper.php" afterPath="$PROJECT_DIR$/application/views/hr/import_data_hr_wper.php" />
+      <change beforePath="$PROJECT_DIR$/application/views/login/login.php" afterPath="$PROJECT_DIR$/application/views/login/login.php" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_TABLE_DETAILS" value="true" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <expand />
+    <select />
+  </component>
+  <component name="FileEditorManager">
+    <leaf />
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>Cogs_Model</find>
+      <find>Model_PbsMitra</find>
+      <find>impor</find>
+      <find>moklet</find>
+      <find>importfil</find>
+      <find>COGS</find>
+      <find>cogs_klasifikasi_all(</find>
+      <find>cogs</find>
+      <find>href=&quot;../..</find>
+      <find>Admin</find>
+      <find>provision</find>
+      <find>href=&quot;</find>
+      <find>src=&quot;</find>
+      <find>[]</find>
+      <find>slide s</find>
+      <find>AssurancePerformance</find>
+      <find>finance</find>
+      <find>tagih</find>
+      <find>inser</find>
+      <find>select2</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>cogs_model</replace>
+      <replace>modellogin</replace>
+      <replace>net</replace>
+      <replace>href=&lt;?= base_url();?&gt;assets</replace>
+      <replace>assuranceperformance</replace>
+    </replaceStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/application/config/routes.php" />
+        <option value="$PROJECT_DIR$/application/views/login/login.php" />
+        <option value="&lt;2d4c21b6-c4ce-4039-a2f1-307a1c98c404&gt;/application/config/routes.php" />
+        <option value="&lt;2d4c21b6-c4ce-4039-a2f1-307a1c98c404&gt;/application/views/dashboard.php" />
+        <option value="&lt;2d4c21b6-c4ce-4039-a2f1-307a1c98c404&gt;/application/controllers/welcome2.php" />
+        <option value="&lt;2d4c21b6-c4ce-4039-a2f1-307a1c98c404&gt;/application/views/newwelcome.php" />
+        <option value="&lt;2d4c21b6-c4ce-4039-a2f1-307a1c98c404&gt;/application/views/cogs/footer_cogs2.php" />
+        <option value="&lt;2d4c21b6-c4ce-4039-a2f1-307a1c98c404&gt;/application/views/cogs/import_cogs.php" />
+        <option value="&lt;2d4c21b6-c4ce-4039-a2f1-307a1c98c404&gt;/application/views/cogs/dashboard_cogs.php" />
+        <option value="&lt;2d4c21b6-c4ce-4039-a2f1-307a1c98c404&gt;/application/models/cogs_model.php" />
+        <option value="&lt;2d4c21b6-c4ce-4039-a2f1-307a1c98c404&gt;/application/views/cogs/evaluasi_cogs.php" />
+        <option value="&lt;2d4c21b6-c4ce-4039-a2f1-307a1c98c404&gt;/application/views/cogs/evaluasi_cogs_area.php" />
+        <option value="&lt;2d4c21b6-c4ce-4039-a2f1-307a1c98c404&gt;/application/views/cogs/evaluasi_cogs_klasifikasi.php" />
+        <option value="&lt;2d4c21b6-c4ce-4039-a2f1-307a1c98c404&gt;/application/views/cogs/evaluasi_revenue_all.php" />
+        <option value="&lt;2d4c21b6-c4ce-4039-a2f1-307a1c98c404&gt;/application/views/cogs/evaluasi_revenue_m.php" />
+        <option value="&lt;2d4c21b6-c4ce-4039-a2f1-307a1c98c404&gt;/application/views/cogs/input_target.php" />
+        <option value="&lt;2d4c21b6-c4ce-4039-a2f1-307a1c98c404&gt;/application/views/cogs/evaluasi_cogs_klasifikasi_all.php" />
+        <option value="&lt;2d4c21b6-c4ce-4039-a2f1-307a1c98c404&gt;/application/views/cogs/footer_cogs.php" />
+        <option value="&lt;2d4c21b6-c4ce-4039-a2f1-307a1c98c404&gt;/application/views/login/login2.php" />
+        <option value="&lt;2d4c21b6-c4ce-4039-a2f1-307a1c98c404&gt;/application/controllers/cogs.php" />
+        <option value="&lt;2d4c21b6-c4ce-4039-a2f1-307a1c98c404&gt;/application/controllers/dashboard.php" />
+        <option value="&lt;2d4c21b6-c4ce-4039-a2f1-307a1c98c404&gt;/application/controllers/dash_slide.php" />
+        <option value="&lt;2d4c21b6-c4ce-4039-a2f1-307a1c98c404&gt;/application/controllers/hrperformance.php" />
+        <option value="&lt;2d4c21b6-c4ce-4039-a2f1-307a1c98c404&gt;/application/controllers/prov.php" />
+        <option value="&lt;2d4c21b6-c4ce-4039-a2f1-307a1c98c404&gt;/application/controllers/rekon.php" />
+        <option value="&lt;2d4c21b6-c4ce-4039-a2f1-307a1c98c404&gt;/application/controllers/revenue.php" />
+        <option value="&lt;2d4c21b6-c4ce-4039-a2f1-307a1c98c404&gt;/application/controllers/revtarget.php" />
+        <option value="&lt;2d4c21b6-c4ce-4039-a2f1-307a1c98c404&gt;/application/controllers/searchrev.php" />
+        <option value="&lt;2d4c21b6-c4ce-4039-a2f1-307a1c98c404&gt;/application/controllers/searchsn.php" />
+        <option value="&lt;2d4c21b6-c4ce-4039-a2f1-307a1c98c404&gt;/application/views/dash_slide.php" />
+        <option value="&lt;2d4c21b6-c4ce-4039-a2f1-307a1c98c404&gt;/application/views/footer_dashboard.php" />
+        <option value="&lt;2d4c21b6-c4ce-4039-a2f1-307a1c98c404&gt;/application/controllers/assuranceperformance.php" />
+        <option value="&lt;2d4c21b6-c4ce-4039-a2f1-307a1c98c404&gt;/application/controllers/procure.php" />
+        <option value="&lt;2d4c21b6-c4ce-4039-a2f1-307a1c98c404&gt;/application/views/procurement/penunjukan_pekerjaan.php" />
+        <option value="&lt;2d4c21b6-c4ce-4039-a2f1-307a1c98c404&gt;/application/controllers/lop.php" />
+        <option value="&lt;2d4c21b6-c4ce-4039-a2f1-307a1c98c404&gt;/application/.htaccess" />
+        <option value="&lt;2d4c21b6-c4ce-4039-a2f1-307a1c98c404&gt;/.htaccess" />
+        <option value="&lt;2d4c21b6-c4ce-4039-a2f1-307a1c98c404&gt;/application/views/aside.php" />
+        <option value="&lt;2d4c21b6-c4ce-4039-a2f1-307a1c98c404&gt;/application/views/revenue/form_ass.php" />
+        <option value="&lt;2d4c21b6-c4ce-4039-a2f1-307a1c98c404&gt;/application/models/modellogin.php" />
+        <option value="&lt;2d4c21b6-c4ce-4039-a2f1-307a1c98c404&gt;/application/views/login/login.php" />
+        <option value="&lt;2d4c21b6-c4ce-4039-a2f1-307a1c98c404&gt;/application/controllers/login.php" />
+        <option value="&lt;2d4c21b6-c4ce-4039-a2f1-307a1c98c404&gt;/application/views/header.php" />
+        <option value="&lt;2d4c21b6-c4ce-4039-a2f1-307a1c98c404&gt;/application/models/mtagihan.php" />
+        <option value="&lt;2d4c21b6-c4ce-4039-a2f1-307a1c98c404&gt;/application/views/footer.php" />
+        <option value="&lt;2d4c21b6-c4ce-4039-a2f1-307a1c98c404&gt;/application/controllers/tagihan.php" />
+        <option value="&lt;2d4c21b6-c4ce-4039-a2f1-307a1c98c404&gt;/application/views/tagihan/input_pekerjaan_baru.php" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="293" />
+    <option name="y" value="25" />
+    <option name="width" value="1076" />
+    <option name="height" value="646" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers ProjectPane="true" />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scratches" />
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="noname" type="b2602c69:ProjectViewProjectNode" />
+              <item name="noname" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.date" value="false" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
+    <property name="WebServerToolWindowPanel.toolwindow.highlight.symlinks" value="true" />
+    <property name="WebServerToolWindowPanel.toolwindow.highlight.mappings" value="true" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="26adaf74-23de-4681-be40-ebe64327affa" name="Default" comment="" />
+      <created>1511833568022</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1511833568022</updated>
+      <workItem from="1511833570145" duration="314000" />
+      <workItem from="1512656910643" duration="885000" />
+      <workItem from="1512657950059" duration="4783000" />
+      <workItem from="1512713467634" duration="11347000" />
+      <workItem from="1512795069433" duration="5824000" />
+      <workItem from="1512959058325" duration="3071000" />
+      <workItem from="1513050169936" duration="10101000" />
+      <workItem from="1513127280984" duration="1591000" />
+      <workItem from="1513565791734" duration="1720000" />
+      <workItem from="1513567800754" duration="1118000" />
+      <workItem from="1513574675647" duration="1726000" />
+      <workItem from="1513576531377" duration="854000" />
+      <workItem from="1513581605946" duration="925000" />
+      <workItem from="1513583598624" duration="628000" />
+      <workItem from="1513667939585" duration="1296000" />
+      <workItem from="1513915937288" duration="62000" />
+      <workItem from="1513925021302" duration="1734000" />
+      <workItem from="1513927325732" duration="1745000" />
+      <workItem from="1513929244994" duration="4984000" />
+      <workItem from="1514335378281" duration="18798000" />
+      <workItem from="1514423369205" duration="811000" />
+      <workItem from="1514424587704" duration="871000" />
+      <workItem from="1514429184980" duration="6974000" />
+      <workItem from="1514442139030" duration="2476000" />
+      <workItem from="1519095327802" duration="1907000" />
+      <workItem from="1519130474235" duration="640000" />
+      <workItem from="1519173396280" duration="684000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="87869000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
+    <layout>
+      <window_info id="Remote Host" active="true" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22181553" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16105418" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980332" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24962178" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="File Transfer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32850242" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24962178" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="php">
+          <url>remoteDeploymentFS://&lt;2d4c21b6-c4ce-4039-a2f1-307a1c98c404&gt;/application/controllers/login.php</url>
+          <line>49</line>
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="1" />
+    </breakpoint-manager>
+    <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/application/views/login/login.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="876">
+          <caret line="109" column="37" lean-forward="true" selection-start-line="109" selection-start-column="37" selection-end-line="109" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/login.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="15" column="25" lean-forward="true" selection-start-line="15" selection-start-column="25" selection-end-line="15" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/assuranceperformance.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-331">
+          <caret line="28" column="5" lean-forward="true" selection-start-line="28" selection-start-column="5" selection-end-line="28" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/config/routes.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="213">
+          <caret line="30" column="50" lean-forward="true" selection-start-line="30" selection-start-column="50" selection-end-line="30" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

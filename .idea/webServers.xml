@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="b3a4d58b-95b1-4bbc-8d1f-444adc045af9" name="telkomaksesfz2" url="http://10.112.83.83">
+        <fileTransfer host="10.112.83.83" port="21" rootFolder="/var/www/html/fiberzone2">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="21" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
