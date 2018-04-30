@@ -38,7 +38,7 @@
 |
 */
 
-$route['default_controller'] = "login";
+$route['default_controller'] = "login/viewlogin";
 $route['404_override'] = 'welcome/error_404';
 $route['translate_uri_dashes'] = FALSE;
 

@@ -43,7 +43,7 @@
                     <!-- /.box-header -->
                     <div class="box-body">
                         <div>
-                            <table id="example" class="table table-bordered table-hover">
+                            <table id="listplan" class="table table-bordered table-hover display wrap">
                                 <thead>
                                 <tr>
                                     <th>No</th>

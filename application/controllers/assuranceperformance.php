@@ -13,6 +13,9 @@ class Assuranceperformance extends CI_Controller {
       $this->load->library('PHPExcel');
       $this->load->library('session');
       $this->load->model('AssPer');
+
+        if ($this->session->userdata('login')!==TRUE)
+            redirect('index.php/login/viewlogin');
     }
 
     public function data_open(){

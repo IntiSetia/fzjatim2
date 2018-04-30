@@ -4,6 +4,41 @@
       $this->load->database();
     }
 
+    function data($where){
+        $query = $this->db->query("SELECT * FROM data_nikposisism INNER JOIN data_posisi_sm
+            on data_nikposisism.id_posisi = data_posisi_sm.id_posisi
+            INNER JOIN data_km
+            on data_posisi_sm.id_posisi = data_km.id_posisi
+            INNER JOIN data_parameter
+            on data_km.id_parameter = data_parameter.id_parameter
+            INNER JOIN data_indikator 
+            on data_km.id_indikator = data_indikator.id_indikator
+            INNER JOIN data_kpi_type
+            on data_km.id_kpi = data_kpi_type.id_kpi_type
+            INNER JOIN data_unit 
+            on data_km.id_unit = data_unit.id_unit
+            INNER JOIN data_nilai_km
+            on data_km.id_indikator = data_nilai_km.indikator
+            WHERE data_nikposisism.nik = '$where';");
+        return $query->result_array();
+    }
+
+      function selectwhereall($table, $where){
+          $query  = $this->db->select('*')
+              ->from($table)
+              ->where($where)
+              ->get();
+          return $query->result_array();
+      }
+
+    function selectnonwhere($table){
+        $query  = $this->db->select('*')
+            ->from($table)
+            ->get();
+        return $query->result_array();
+    }
+
+
     //THIS IS START OF PIK
 
     var $table = 'data_hr_sec';
@@ -76,8 +111,13 @@
     //DIS IS END OF PIK
 
     function get_all_data($table){
-      $this->db->from($table);   //untuk all data menggunakan Data HR Sec
-      $query  = $this->db->get();
+      //$this->db->from($table);   //untuk all data menggunakan Data HR Sec
+      //$query  = $this->db->get();
+      $query  = $this->db
+                ->select('*')
+                ->from($table)
+                ->where('nik IS NOT NULL')
+                ->get();
       return $query->result_array();
     }
 
@@ -86,6 +126,15 @@
                 ->select('*')
                 ->from('data_hr_sec')
                 ->where('nik', $id)
+                ->get();
+      return $query->result_array();
+    }
+
+    function get_data($where){
+      $query  = $this->db
+                ->select('*')
+                ->from('data_hr_sec')
+                ->where('nik', $where)
                 ->get();
       return $query->result_array();
     }
@@ -120,6 +169,36 @@
     // Fungsi Update for All
     function update($table, $data, $where){
       $this->db->update($table, $data, $where);
+    }
+
+    //GET ONE DATA
+      function get_one_data($table, $data, $where){
+          $query = $this->db->select($data)
+              ->from($table)
+              ->where('group_fungsi', $where)
+              ->get();
+          return $query->result_array();
+      }
+
+      function get_data_indikator($table, $data, $where){
+        $query = $this->db->select('*')
+                 ->from($table)
+                 ->where('position_sm', $where)
+                 ->where('induk_indikator', $data)
+                 ->get();
+        return $query->result_array();
+    }
+
+    function posisi(){
+        $where  = $this->session->userdata('psa');
+        $query = $this->db->query("SELECT position_name FROM data_hr WHERE psa = '$where' GROUP BY position_name ORDER BY position_name ASC");
+        return $query->result_array();
+    }
+
+    function nama_naker(){
+        $where  = $this->session->userdata('psa');
+        $query = $this->db->query("SELECT nama, nik FROM data_hr WHERE psa = '$where' AND nama IS NOT NULL ORDER BY nama ASC");
+        return $query->result_array();
     }
   }
 ?>

@@ -23,6 +23,15 @@
             <div class="form-horizontal">
             <div class="box-body">
                 <div class="form-group">
+                    <label class="col-sm-3 control-label">Nomor SC</label>
+                    <div class="col-sm-6">
+                        <input class="form-control" type="text" placeholder="Masukkan No SC" name="sc" required/>
+                    </div>
+                    <div class="col-sm-3">
+                        <input type="submit" name="submit" class="btn btn-primary" value="Submit" >
+                    </div>
+                </div>
+                <div class="form-group">
                   <label class="col-sm-2 control-label">Witel</label>
                   <div class="col-sm-10">
                     <select class="form-control" name="wilayah" required/>

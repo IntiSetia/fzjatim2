@@ -14,7 +14,7 @@ class Cogs extends CI_Controller {
       $this->load->library('session');
 
       if ($this->session->userdata('login')!==TRUE)
-            redirect('index.php/login');
+            redirect('index.php/login/viewlogin');
     }
 
     function index(){
@@ -81,13 +81,13 @@ class Cogs extends CI_Controller {
       $data['cogs_klasifikasi']       = $this->cogs_model->cogs_klas();
 
       /*echo "<pre>";
-      print_r($data['fz2_ytd_cogs']);
+      print_r($data['target']);
       echo "</pre>";*/
 
-        $this->load->view('header');
-  		$this->load->view('aside');
-  		$this->load->view('cogs/dashboard_cogs', $data);
-        $this->load->view('cogs/footer_cogs', $data);
+      $this->load->view('header');
+      $this->load->view('aside');
+      $this->load->view('cogs/dashboard_cogs', $data);
+      $this->load->view('cogs/footer_cogs', $data);
 
       //$this->load->view('cogs/formula', $data);
     }

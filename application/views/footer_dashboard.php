@@ -291,8 +291,8 @@ foreach($fz2_ytd_rev as $key=>$value){
 <script>
 
     <?php
-    /*$monthNum   = date('m')-1;
-    $monthName  = date("F", mktime(0, 0, 0, $monthNum, 10));*/
+    $monthNum   = date('m')-1;
+    $monthName  = date("F", mktime(0, 0, 0, $monthNum, 10));
     ?>
 
     $( document ).ready(function() {
@@ -320,7 +320,7 @@ foreach($fz2_ytd_rev as $key=>$value){
                 {
                     "id": "Title-1",
                     "size": 15,
-                    "text": "REVENUE & COGS FIBER ZONE JATIM II YTD <?/*= $monthName . " " . date('Y')*/ echo "November 2017";?>"
+                    "text": "REVENUE & COGS FIBER ZONE JATIM II YTD <? echo $monthName . " " . date('Y') /*echo "November 2017"*/;?>"
                 }
             ],
             "dataProvider": [ {

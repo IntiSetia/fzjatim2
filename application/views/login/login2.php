@@ -34,13 +34,20 @@
     <div class="login-box-body">
         <!--<p class="login-box-msg">Sign in to start your session</p>-->
 
-        <form method="post" action="<?=base_url('index.php/login/login_cek')?>">
+        <form method="post" action="<?=base_url('index.php/login/login_sso')?>">
+            <?php
+                /*echo "<pre>";
+                print_r($_SERVER);
+                echo "</pre>";*/
+
+                /*echo $url;*/
+            ?>
             <div class="form-group has-feedback">
-                <input class="form-control" type="text" name="nik" required placeholder="NIK">
-                <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                <input class="form-control" type="text" name="nik" required placeholder="NIK SSO">
+                <span class="glyphicon glyphicon-user form-control-feedback"></span>
             </div>
             <div class="form-group has-feedback">
-                <input class="form-control" type="password" name="password" required placeholder="Password">
+                <input class="form-control" type="password" name="password" required placeholder="Password SSO">
                 <span class="glyphicon glyphicon-lock form-control-feedback"></span>
             </div>
             <div class="row">
@@ -53,8 +60,14 @@
         </form>
 
         <br>
-        
+
+        <a href="https://apps.telkomakses.co.id/sso/forgot_password_sso.php">I forgot my password</a><br>
+        <a href="https://apps.telkomakses.co.id/sso/unlock_user_sso.php" class="text-center">Activation User</a>
+
+        <br>
+        <br>
         <p class="text-red"><b><?php echo $_alert;?></b></p>
+
 
     </div>
     <!-- /.login-box-body -->

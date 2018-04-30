@@ -12,6 +12,7 @@
     <!-- Create the tabs -->
     <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
         <li><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
+        <li><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
         <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
     </ul>
     <!-- Tab panes -->
@@ -247,6 +248,7 @@
 <script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.print.min.js"></script>
 
 <script type="text/javascript">
+
     $( "#nosn" ).keyup(function() {
         $.ajax({
             type      : "POST",
@@ -261,6 +263,7 @@
     });
 
     $('#listplan').DataTable( {
+        "scrollX": true,
         dom: 'Bfrtip',
         buttons: [
             'copy','excel', 'pdf'
@@ -268,6 +271,13 @@
     } );
 
     $(document).ready(function(){
+        $('#realtable').DataTable( {
+            dom: 'Bfrtip',
+            buttons: [
+                'copy', 'csv', 'excel', 'pdf', 'print'
+            ]
+        } );
+
         $(".designator").select2({
             placeholder: "Masukkan ID Designator", //placeholder
             tags: true,
@@ -288,17 +298,125 @@
 
             var hasil       = (volume * jasa) + (volume * material);
 
-            $(document).find('#jumlah'+designatorPos).val(hasil.toString());
+            $(document).find('#jumlah'+designatorPos).val(hasil);
+
+            var i           = '';
+            var totaljumlah = 0;
+            for (i = 1; i <= designatorPos; i++) {
+                var get         = $('#jumlah'+i).val();
+                /*alert(get);*/
+                var jumlah      = Number(get);
+                totaljumlah     = totaljumlah + jumlah;
+            }
+
+            document.getElementById("totaljumlah").value = totaljumlah.toLocaleString('en');
+            //$(document).find('#totaljumlah').val(totaljumlah);
 
         })
 
-        $(document).on( "change", ".designator-select", function( event ) {
-            //var designator = $(this).val();
+        $(document).on("keyup", ".volumemat", function(event){
+            var designatorPos = '';
+            //console.log('tes');
+            if($(this).attr('pos') != null || $(this).attr('pos') != undefined){
+                designatorPos = $(this).attr('pos');
+                //console.log('test');
+            }
+
+            var material    = $(document).find('#material'+designatorPos).val();
+            var volume      = $(this).val();
+
+            var hasil       = volume * material;
+
+            var jumlah      = parseInt($(document).find('#jumlah'+designatorPos).val());
+
+            /*alert(material);
+            alert(volume);
+            alert(hasil);
+            alert(jumlah);*/
+
+            if (jumlah == null){
+                $(document).find('#jumlah'+designatorPos).val(hasil);
+            } else {
+                var total   = hasil + jumlah;
+                $(document).find('#jumlah'+designatorPos).val(total);
+            }
+
+        })
+
+        $(document).on("keyup", ".volumejas", function(event){
+            var designatorPos = '';
+            //console.log('tes');
+            if($(this).attr('pos') != null || $(this).attr('pos') != undefined){
+                designatorPos = $(this).attr('pos');
+                //console.log('test');
+            }
+
+            var jasa        = $(document).find('#jasa'+designatorPos).val();
+            var volume      = $(this).val();
+
+            var hasil       = volume * jasa;
+
+            var jumlah      = parseInt($(document).find('#jumlah'+designatorPos).val());
+
+            var total       = hasil + jumlah;
+
+            /*alert(volume);
+            alert(hasil);
+            alert(jumlah);
+            alert(total);*/
+
+            if (jumlah == null){
+                $(document).find('#jumlah'+designatorPos).val(hasil);
+            } else {
+                $(document).find('#jumlah'+designatorPos).val(total);
+            }
+
+        })
+
+        $(document).on("keyup", ".volumemitra", function(event){
             var designatorPos = '';
             console.log('tes');
             if($(this).attr('pos') != null || $(this).attr('pos') != undefined){
                 designatorPos = $(this).attr('pos');
                 console.log('test');
+            }
+
+            var material    = $(document).find('#materialmitra'+designatorPos).val();
+            var jasa        = $(document).find('#jasamitra'+designatorPos).val();
+            var volume      = $(this).val();
+
+            var hasil       = (volume * jasa) + (volume * material);
+
+            $(document).find('#jumlahmitra'+designatorPos).val(hasil);
+
+            var i           = '';
+            var totaljumlah = 0;
+            for (i = 1; i <= designatorPos; i++) {
+                var get         = $('#jumlahmitra'+i).val();
+                alert(get);
+                /*var jumlah      = Number(get);*/
+                totaljumlah     = totaljumlah + jumlah;
+            }
+
+            document.getElementById("totaljumlahmitra").value = totaljumlah.toLocaleString('en');
+            //$(document).find('#totaljumlah').val(totaljumlah);
+        })
+
+        function numberWithCommas(x) {
+            x = x.toString();
+            var pattern = /(-?\d+)(\d{3})/;
+            while (pattern.test(x))
+                x = x.replace(pattern, "$1,$2");
+            return x;
+        }
+
+        $(document).on( "change", ".designator-select", function( event ) {
+            //var designator = $(this).val();
+            var designatorPos = '';
+            /*console.log('tes');*/
+            if($(this).attr('pos') != null || $(this).attr('pos') != undefined){
+                designatorPos = $(this).attr('pos');
+                /*console.log('test');*/
             }
             $.ajax({
                 type : 'POST',
@@ -320,11 +438,60 @@
             //alert(idkhstelkom);
         });
 
+        $('#approval').click(function(e){
+            console.log("test");
+            e.preventDefault();
+            $('#modal-approval').find('.modal-title').text('HALO ') + $(this).attr('approv');
+            $('#modal-approval').find('#form-approval').attr('action', '<?php echo base_url()."index.php/tagihan/approvalplan/" ?>'+$(this).attr('id-approv'))
+            $('#modal-approval').modal('show');
+        });
+
+        $('#approval2').click(function(e){
+            console.log("test");
+
+            e.preventDefault();
+            $('#modal-approval').find('.modal-title').text('APPROVAL ' )+ $(this).attr('id-approv');
+            $('#modal-approval').find('#form-approval').attr('action', '<?php echo base_url()."index.php/tagihan/approval/" ?>'+$(this).attr('id-approv'))
+            $('#modal-approval').modal('show');
+        });
+
+        $(document).on( "change", ".designator-select-mitra", function( event ) {
+            //var designator = $(this).val();
+            var designatorPos = '';
+            console.log('tes');
+            if($(this).attr('pos') != null || $(this).attr('pos') != undefined){
+                designatorPos = $(this).attr('pos');
+                console.log('test');
+            }
+            $.ajax({
+                type : 'POST',
+                url  : '<?= base_url('index.php/tagihan/getmaterialjasamitra'); ?>',
+                data : {
+                    designator : $(this).val()
+                },
+                success : function(data){
+                    console.log(data);
+                    data = JSON.parse(data);
+                    /*document.getElementById("material").value = data.harga_material.toLocaleString('en');
+                    document.getElementById("jasa").value = data.harga_jasa.toLocaleString('en');*/
+                    //console.log( $(document).find('#material'+designatorPos).remove());
+                    console.log(designatorPos);
+                    $(document).find('#materialmitra'+designatorPos).val(data.harga_material);
+                    $(document).find('#jasamitra'+designatorPos).val(data.harga_jasa);
+                }
+            });
+            //alert(idkhstelkom);
+        });
+
     })
 
     $('#sx').DataTable( {
         "scrollX": true
     } );
+
+    $('#reset_material0').click(function () {
+        document.getElementById("material0").value = "0";
+    });
 </script>
 
 <!--INPUT PLAN || LIST ITEM DESIGNATOR-->
@@ -336,42 +503,90 @@
         rowCount++;
         var recRow = '<div class="form-group" id="rowCount' + rowCount + '"><table class="table table-condensed" id="addDesignator' + rowCount + '"><tr ><th style="text-align: center; width: 75px">&nbsp;</th><td style="text-align: center; width: 287px"><select class="js-example-placeholder-single js-states form-control designator-select" id="designator'+ rowCount +'" pos="'+ rowCount +'" name="designator[]" required/></select></td><td style="width: 230px; text-align: center;"><div id="material">&nbsp;</div></td><td style="width: 225px; text-align: center;"><div id="jasa">&nbsp;</div></td><td style="width: 214px; text-align: center;"><input class="form-control" onkeyup="myVolume()" id="volume" type="text" name="volume[]" /></td><td style="width: 214px; text-align: center;"><div id="jumlah">&nbsp;</td><td><button class="fa btn btn-danger fa-minus" onclick="removeRow(' + rowCount + ');"></button></td><th style="text-align: center">&nbsp;</th><th style="text-align: center">&nbsp;</th></tr></table></div>';
         jQuery('#addedRows').append(recRow);
-
         $('select[id="designator' + rowCount + '"]').html(optionPublic);
+
+        var jumlah = document.querySelector('.jumlah').value;
+        alert(jumlah);
     }
 
     function addMoreRows2(frm) {
         rowCount++;
-        var recRow = '<tr id="rowCount' + rowCount + '"><th style="text-align: center; width: 75px">&nbsp;</th><td style="text-align: center; width: 287px"><select class="js-example-placeholder-single js-states form-control designator-select" id="designator'+ rowCount +'" pos="'+ rowCount +'" name="designator[]" required/></select></td><td style="width: 230px; text-align: center;"><input class="form-control" style="text-align: center;" type="text" pos="'+ rowCount +'" name="material" id="material'+ rowCount +'" readonly="readonly" /></td><td style="width: 225px; text-align: center;"><input style="text-align: center;" class="form-control" type="text" pos="'+ rowCount +'" name="jasa" id="jasa'+ rowCount +'" readonly="readonly" /></td><td style="width: 214px; text-align: center;"><input class="form-control volume" style="text-align: center;" pos="'+ rowCount +'" id="volume" type="text" name="volume[]" /></td><td style="width: 214px; text-align: center;"><input style="text-align: center;" class="form-control" type="text" name="jumlah" id="jumlah'+ rowCount +'" readonly="readonly" /></td><td><button class="fa btn btn-danger fa-minus" onclick="removeRow(' + rowCount + ');"></button></td><th style="text-align: center">&nbsp;</th><th style="text-align: center">&nbsp;</th></tr>';
+        alert(rowCount);
+        var recRow = '<tr id="rowCount' + rowCount + '"><th style="text-align: center; width: 75px">&nbsp;</th><td style="text-align: center; width: 287px"><select class="js-example-placeholder-single js-states form-control designator-select" id="designator'+ rowCount +'" pos="'+ rowCount +'" name="designator[]" required/></select></td><td style="width: 230px; text-align: center;"><input class="form-control" style="text-align: center;" type="text" pos="'+ rowCount +'" name="material" id="material'+ rowCount +'" readonly="readonly" /></td><td style="width: 225px; text-align: center;"><input style="text-align: center;" class="form-control" type="text" pos="'+ rowCount +'" name="jasa" id="jasa'+ rowCount +'" readonly="readonly" /></td><td style="width: 214px; text-align: center;"><input class="form-control volume" style="text-align: center;" pos="'+ rowCount +'" id="volume" type="text" name="volume[]" /></td><td style="width: 214px; text-align: center;"><input style="text-align: center;" class="form-control jumlah'+ rowCount +'" type="text" pos="'+ rowCount +'" name="jumlah" id="jumlah'+ rowCount +'" readonly="readonly"/></td><td><button class="fa btn btn-danger fa-minus" onclick="removeRow(' + rowCount + ');"></button></td><th style="text-align: center">&nbsp;</th><th style="text-align: center">&nbsp;</th></tr>';
         jQuery('#addDesignator').append(recRow);
 
         $('select[id="designator' + rowCount + '"]').html(optionPublic);
+        $('select[id="designator' + rowCount + '"]').select2();
+
+        //SEMANGAT TEF
+        /*var designatorPos = '';
+        console.log('masuk1);
+        if($('input[id="jumlah' + designatorPos + '"]').attr('pos') != null || $('input[id="jumlah' + designatorPos + '"]').attr('pos') != undefined){
+            designatorPos = $('input[id="jumlah' + designatorPos + '"]').attr('pos');
+            console.log('masuk2');
+        }*/
+    }
+
+    function addMoreRows3(frm) {
+        rowCount++;
+        var recRow = '<tr id="rowCount' + rowCount + '"><th style="text-align: center; width: 75px">&nbsp;</th><td style="text-align: center; width: 287px"><select class="js-example-placeholder-single js-states form-control designator-select" id="designator'+ rowCount +'" pos="'+ rowCount +'" name="designator[]" required/></select></td><td><button type="button" class="btn btn-block btn-danger btn-sm" id="reset_material'+ rowCount +'"><b>X</b></button></td><td style="width: 230px; text-align: center;"><input class="form-control" style="text-align: center;" type="text" pos="'+ rowCount +'" name="material" id="material'+ rowCount +'" readonly="readonly" /></td><td style="width: 225px; text-align: center;"><input style="text-align: center;" class="form-control" type="text" pos="'+ rowCount +'" name="jasa" id="jasa'+ rowCount +'" readonly="readonly" /></td><td style="width: 214px; text-align: center;"><input class="form-control volumemat" style="text-align: center;" pos="'+ rowCount +'" id="volumemat" type="text" name="volumemat[]" /></td><td style="width: 214px; text-align: center;"><input class="form-control volumejas" style="text-align: center;" pos="'+ rowCount +'" id="volumejas" type="text" name="volumejas[]" /></td><td style="width: 214px; text-align: center;"><input style="text-align: center;" class="form-control jumlah" type="text" name="jumlah" id="jumlah'+ rowCount +'" readonly="readonly" value="0"/></td><td><button class="fa btn btn-danger fa-minus" onclick="removeRow(' + rowCount + ');"></button></td><th style="text-align: center">&nbsp;</th><th style="text-align: center">&nbsp;</th></tr>';
+        jQuery('#addDesignator').append(recRow);
+
+        $('select[id="designator' + rowCount + '"]').html(optionPublic);
+        $('select[id="designator' + rowCount + '"]').select2();
+
+        $('#reset_material' + rowCount).click(function () {
+            document.getElementById("material" + rowCount).value = "0";
+            /*alert('halo');*/
+        });
+    }
+
+    function addMoreRows4(frm) {
+        rowCount++;
+        var recRow = '<tr id="rowCount' + rowCount + '"><th style="text-align: center; width: 75px">&nbsp;</th><td style="text-align: center; width: 287px"><select class="js-example-placeholder-single js-states form-control designator-select" id="designator'+ rowCount +'" pos="'+ rowCount +'" name="designator[]" required/></select></td><td><button type="button" class="btn btn-block btn-danger btn-sm" id="reset_material'+ rowCount +'"><b>X</b></button></td><td style="width: 230px; text-align: center;"><input class="form-control" style="text-align: center;" type="text" pos="'+ rowCount +'" name="material[]" id="material'+ rowCount +'" readonly="readonly" /></td><td style="width: 225px; text-align: center;"><input style="text-align: center;" class="form-control" type="text" pos="'+ rowCount +'" name="jasa[]" id="jasa'+ rowCount +'" readonly="readonly" /></td><td style="width: 214px; text-align: center;"><input class="form-control volume" style="text-align: center;" pos="'+ rowCount +'" id="volume" type="text" name="volume[]" /></td><td style="width: 214px; text-align: center;"><input style="text-align: center;" class="form-control jumlah" type="text" name="jumlah" id="jumlah'+ rowCount +'" readonly="readonly"/></td><td><button class="fa btn btn-danger fa-minus" onclick="removeRow(' + rowCount + ');"></button></td><th style="text-align: center">&nbsp;</th><th style="text-align: center">&nbsp;</th></tr>';
+        jQuery('#addDesignator').append(recRow);
+
+        $('select[id="designator' + rowCount + '"]').html(optionPublic);
+        $('select[id="designator' + rowCount + '"]').select2();
+
+        $('#reset_material' + rowCount).click(function () {
+            document.getElementById("material" + rowCount).value = "0";
+            /*alert('halo');*/
+        });
     }
 
     function removeRow(removeNum) {
         jQuery('#rowCount'+removeNum).remove();
     }
 
-    /*function addMoreRowsMitra(frm) {
+    function addMoreRowsMitra(frm) {
         rowCount ++;
-        var recRow = '<div class="form-group" id="rowCount' + rowCount + '"><table class="table table-condensed" id="addDesignatorMitra' + rowCount + '"><tr ><th style="text-align: center">&nbsp;</th><td style="width: 350px;"><select class="form-control designator-select" id="designatormitra'+ rowCount +'" pos="'+ rowCount +'" name="designatormitra[]" required/></select></td><td style="width: 75px;"><input class="form-control" onkeyup="myVolume()" id="volume" type="text" name="volumemitra[]" /></td><td><button class="fa btn btn-danger fa-minus" onclick="removeRow(' + rowCount + ');"></button></td></tr></table></div>';
-        jQuery('#addedRowsMitra').append(recRow);
+        var recRow = '<tr id="rowCount' + rowCount + '"><th style="text-align: center; width: 75px">&nbsp;</th><td style="text-align: center; width: 287px"><select class="js-example-placeholder-single js-states form-control designator-select-mitra" id="designatormitra'+ rowCount +'" pos="'+ rowCount +'" name="designatormitra[]" required/></select></td><td style="width: 230px; text-align: center;"><input class="form-control" style="text-align: center;" type="text" pos="'+ rowCount +'" name="materialmitra" id="materialmitra'+ rowCount +'" readonly="readonly" /></td><td style="width: 225px; text-align: center;"><input style="text-align: center;" class="form-control" type="text" pos="'+ rowCount +'" name="jasamitra" id="jasamitra'+ rowCount +'" readonly="readonly" /></td><td style="width: 214px; text-align: center;"><input class="form-control volumemitra" style="text-align: center;" pos="'+ rowCount +'" id="volumemitra" type="text" name="volumemitra[]" /></td><td style="width: 214px; text-align: center;"><input style="text-align: center;" class="form-control" type="text" name="jumlahmitra" id="jumlahmitra'+ rowCount +'" readonly="readonly" /></td><td><button class="fa btn btn-danger fa-minus" onclick="removeRow(' + rowCount + ');"></button></td><th style="text-align: center">&nbsp;</th><th style="text-align: center">&nbsp;</th></tr>';
+        jQuery('#addDesignatorMitra').append(recRow);
 
         $('select[id="designatormitra'+rowCount+'"]').html(optionPublic);
-    }*/
-
-    function addMoreRowsMitra(frm) {
-        rowCount++;
-        var recRow = '<tr id="rowCount' + rowCount + '"><th style="text-align: center; width: 75px">&nbsp;</th><td style="text-align: center; width: 287px"><select class="js-example-placeholder-single js-states form-control designator-select" id="designatormitra'+ rowCount +'" pos="'+ rowCount +'" name="designatormitra[]" required/></select></td><td style="width: 230px; text-align: center;"><input class="form-control" type="text" name="material" id="material" readonly="readonly" /></td><td style="width: 225px; text-align: center;"><input class="form-control" type="text" name="jasa" id="jasa" readonly="readonly" /></td><td style="width: 214px; text-align: center;"><input class="form-control" onkeyup="myVolume()" id="volume" type="text" name="volumemitra[]" /></td><td style="width: 214px; text-align: center;"><input class="form-control" type="text" name="jumlah" id="jumlah" readonly="readonly" /></td><td><button class="fa btn btn-danger fa-minus" onclick="removeRow(' + rowCount + ');"></button></td><th style="text-align: center">&nbsp;</th><th style="text-align: center">&nbsp;</th></tr>';
-        jQuery('#addDesignator').append(recRow);
-
-        $('select[id="designatormitra' + rowCount + '"]').html(optionPublic);
+        $('select[id="designatormitra' + rowCount + '"]').select2();
     }
 
     function removeRowMitra(removeNum) {
         jQuery('#rowCount'+removeNum).remove();
     }
 
+    function addGrouping(frm) {
+        rowCount ++;
+        var recRow = '<tr id="rowCount' + rowCount + '"><th style="text-align: right; padding-top: 12px;" class="col-sm-2">&nbsp;</th><th>&nbsp;</th><th class="col-sm-8"><select class="form-control" name="khs" id="" required><option value="">Pilih Pekerjaan</option></select></th><th style="text-align: center;"><button class="fa btn btn-danger fa-minus" onclick="removeRowGrouping(' + rowCount + ');"></button></th>/tr>';
+        jQuery('#addGrouping').append(recRow);
+
+        //$('select[id="designatormitra'+rowCount+'"]').html(optionPublic);
+    }
+
+    function removeRowGrouping(removeNum) {
+        jQuery('#rowCount'+removeNum).remove();
+    }
+
+    $(".js-example-tags").select2({
+        tags: true
+    });
 
     $('#addDesign').click(function () {
         var idkhstelkom = $("#khstelkom").val();
@@ -388,6 +603,31 @@
         //alert(idkhstelkom);
     });
 
+    $('#inputplan').change(function () {
+        $('#modal-default').show();
+        //alert("halo");
+    });
+
+    $('#jenisi').change(function () {
+        var jenisi = $("#jenisi").val();
+
+        if(jenisi == "PT1"){
+            $('#PT1').show();
+            $('#PT2').hide();
+            $('#PT3').hide();
+        } else if (jenisi == "PT2"){
+            $('#PT1').hide();
+            $('#PT2').show();
+            $('#PT3').hide();
+        } else if (jenisi == "PT3"){
+            $('#PT1').hide();
+            $('#PT2').hide();
+            $('#PT3').show();
+        }
+
+        /*alert(jenisi);*/
+    });
+
     $('#namamitra').change(function () {
         var namamitra = $("#namamitra").val();
         if (namamitra === "PT TELKOM AKSES" ){
@@ -400,20 +640,26 @@
         //alert(namamitra);
     });
 
-    $('#jenis_pekerjaan').change(function () {
-        var jenis_pekerjaan = $("#jenis_pekerjaan").val();
-        if (jenis_pekerjaan === "QE Recovery" ) {
-            $('#planpekerjaan').hide();
-            $('#alldataproject').show();
+    $('#namadoc').change(function () {
+        var namadoc = $("#namadoc").val();
+        if (namadoc === "BASTS" ){
+            $('#merahputih').show();
+            $('#merah').show();
         } else {
-            $('#planpekerjaan').show();
-            $('#alldataproject').hide();
+            $('#merahputih').hide();
+            $('#merah').hide();
         }
+        //alert(namamitra);
+    });
+
+    $('#jenis').change(function () {
+        var jenis_pekerjaan = $(this).val();
+        $('#planpekerjaan').show();
 
         //var jenis_pekerjaan = $("#jenis_pekerjaan").val();
         $.ajax({
             type : 'POST',
-            url  : '<?= base_url('index.php/tagihan/listplanpek'); ?>',
+            url  : '<?=base_url('index.php/tagihan/listplanpek'); ?>',
             data : {
                 jenis_pekerjaan : $(this).val()
             },
@@ -425,8 +671,40 @@
         //alert(jenis_pekerjaan);
     });
 
+    $('#witel').change(function () {
+        var witel = $(this).val();
+        $.ajax({
+            type : 'POST',
+            url  : '<?=base_url('index.php/wh/getsto'); ?>',
+            data : {
+                witel : $(this).val()
+            },
+            success : function(option){
+                $('select[id="sto"]').html(option);
+            }
+        });
+
+        //alert(jenis_pekerjaan);
+    });
+
     $('#khstelkom').change(function () {
         var idkhstelkom = $("#khstelkom").val();
+        $.ajax({
+            type : 'POST',
+            url  : '<?= base_url('index.php/tagihan/listitemdesignatortelkom'); ?>',
+            data : {
+                khstelkom : $(this).val()
+            },
+            success : function(option){
+                $('select[id="designator"]').html(option);
+                optionPublic = option;
+            }
+        });
+        //alert(idkhstelkom);
+    });
+
+    $('#khstelkom2').change(function () {
+        var idkhstelkom = $("#khstelkom2").val();
         $.ajax({
             type : 'POST',
             url  : '<?= base_url('index.php/tagihan/listitemdesignatortelkom'); ?>',
@@ -457,27 +735,64 @@
         //alert(idkhsmitra);
     });
 
-    $('#plan_pek_baru').change(function () {
+    $('#jenis_finding').change(function () {
+        var jenis_finding = $("#jenis_finding").val();
+        if (jenis_finding === "Negative Fact Finding" ){
+            $('#jenis_pelanggaran').show();
+        }
+        /*alert(jenis_finding);*/
+    });
+
+    //select option plan pekerjaan get from plan auto view
+    /*$('#plan_pek_baru').change(function () {
         var plan_pek_baru = $("#plan_pek_baru").val();
+        $('#datainsidentil').show();
+        $('#boqplan').show();
         $.ajax({
             type : 'POST',
-            url  : '<?= base_url('index.php/tagihan/detaildatapekerjaan'); ?>',
+            url  : '<?=base_url('index.php/tagihan/detaildatapekerjaan'); ?>',
             data : {
                 plan_pek_baru : $(this).val()
             },
-            success : function(){
-                $('#detaildatapekerjaan').html(data);
+            success : function(data){
+                console.log(data);
+                data = JSON.parse(data);
+                $(document).find('#nama_pekerjaan').val(data.pekerjaan);
+                $('select[id="je_pekerjaan"]').html(option);
+                //$('#nama_pekerjaan').html(data.pekerjaan);
             }
         });
-        alert(plan_pek_baru);
+        //alert(plan_pek_baru);
+    });*/
+
+    $('#cari_sc').click(function () {
+        var sc = $("#sc").val();
+        $.ajax({
+            type : 'POST',
+            url  : '<?=base_url('index.php/wh/get_sc'); ?>',
+            data : {
+                sc : $(this).val()
+            },
+            success : function(data){
+                console.log(data);
+                data    = JSON.parse(data);
+                $(document).find('#order_date_ps').val(data.ORDER_DATE_PS);
+                $(document).find('#customer_name').val(data.CUSTOMER_NAME);
+            }
+        });
+        /*alert(sc);*/
     });
 
-
-    $('#approval').click(function(e){
+    $('#updatedata').click(function(e){
         e.preventDefault();
-        $('#modal-approval').find('.modal-title').text('APPROVAL ');
-        $('#modal-approval').find('#form-approval').attr('action', '<?php echo base_url()."index.php/tagihan/approvalplan/" ?>'+$(this).attr('id-approv'))
-        $('#modal-approval').modal('show');
+        /*$('#modal-update').find('.modal-title').text('APPROVAL ');*/
+
+        $('#modal-update').find('#witel').text($(this).attr('id-witel'));
+        $('#modal-update').find('#sto').text($(this).attr('id-sto'));
+        $('#modal-update').find('#barang').text($(this).attr('id-item'));
+
+        $('#modal-update').find('#form-update').attr('action', '<?php echo base_url()."index.php/wh/updatedatainvent/" ?>'+$(this).attr('id-update'))
+        $('#modal-update').modal('show');
     });
 
     $('#btn-pr').click(function(e){
@@ -504,21 +819,37 @@
     });
 
     $(".js-example-placeholder-single").select2({
-        placeholder: "Pilih Jenis Pekerjaan",
         allowClear: true
     });
 
-    $("#khstelkom").select2({
+    /*$("#khstelkom").select2({
         placeholder: "Pilih KHS",
         allowClear: true
-    });
+    });*/
 
-    $("#designator").select2({
+    $("#groupingpekerjaan").select2({
+        placeholder: "Pilih Pekerjaan",
         allowClear: true
     });
 
+    /*$("#designator").select2({
+        allowClear: true
+    });*/
+
     $('#getplan').click(function () {
-        $('#jenis_pekerjaan').show();
+        //alert("halo");
+        $('#planpekerjaan').show();
+        $('#datainsidentil').hide();
+        $('#insidentil').show();
+        $('#submit').hide();
+        $(this).hide();
+    });
+
+    $('#insidentil').click(function () {
+        $('#planpekerjaan').hide();
+        $(this).hide();
+        $('#getplan').show();
+        $('#datainsidentil').show();
     });
 
     /*$("#volume").keypress(function(){
@@ -526,6 +857,139 @@
         alert(material);
     });*/
 
+    <!-- amCharts javascript code for Marshall-->
+        AmCharts.makeChart("chartmarshall",
+            {
+                "type": "serial",
+                "categoryField": "date",
+                "dataDateFormat": "YYYY-MM-DD",
+                "categoryAxis": {
+                    "parseDates": true
+                },
+                "chartCursor": {
+                    "enabled": true
+                },
+                "chartScrollbar": {
+                    "enabled": true
+                },
+                "trendLines": [],
+                "graphs": [
+                    {
+                        "bullet": "round",
+                        "id": "AmGraph-1",
+                        "title": "JEMBER",
+                        "type": "smoothedLine",
+                        "valueField": "column-1"
+                    },
+                    {
+                        "bullet": "round",
+                        "id": "AmGraph-2",
+                        "title": "KEDIRI",
+                        "type": "smoothedLine",
+                        "valueField": "column-2"
+                    },
+                    {
+                        "bullet": "round",
+                        "id": "AmGraph-3",
+                        "title": "MADIUN",
+                        "type": "smoothedLine",
+                        "valueField": "column-3"
+                    },
+                    {
+                        "bullet": "round",
+                        "id": "AmGraph-4",
+                        "title": "MALANG",
+                        "type": "smoothedLine",
+                        "valueField": "column-4"
+                    },
+                    {
+                        "bullet": "round",
+                        "id": "AmGraph-5",
+                        "title": "PASURUAN",
+                        "type": "smoothedLine",
+                        "valueField": "column-5"
+                    }
+                ],
+                "guides": [],
+                "valueAxes": [
+                    {
+                        "id": "ValueAxis-1",
+                        "title": "Jumlah Sampling"
+                    }
+                ],
+                "allLabels": [],
+                "balloon": {},
+                "legend": {
+                    "enabled": true,
+                    "useGraphSettings": true
+                },
+                "titles": [
+                    {
+                        "id": "Title-1",
+                        "size": 15,
+                        "text": "Report Statistik Marshall Fiberzone Jatim-2"
+                    }
+                ],
+                "dataProvider": [
+                    {
+                        "date": "2018-04-01",
+                        "column-1": 8,
+                        "column-2": 5,
+                        "column-3": 7,
+                        "column-4": 10,
+                        "column-5": 16
+                    },
+                    {
+                        "date": "2018-04-02",
+                        "column-1": 6,
+                        "column-2": 7,
+                        "column-3": 7,
+                        "column-4": 10,
+                        "column-5": 16
+                    },
+                    {
+                        "date": "2018-04-03",
+                        "column-1": 2,
+                        "column-2": 3,
+                        "column-3": 7,
+                        "column-4": 10,
+                        "column-5": 16
+                    },
+                    {
+                        "date": "2018-04-04",
+                        "column-1": 1,
+                        "column-2": 3,
+                        "column-3": 7,
+                        "column-4": 10,
+                        "column-5": 16
+                    },
+                    {
+                        "date": "2018-04-05",
+                        "column-1": 2,
+                        "column-2": 1,
+                        "column-3": 7,
+                        "column-4": 10,
+                        "column-5": 16
+                    },
+                    {
+                        "date": "2018-04-06",
+                        "column-1": 3,
+                        "column-2": 2,
+                        "column-3": 7,
+                        "column-4": 10,
+                        "column-5": 16
+                    },
+                    {
+                        "date": "2018-04-07",
+                        "column-1": 6,
+                        "column-2": 8,
+                        "column-3": 7,
+                        "column-4": 10,
+                        "column-5": 16
+                    }
+                ]
+            }
+        );
 </script>
 
 </body>

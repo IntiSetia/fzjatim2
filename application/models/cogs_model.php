@@ -170,12 +170,12 @@
     }
 
     function cogs_target(){
-      $bultah1  = "012017";
-      /*$bultah1  = "01" . date('Y');*/
-      $bulan    = date('m', strtotime('-1 month'));;
+      /*$bultah1  = "012017";*/
+      $bultah1  = date('Y') . "-01-01";
+      $bulan    = date('m', strtotime('-1 month'));
       $tahun    = date('Y');
-      /*$bultah   = $bulan . $tahun;*/
-      $bultah   = "122017";
+      $bultah   = $tahun . "-" . $bulan . "-01";
+      /*$bultah   = "122017";*/
       //date('mY');
       $query    = $this->db->query("SELECT area, SUM(target) as target FROM data_target WHERE bultah BETWEEN '$bultah1' AND '$bultah' GROUP BY area ORDER BY area");
       return $query->result_array();

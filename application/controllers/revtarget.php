@@ -5,12 +5,15 @@ class RevTarget extends CI_Controller {
 	function __construct() {
       parent::__construct();
 
-        if (!logged_in())
-            redirect('index.php/login');
+        /*if (!logged_in())
+            redirect('index.php/login');*/
         
       $this->load->database();
       $this->load->helper('url');
       $this->load->model('RevModel');
+
+        if ($this->session->userdata('login')!==TRUE)
+            redirect('index.php/login/viewlogin');
     }
 
 	public function index()

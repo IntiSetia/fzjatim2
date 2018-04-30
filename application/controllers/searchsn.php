@@ -5,8 +5,11 @@ class Searchsn extends CI_Controller {
 	function __construct() {
       parent::__construct();
 
-        if (!logged_in())
-            redirect('index.php/login');
+        /*if (!logged_in())
+            redirect('index.php/login');*/
+
+        if ($this->session->userdata('login')!==TRUE)
+            redirect('index.php/login/viewlogin');
         
       $this->load->database();
       $this->load->helper('url');

@@ -126,8 +126,8 @@ class RevModel extends CI_Model{
       $query = $this->db
                     ->select('*')
                     ->from('data_psb')
-                    ->where('divisi', 'psb')
-                    ->or_where('divisi', 'PSB')
+//                    ->where('divisi', 'psb')
+//                    ->or_where('divisi', 'PSB')
                     ->get();
       return $query->result_array();
     }
@@ -275,8 +275,8 @@ class RevModel extends CI_Model{
       return $query->num_rows();
     }
 
-  public function Add($data){
-        $res = $this->db->insert('data_psb', $data);
+  public function Add($table,$data){
+        $res = $this->db->insert($table, $data);
         return $res;
     }
 

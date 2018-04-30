@@ -1,5 +1,5 @@
 <?php
-    if ($this->session->userdata('tipe_user') == 'pakbiwan') {
+    if ($this->session->userdata('position') == 'Mgr Maintenance Malang') {
 ?>
     <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -32,11 +32,11 @@
                     <!-- /.box-header -->
                     <div class="box-body">
                         <div>
-                            <table id="listplan" class="table table-bordered table-hover display nowrap">
+                            <table id="listplan" class="table table-bordered table-hover display wrap">
                                 <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Nama Pekerjaan</th>
+                                    <th width="600px">Nama Pekerjaan</th>
                                     <th>Jenis Pekerjaan</th>
                                     <th>Total Kebutuhan</th>
                                     <th>Status Approval</th>
@@ -45,7 +45,7 @@
                                 <tbody>
                                 <?php
                                 $no = 0;
-                                foreach($listplanpekerjaanmanar as $a){
+                                foreach($listplanpekerjaanadmin as $a){
                                     $no++;
                                     $id   = $a['id'];
                                     ?>
@@ -58,16 +58,16 @@
                                             $tampil_harga   = number_format($harga,0,",",".");
                                             echo $tampil_harga;
                                         ?></td>
-                                        <td>
+                                        <td style="text-align: center">
                                             <?php
                                                 if ($a['approval'] == "RETURN") {
                                                     echo "<button type='button' class='btn btn-block btn-warning btn-sm' data-toggle='modal' data-target='#modal-approval'>RETURNED</button></td>";
                                                 } elseif ($a['approval'] == "NOK") {
-                                                    echo "<button type='button' class='btn btn-block btn-danger btn-sm btn-modal' id-approv='$id' id='approval'>NOT APPROVED</button></td>";
+                                                    echo "<button type='button' class='btn btn-block btn-danger btn-sm btn-modal' id-approv='$id' id='approval' data-toggle='modal' data-target='#modal-approval'>NOT APPROVED</button></td>";
                                                 } else {
-                                                    echo "<button type='button' class='btn btn-block btn-success btn-sm' data-toggle='modal' data-target='#modal-approval'>APPROVED</button></td>";
+                                                    echo "<p class='text-green'><b>APPROVED</b></p>";
                                                 }
-                                            ?>       
+                                            ?>
                                     </tr>
                                    
                                 <div class="modal fade" id="modal-approval">
@@ -219,47 +219,6 @@
                                             ?>
                                         </td>
                                     </tr>
-                                   
-                                    <div class="modal fade" id="modal-approval">
-                                      <div class="modal-dialog">
-                                        <div class="modal-content">
-                                          <form action="" method="post" enctype="multipart/form-data" id="form-approval">  
-                                          <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                              <span aria-hidden="true">&times;</span></button>
-                                            <h4 class="modal-title">APPROVAL </h4>
-                                          </div>
-                                          <div class="modal-body">
-                                             <div class="form-horizontal">
-                                                            <div class="form-group">
-                                                                <label class="col-sm-2 control-label" style="width: 150px;">Status Approval</label>
-                                                                <div class="col-sm-10" style="width: 450px;">
-                                                                    <select class="form-control" name="status_approval" required id="status_approval">
-                                                                    <option value="" selected disabled>Pilih Status</option>
-                                                                    <option value="RETURN">RETURN</option>
-                                                                    <option value="OK">OK</option>
-                                                                    </select>
-                                                                </div>
-                                                            </div>
-                                                        <div class="form-group">
-                                                                <label class="col-sm-2 control-label" style="width: 150px;">Keterangan</label>
-                                                                <div class="col-sm-10" style="width: 450px;">
-                                                                    <input class="form-control" type="text" placeholder="Keterangan" name="keterangan"/>
-                                                                </div>
-                                                        </div>
-                                              </div>          
-                                          </div>
-                                          <div class="modal-footer">
-                                            <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-                                            <button type="submit" class="btn btn-primary">Save changes</button>
-                                          </div>
-                                          </form>
-                                        </div>
-                                        <!-- /.modal-content -->
-                                      </div>
-                                      <!-- /.modal-dialog -->
-                                    </div>
-                                    <!-- /.modal -->
 
                                     <?php
                                         }

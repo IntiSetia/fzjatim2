@@ -2,13 +2,81 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="26adaf74-23de-4681-be40-ebe64327affa" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.htaccess" afterPath="$PROJECT_DIR$/.htaccess" />
+      <change beforePath="$PROJECT_DIR$/.idea/deployment.xml" afterPath="$PROJECT_DIR$/.idea/deployment.xml" />
       <change beforePath="$PROJECT_DIR$/.idea/webServers.xml" afterPath="$PROJECT_DIR$/.idea/webServers.xml" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/application/config/autoload.php" afterPath="$PROJECT_DIR$/application/config/autoload.php" />
+      <change beforePath="$PROJECT_DIR$/application/config/config.php" afterPath="$PROJECT_DIR$/application/config/config.php" />
       <change beforePath="$PROJECT_DIR$/application/config/routes.php" afterPath="$PROJECT_DIR$/application/config/routes.php" />
-      <change beforePath="$PROJECT_DIR$/application/controllers/HrPerformance.php" afterPath="$PROJECT_DIR$/application/controllers/HrPerformance.php" />
+      <change beforePath="$PROJECT_DIR$/application/controllers/assuranceperformance.php" afterPath="$PROJECT_DIR$/application/controllers/assuranceperformance.php" />
+      <change beforePath="$PROJECT_DIR$/application/controllers/cogs.php" afterPath="$PROJECT_DIR$/application/controllers/cogs.php" />
+      <change beforePath="$PROJECT_DIR$/application/controllers/dash_slide.php" afterPath="$PROJECT_DIR$/application/controllers/dash_slide.php" />
+      <change beforePath="$PROJECT_DIR$/application/controllers/dashboard.php" afterPath="$PROJECT_DIR$/application/controllers/dashboard.php" />
+      <change beforePath="$PROJECT_DIR$/application/controllers/hrperformance.php" afterPath="$PROJECT_DIR$/application/controllers/hrperformance.php" />
+      <change beforePath="$PROJECT_DIR$/application/controllers/login.php" afterPath="$PROJECT_DIR$/application/controllers/login.php" />
+      <change beforePath="$PROJECT_DIR$/application/controllers/lop.php" afterPath="$PROJECT_DIR$/application/controllers/lop.php" />
+      <change beforePath="$PROJECT_DIR$/application/controllers/procure.php" afterPath="$PROJECT_DIR$/application/controllers/procure.php" />
+      <change beforePath="$PROJECT_DIR$/application/controllers/prov.php" afterPath="$PROJECT_DIR$/application/controllers/prov.php" />
+      <change beforePath="$PROJECT_DIR$/application/controllers/rakor.php" afterPath="$PROJECT_DIR$/application/controllers/rakor.php" />
+      <change beforePath="$PROJECT_DIR$/application/controllers/rekon.php" afterPath="$PROJECT_DIR$/application/controllers/rekon.php" />
+      <change beforePath="$PROJECT_DIR$/application/controllers/revenue.php" afterPath="$PROJECT_DIR$/application/controllers/revenue.php" />
+      <change beforePath="$PROJECT_DIR$/application/controllers/revtarget.php" afterPath="$PROJECT_DIR$/application/controllers/revtarget.php" />
+      <change beforePath="$PROJECT_DIR$/application/controllers/searchrev.php" afterPath="$PROJECT_DIR$/application/controllers/searchrev.php" />
+      <change beforePath="$PROJECT_DIR$/application/controllers/searchsn.php" afterPath="$PROJECT_DIR$/application/controllers/searchsn.php" />
+      <change beforePath="$PROJECT_DIR$/application/controllers/tagihan.php" afterPath="$PROJECT_DIR$/application/controllers/tagihan.php" />
+      <change beforePath="$PROJECT_DIR$/application/models/cogs_model.php" afterPath="$PROJECT_DIR$/application/models/cogs_model.php" />
+      <change beforePath="$PROJECT_DIR$/application/models/hr.php" afterPath="$PROJECT_DIR$/application/models/hr.php" />
+      <change beforePath="$PROJECT_DIR$/application/models/modellogin.php" afterPath="$PROJECT_DIR$/application/models/modellogin.php" />
+      <change beforePath="$PROJECT_DIR$/application/models/mtagihan.php" afterPath="$PROJECT_DIR$/application/models/mtagihan.php" />
+      <change beforePath="$PROJECT_DIR$/application/models/revmodel.php" afterPath="$PROJECT_DIR$/application/models/revmodel.php" />
       <change beforePath="$PROJECT_DIR$/application/views/aside.php" afterPath="$PROJECT_DIR$/application/views/aside.php" />
-      <change beforePath="$PROJECT_DIR$/application/views/hr/import_data_hr_wper.php" afterPath="$PROJECT_DIR$/application/views/hr/import_data_hr_wper.php" />
-      <change beforePath="$PROJECT_DIR$/application/views/login/login.php" afterPath="$PROJECT_DIR$/application/views/login/login.php" />
+      <change beforePath="$PROJECT_DIR$/application/views/cogs/dashboard_cogs.php" afterPath="$PROJECT_DIR$/application/views/cogs/dashboard_cogs.php" />
+      <change beforePath="$PROJECT_DIR$/application/views/cogs/footer_cogs.php" afterPath="$PROJECT_DIR$/application/views/cogs/footer_cogs.php" />
+      <change beforePath="$PROJECT_DIR$/application/views/dash_slide.php" afterPath="$PROJECT_DIR$/application/views/dash_slide.php" />
+      <change beforePath="$PROJECT_DIR$/application/views/footer.php" afterPath="$PROJECT_DIR$/application/views/footer.php" />
+      <change beforePath="$PROJECT_DIR$/application/views/footer_dashboard.php" afterPath="$PROJECT_DIR$/application/views/footer_dashboard.php" />
+      <change beforePath="$PROJECT_DIR$/application/views/header.php" afterPath="$PROJECT_DIR$/application/views/header.php" />
+      <change beforePath="$PROJECT_DIR$/application/views/hr/data_hr.php" afterPath="$PROJECT_DIR$/application/views/hr/data_hr.php" />
+      <change beforePath="$PROJECT_DIR$/application/views/hr/detail_data_hr.php" afterPath="$PROJECT_DIR$/application/views/hr/detail_data_hr.php" />
+      <change beforePath="$PROJECT_DIR$/application/views/hr/edit_data_hr.php" afterPath="$PROJECT_DIR$/application/views/hr/edit_data_hr.php" />
+      <change beforePath="$PROJECT_DIR$/application/views/hr/import_data_hr.php" afterPath="$PROJECT_DIR$/application/views/hr/import_data_hr.php" />
+      <change beforePath="$PROJECT_DIR$/application/views/hr/kontrak_management_sm.php" afterPath="$PROJECT_DIR$/application/views/hr/kontrak_management_sm.php" />
+      <change beforePath="$PROJECT_DIR$/application/views/login/login2.php" afterPath="$PROJECT_DIR$/application/views/login/login2.php" />
+      <change beforePath="$PROJECT_DIR$/application/views/message.php" afterPath="$PROJECT_DIR$/application/views/message.php" />
+      <change beforePath="$PROJECT_DIR$/application/views/mungkinperlu.php" afterPath="$PROJECT_DIR$/application/views/mungkinperlu.php" />
+      <change beforePath="$PROJECT_DIR$/application/views/prov/form_prov.php" afterPath="$PROJECT_DIR$/application/views/prov/form_prov.php" />
+      <change beforePath="$PROJECT_DIR$/application/views/revenue/form_psb.php" afterPath="$PROJECT_DIR$/application/views/revenue/form_psb.php" />
+      <change beforePath="$PROJECT_DIR$/application/views/tagihan/dash_slide.php" afterPath="$PROJECT_DIR$/application/views/tagihan/dash_slide.php" />
+      <change beforePath="$PROJECT_DIR$/application/views/tagihan/edit_list_pekerjaan.php" afterPath="$PROJECT_DIR$/application/views/tagihan/edit_list_pekerjaan.php" />
+      <change beforePath="$PROJECT_DIR$/application/views/tagihan/editpekerjaan.php" afterPath="$PROJECT_DIR$/application/views/tagihan/editpekerjaan.php" />
+      <change beforePath="$PROJECT_DIR$/application/views/tagihan/input_pekerjaan_baru.php" afterPath="$PROJECT_DIR$/application/views/tagihan/input_pekerjaan_baru.php" />
+      <change beforePath="$PROJECT_DIR$/application/views/tagihan/input_plan.php" afterPath="$PROJECT_DIR$/application/views/tagihan/input_plan.php" />
+      <change beforePath="$PROJECT_DIR$/application/views/tagihan/list_all_pekerjaan.php" afterPath="$PROJECT_DIR$/application/views/tagihan/list_all_pekerjaan.php" />
+      <change beforePath="$PROJECT_DIR$/application/views/tagihan/listpekerjaan.php" afterPath="$PROJECT_DIR$/application/views/tagihan/listpekerjaan.php" />
+      <change beforePath="$PROJECT_DIR$/application/views/tagihan/listpekerjaanshow.php" afterPath="$PROJECT_DIR$/application/views/tagihan/listpekerjaanshow.php" />
+      <change beforePath="$PROJECT_DIR$/application/views/tagihan/listplanpekerjaan.php" afterPath="$PROJECT_DIR$/application/views/tagihan/listplanpekerjaan.php" />
+      <change beforePath="$PROJECT_DIR$/assets/dist/css/AdminLTE.css" afterPath="$PROJECT_DIR$/assets/dist/css/AdminLTE.css" />
+      <change beforePath="$PROJECT_DIR$/assets/dist/css/AdminLTE.min.css" afterPath="$PROJECT_DIR$/assets/dist/css/AdminLTE.min.css" />
+      <change beforePath="$PROJECT_DIR$/assets/dist/css/alt/AdminLTE-bootstrap-social.css" afterPath="$PROJECT_DIR$/assets/dist/css/alt/AdminLTE-bootstrap-social.css" />
+      <change beforePath="$PROJECT_DIR$/assets/dist/css/alt/AdminLTE-fullcalendar.css" afterPath="$PROJECT_DIR$/assets/dist/css/alt/AdminLTE-fullcalendar.css" />
+      <change beforePath="$PROJECT_DIR$/assets/dist/css/alt/AdminLTE-select2.css" afterPath="$PROJECT_DIR$/assets/dist/css/alt/AdminLTE-select2.css" />
+      <change beforePath="$PROJECT_DIR$/assets/dist/css/alt/AdminLTE-without-plugins.css" afterPath="$PROJECT_DIR$/assets/dist/css/alt/AdminLTE-without-plugins.css" />
+      <change beforePath="$PROJECT_DIR$/assets/dist/css/alt/AdminLTE-without-plugins.min.css" afterPath="$PROJECT_DIR$/assets/dist/css/alt/AdminLTE-without-plugins.min.css" />
+      <change beforePath="$PROJECT_DIR$/assets/dist/css/skins/_all-skins.css" afterPath="$PROJECT_DIR$/assets/dist/css/skins/_all-skins.css" />
+      <change beforePath="$PROJECT_DIR$/assets/dist/css/skins/_all-skins.min.css" afterPath="$PROJECT_DIR$/assets/dist/css/skins/_all-skins.min.css" />
+      <change beforePath="$PROJECT_DIR$/assets/dist/css/skins/skin-black-light.css" afterPath="$PROJECT_DIR$/assets/dist/css/skins/skin-black-light.css" />
+      <change beforePath="$PROJECT_DIR$/assets/dist/css/skins/skin-black.css" afterPath="$PROJECT_DIR$/assets/dist/css/skins/skin-black.css" />
+      <change beforePath="$PROJECT_DIR$/assets/dist/css/skins/skin-blue-light.css" afterPath="$PROJECT_DIR$/assets/dist/css/skins/skin-blue-light.css" />
+      <change beforePath="$PROJECT_DIR$/assets/dist/css/skins/skin-blue.css" afterPath="$PROJECT_DIR$/assets/dist/css/skins/skin-blue.css" />
+      <change beforePath="$PROJECT_DIR$/assets/dist/css/skins/skin-green-light.css" afterPath="$PROJECT_DIR$/assets/dist/css/skins/skin-green-light.css" />
+      <change beforePath="$PROJECT_DIR$/assets/dist/css/skins/skin-green.css" afterPath="$PROJECT_DIR$/assets/dist/css/skins/skin-green.css" />
+      <change beforePath="$PROJECT_DIR$/assets/dist/css/skins/skin-purple-light.css" afterPath="$PROJECT_DIR$/assets/dist/css/skins/skin-purple-light.css" />
+      <change beforePath="$PROJECT_DIR$/assets/dist/css/skins/skin-purple.css" afterPath="$PROJECT_DIR$/assets/dist/css/skins/skin-purple.css" />
+      <change beforePath="$PROJECT_DIR$/assets/dist/css/skins/skin-red-light.css" afterPath="$PROJECT_DIR$/assets/dist/css/skins/skin-red-light.css" />
+      <change beforePath="$PROJECT_DIR$/assets/dist/css/skins/skin-red.css" afterPath="$PROJECT_DIR$/assets/dist/css/skins/skin-red.css" />
+      <change beforePath="$PROJECT_DIR$/assets/dist/css/skins/skin-yellow-light.css" afterPath="$PROJECT_DIR$/assets/dist/css/skins/skin-yellow-light.css" />
+      <change beforePath="$PROJECT_DIR$/assets/dist/css/skins/skin-yellow.css" afterPath="$PROJECT_DIR$/assets/dist/css/skins/skin-yellow.css" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -29,30 +97,71 @@
     <select />
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="dash_slide.php" pinned="true" current-in-tab="false">
+        <entry file="remoteDeploymentFS://&lt;92cdc428-f6db-42b7-8c69-a5970f837efb&gt;/application/views/dash_slide.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1649">
+              <caret line="97" column="71" lean-forward="false" selection-start-line="97" selection-start-column="71" selection-end-line="97" selection-end-column="71" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="dash_slide.php" pinned="true" current-in-tab="true">
+        <entry file="remoteDeploymentFS://&lt;92cdc428-f6db-42b7-8c69-a5970f837efb&gt;/application/controllers/dash_slide.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="249">
+              <caret line="154" column="68" lean-forward="false" selection-start-line="154" selection-start-column="68" selection-end-line="154" selection-end-column="68" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="message.php" pinned="true" current-in-tab="false">
+        <entry file="remoteDeploymentFS://&lt;92cdc428-f6db-42b7-8c69-a5970f837efb&gt;/application/views/message.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1407">
+              <caret line="317" column="66" lean-forward="true" selection-start-line="317" selection-start-column="66" selection-end-line="317" selection-end-column="66" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>Cogs_Model</find>
-      <find>Model_PbsMitra</find>
-      <find>impor</find>
-      <find>moklet</find>
-      <find>importfil</find>
-      <find>COGS</find>
-      <find>cogs_klasifikasi_all(</find>
-      <find>cogs</find>
-      <find>href=&quot;../..</find>
-      <find>Admin</find>
-      <find>provision</find>
-      <find>href=&quot;</find>
-      <find>src=&quot;</find>
-      <find>[]</find>
-      <find>slide s</find>
-      <find>AssurancePerformance</find>
-      <find>finance</find>
-      <find>tagih</find>
-      <find>inser</find>
-      <find>select2</find>
+      <find>.value</find>
+      <find>.val;</find>
+      <find>.val</find>
+      <find>designator-select</find>
+      <find>added</find>
+      <find>keyup</find>
+      <find>inputplan</find>
+      <find>volumemita</find>
+      <find>marshall</find>
+      <find>yaa</find>
+      <find>admin main</find>
+      <find>getlistpekerjaan</find>
+      <find>yaas</find>
+      <find>group by</find>
+      <find>fiber aca</find>
+      <find>listpekerjaan(</find>
+      <find>userdata('position'</find>
+      <find>total_jumlah_plan</find>
+      <find>kontrak_managemen</find>
+      <find>report_pla</find>
+      <find>asc</find>
+      <find>Report pengin</find>
+      <find>marsha</find>
+      <find>maintenance</find>
+      <find>REPORT_</find>
+      <find>round</find>
+      <find>rekon</find>
+      <find>LISTPEKERJAAN(</find>
+      <find>apeldow</find>
+      <find>vito</find>
     </findStrings>
     <replaceStrings>
       <replace>cogs_model</replace>
@@ -60,6 +169,13 @@
       <replace>net</replace>
       <replace>href=&lt;?= base_url();?&gt;assets</replace>
       <replace>assuranceperformance</replace>
+      <replace>'</replace>
+      <replace>position</replace>
+      <replace>Mgr Maintenance Malang</replace>
+      <replace>TEFANI DIVA WIBOWO</replace>
+      <replace>Admin Commerce</replace>
+      <replace />
+      <replace>View Pekerjaan</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -68,53 +184,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/application/config/routes.php" />
-        <option value="$PROJECT_DIR$/application/views/login/login.php" />
-        <option value="&lt;2d4c21b6-c4ce-4039-a2f1-307a1c98c404&gt;/application/config/routes.php" />
-        <option value="&lt;2d4c21b6-c4ce-4039-a2f1-307a1c98c404&gt;/application/views/dashboard.php" />
-        <option value="&lt;2d4c21b6-c4ce-4039-a2f1-307a1c98c404&gt;/application/controllers/welcome2.php" />
-        <option value="&lt;2d4c21b6-c4ce-4039-a2f1-307a1c98c404&gt;/application/views/newwelcome.php" />
-        <option value="&lt;2d4c21b6-c4ce-4039-a2f1-307a1c98c404&gt;/application/views/cogs/footer_cogs2.php" />
-        <option value="&lt;2d4c21b6-c4ce-4039-a2f1-307a1c98c404&gt;/application/views/cogs/import_cogs.php" />
-        <option value="&lt;2d4c21b6-c4ce-4039-a2f1-307a1c98c404&gt;/application/views/cogs/dashboard_cogs.php" />
-        <option value="&lt;2d4c21b6-c4ce-4039-a2f1-307a1c98c404&gt;/application/models/cogs_model.php" />
-        <option value="&lt;2d4c21b6-c4ce-4039-a2f1-307a1c98c404&gt;/application/views/cogs/evaluasi_cogs.php" />
-        <option value="&lt;2d4c21b6-c4ce-4039-a2f1-307a1c98c404&gt;/application/views/cogs/evaluasi_cogs_area.php" />
-        <option value="&lt;2d4c21b6-c4ce-4039-a2f1-307a1c98c404&gt;/application/views/cogs/evaluasi_cogs_klasifikasi.php" />
-        <option value="&lt;2d4c21b6-c4ce-4039-a2f1-307a1c98c404&gt;/application/views/cogs/evaluasi_revenue_all.php" />
-        <option value="&lt;2d4c21b6-c4ce-4039-a2f1-307a1c98c404&gt;/application/views/cogs/evaluasi_revenue_m.php" />
-        <option value="&lt;2d4c21b6-c4ce-4039-a2f1-307a1c98c404&gt;/application/views/cogs/input_target.php" />
-        <option value="&lt;2d4c21b6-c4ce-4039-a2f1-307a1c98c404&gt;/application/views/cogs/evaluasi_cogs_klasifikasi_all.php" />
-        <option value="&lt;2d4c21b6-c4ce-4039-a2f1-307a1c98c404&gt;/application/views/cogs/footer_cogs.php" />
-        <option value="&lt;2d4c21b6-c4ce-4039-a2f1-307a1c98c404&gt;/application/views/login/login2.php" />
-        <option value="&lt;2d4c21b6-c4ce-4039-a2f1-307a1c98c404&gt;/application/controllers/cogs.php" />
-        <option value="&lt;2d4c21b6-c4ce-4039-a2f1-307a1c98c404&gt;/application/controllers/dashboard.php" />
-        <option value="&lt;2d4c21b6-c4ce-4039-a2f1-307a1c98c404&gt;/application/controllers/dash_slide.php" />
-        <option value="&lt;2d4c21b6-c4ce-4039-a2f1-307a1c98c404&gt;/application/controllers/hrperformance.php" />
-        <option value="&lt;2d4c21b6-c4ce-4039-a2f1-307a1c98c404&gt;/application/controllers/prov.php" />
-        <option value="&lt;2d4c21b6-c4ce-4039-a2f1-307a1c98c404&gt;/application/controllers/rekon.php" />
-        <option value="&lt;2d4c21b6-c4ce-4039-a2f1-307a1c98c404&gt;/application/controllers/revenue.php" />
-        <option value="&lt;2d4c21b6-c4ce-4039-a2f1-307a1c98c404&gt;/application/controllers/revtarget.php" />
-        <option value="&lt;2d4c21b6-c4ce-4039-a2f1-307a1c98c404&gt;/application/controllers/searchrev.php" />
-        <option value="&lt;2d4c21b6-c4ce-4039-a2f1-307a1c98c404&gt;/application/controllers/searchsn.php" />
-        <option value="&lt;2d4c21b6-c4ce-4039-a2f1-307a1c98c404&gt;/application/views/dash_slide.php" />
-        <option value="&lt;2d4c21b6-c4ce-4039-a2f1-307a1c98c404&gt;/application/views/footer_dashboard.php" />
-        <option value="&lt;2d4c21b6-c4ce-4039-a2f1-307a1c98c404&gt;/application/controllers/assuranceperformance.php" />
-        <option value="&lt;2d4c21b6-c4ce-4039-a2f1-307a1c98c404&gt;/application/controllers/procure.php" />
-        <option value="&lt;2d4c21b6-c4ce-4039-a2f1-307a1c98c404&gt;/application/views/procurement/penunjukan_pekerjaan.php" />
-        <option value="&lt;2d4c21b6-c4ce-4039-a2f1-307a1c98c404&gt;/application/controllers/lop.php" />
-        <option value="&lt;2d4c21b6-c4ce-4039-a2f1-307a1c98c404&gt;/application/.htaccess" />
-        <option value="&lt;2d4c21b6-c4ce-4039-a2f1-307a1c98c404&gt;/.htaccess" />
-        <option value="&lt;2d4c21b6-c4ce-4039-a2f1-307a1c98c404&gt;/application/views/aside.php" />
-        <option value="&lt;2d4c21b6-c4ce-4039-a2f1-307a1c98c404&gt;/application/views/revenue/form_ass.php" />
-        <option value="&lt;2d4c21b6-c4ce-4039-a2f1-307a1c98c404&gt;/application/models/modellogin.php" />
-        <option value="&lt;2d4c21b6-c4ce-4039-a2f1-307a1c98c404&gt;/application/views/login/login.php" />
-        <option value="&lt;2d4c21b6-c4ce-4039-a2f1-307a1c98c404&gt;/application/controllers/login.php" />
-        <option value="&lt;2d4c21b6-c4ce-4039-a2f1-307a1c98c404&gt;/application/views/header.php" />
-        <option value="&lt;2d4c21b6-c4ce-4039-a2f1-307a1c98c404&gt;/application/models/mtagihan.php" />
-        <option value="&lt;2d4c21b6-c4ce-4039-a2f1-307a1c98c404&gt;/application/views/footer.php" />
-        <option value="&lt;2d4c21b6-c4ce-4039-a2f1-307a1c98c404&gt;/application/controllers/tagihan.php" />
-        <option value="&lt;2d4c21b6-c4ce-4039-a2f1-307a1c98c404&gt;/application/views/tagihan/input_pekerjaan_baru.php" />
+        <option value="$PROJECT_DIR$/.htaccess" />
+        <option value="&lt;92cdc428-f6db-42b7-8c69-a5970f837efb&gt;/application/views/marshall/repairing.php" />
+        <option value="&lt;92cdc428-f6db-42b7-8c69-a5970f837efb&gt;/application/views/cogs/footer_cogs.php" />
+        <option value="&lt;92cdc428-f6db-42b7-8c69-a5970f837efb&gt;/application/views/hr/edit_data_hr.php" />
+        <option value="&lt;92cdc428-f6db-42b7-8c69-a5970f837efb&gt;/application/views/tagihan/list_all_pekerjaan.php" />
+        <option value="&lt;b8e4f587-6b67-46be-8faf-8376a2211ce4&gt;/fiberzone2/application/views/aside.php" />
+        <option value="&lt;92cdc428-f6db-42b7-8c69-a5970f837efb&gt;/application/views/tagihan/listpekerjaanshow.php" />
+        <option value="&lt;92cdc428-f6db-42b7-8c69-a5970f837efb&gt;/application/config/routes.php" />
+        <option value="&lt;92cdc428-f6db-42b7-8c69-a5970f837efb&gt;/application/views/login/login2.php" />
+        <option value="&lt;92cdc428-f6db-42b7-8c69-a5970f837efb&gt;/application/models/cogs_model.php" />
+        <option value="&lt;92cdc428-f6db-42b7-8c69-a5970f837efb&gt;/application/controllers/cogs.php" />
+        <option value="&lt;92cdc428-f6db-42b7-8c69-a5970f837efb&gt;/application/controllers/assuranceperformance.php" />
+        <option value="&lt;92cdc428-f6db-42b7-8c69-a5970f837efb&gt;/application/controllers/dashboard.php" />
+        <option value="&lt;92cdc428-f6db-42b7-8c69-a5970f837efb&gt;/application/controllers/lop.php" />
+        <option value="&lt;92cdc428-f6db-42b7-8c69-a5970f837efb&gt;/application/controllers/procure.php" />
+        <option value="&lt;92cdc428-f6db-42b7-8c69-a5970f837efb&gt;/application/controllers/prov.php" />
+        <option value="&lt;92cdc428-f6db-42b7-8c69-a5970f837efb&gt;/application/controllers/rakor.php" />
+        <option value="&lt;92cdc428-f6db-42b7-8c69-a5970f837efb&gt;/application/controllers/rekon.php" />
+        <option value="&lt;92cdc428-f6db-42b7-8c69-a5970f837efb&gt;/application/controllers/revenue.php" />
+        <option value="&lt;92cdc428-f6db-42b7-8c69-a5970f837efb&gt;/application/controllers/revtarget.php" />
+        <option value="&lt;92cdc428-f6db-42b7-8c69-a5970f837efb&gt;/application/controllers/searchrev.php" />
+        <option value="&lt;92cdc428-f6db-42b7-8c69-a5970f837efb&gt;/application/controllers/searchsn.php" />
+        <option value="&lt;92cdc428-f6db-42b7-8c69-a5970f837efb&gt;/application/controllers/wh.php" />
+        <option value="&lt;92cdc428-f6db-42b7-8c69-a5970f837efb&gt;/application/views/footer_dashboard.php" />
+        <option value="&lt;92cdc428-f6db-42b7-8c69-a5970f837efb&gt;/application/views/marshall/report_marshall.php" />
+        <option value="&lt;92cdc428-f6db-42b7-8c69-a5970f837efb&gt;/application/views/tagihan/editpekerjaan.php" />
+        <option value="&lt;92cdc428-f6db-42b7-8c69-a5970f837efb&gt;/application/models/modelmarshall.php" />
+        <option value="&lt;92cdc428-f6db-42b7-8c69-a5970f837efb&gt;/application/views/marshall/report_marshall2.php" />
+        <option value="&lt;92cdc428-f6db-42b7-8c69-a5970f837efb&gt;/application/views/marshall/detail_marshall.php" />
+        <option value="&lt;92cdc428-f6db-42b7-8c69-a5970f837efb&gt;/application/controllers/marshall.php" />
+        <option value="&lt;92cdc428-f6db-42b7-8c69-a5970f837efb&gt;/application/config/autoload.php" />
+        <option value="&lt;92cdc428-f6db-42b7-8c69-a5970f837efb&gt;/application/views/marshall/input_form.php" />
+        <option value="&lt;92cdc428-f6db-42b7-8c69-a5970f837efb&gt;/application/controllers/login.php" />
+        <option value="&lt;92cdc428-f6db-42b7-8c69-a5970f837efb&gt;/application/views/tagihan/input_plan2.php" />
+        <option value="&lt;92cdc428-f6db-42b7-8c69-a5970f837efb&gt;/application/views/tagihan/input_pekerjaan_baru2.php" />
+        <option value="&lt;92cdc428-f6db-42b7-8c69-a5970f837efb&gt;/application/views/tagihan/listplanpekerjaan.php" />
+        <option value="&lt;92cdc428-f6db-42b7-8c69-a5970f837efb&gt;/application/models/hr.php" />
+        <option value="&lt;92cdc428-f6db-42b7-8c69-a5970f837efb&gt;/application/views/tagihan/input_plan.php" />
+        <option value="&lt;92cdc428-f6db-42b7-8c69-a5970f837efb&gt;/application/views/tagihan/input_pekerjaan_baru.php" />
+        <option value="&lt;92cdc428-f6db-42b7-8c69-a5970f837efb&gt;/application/controllers/dash_slide.php" />
+        <option value="&lt;92cdc428-f6db-42b7-8c69-a5970f837efb&gt;/application/views/dash_slide.php" />
+        <option value="&lt;92cdc428-f6db-42b7-8c69-a5970f837efb&gt;/application/controllers/hrperformance.php" />
+        <option value="&lt;92cdc428-f6db-42b7-8c69-a5970f837efb&gt;/application/views/hr/kontrak_management_sm.php" />
+        <option value="&lt;92cdc428-f6db-42b7-8c69-a5970f837efb&gt;/application/models/mtagihan.php" />
+        <option value="&lt;92cdc428-f6db-42b7-8c69-a5970f837efb&gt;/application/views/aside.php" />
+        <option value="&lt;92cdc428-f6db-42b7-8c69-a5970f837efb&gt;/application/views/tagihan/report_input.php" />
+        <option value="&lt;92cdc428-f6db-42b7-8c69-a5970f837efb&gt;/application/controllers/tagihan.php" />
+        <option value="&lt;92cdc428-f6db-42b7-8c69-a5970f837efb&gt;/application/views/tagihan/listpekerjaan.php" />
+        <option value="&lt;92cdc428-f6db-42b7-8c69-a5970f837efb&gt;/application/views/footer.php" />
+        <option value="&lt;92cdc428-f6db-42b7-8c69-a5970f837efb&gt;/application/views/hr/absen_apel_dow.php" />
+        <option value="&lt;92cdc428-f6db-42b7-8c69-a5970f837efb&gt;/application/views/message.php" />
       </list>
     </option>
   </component>
@@ -126,9 +246,9 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="293" />
-    <option name="y" value="25" />
-    <option name="width" value="1076" />
+    <option name="x" value="-2" />
+    <option name="y" value="46" />
+    <option name="width" value="680" />
     <option name="height" value="646" />
   </component>
   <component name="ProjectView">
@@ -146,19 +266,19 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
-              <item name="noname" type="b2602c69:ProjectViewProjectNode" />
-              <item name="noname" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="fzjatim2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="fzjatim2" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -169,6 +289,13 @@
     <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.highlight.symlinks" value="true" />
     <property name="WebServerToolWindowPanel.toolwindow.highlight.mappings" value="true" />
+    <property name="ChangesBrowser.SHOW_FLATTEN" value="false" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="\" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -222,36 +349,123 @@
       <workItem from="1519095327802" duration="1907000" />
       <workItem from="1519130474235" duration="640000" />
       <workItem from="1519173396280" duration="684000" />
+      <workItem from="1519386448591" duration="3328000" />
+      <workItem from="1519691424022" duration="21405000" />
+      <workItem from="1519778360485" duration="22792000" />
+      <workItem from="1519829101679" duration="1035000" />
+      <workItem from="1519868497426" duration="599000" />
+      <workItem from="1519890686751" duration="6070000" />
+      <workItem from="1519910987005" duration="102000" />
+      <workItem from="1519954696077" duration="17628000" />
+      <workItem from="1520217753808" duration="16779000" />
+      <workItem from="1520297740748" duration="1615000" />
+      <workItem from="1520299774742" duration="19708000" />
+      <workItem from="1520385770589" duration="10707000" />
+      <workItem from="1520483487595" duration="2000" />
+      <workItem from="1520500081528" duration="7000" />
+      <workItem from="1520504987373" duration="7000" />
+      <workItem from="1520506348126" duration="779000" />
+      <workItem from="1520560094528" duration="1592000" />
+      <workItem from="1520860817843" duration="1228000" />
+      <workItem from="1520932583477" duration="975000" />
+      <workItem from="1520989639668" duration="4359000" />
+      <workItem from="1521085248279" duration="445000" />
+      <workItem from="1521085825700" duration="21665000" />
+      <workItem from="1521118014012" duration="667000" />
+      <workItem from="1521163648602" duration="17101000" />
+      <workItem from="1521278528087" duration="571000" />
+      <workItem from="1521424016191" duration="21813000" />
+      <workItem from="1521507958735" duration="2727000" />
+      <workItem from="1521512207853" duration="14987000" />
+      <workItem from="1521545947963" duration="1879000" />
+      <workItem from="1521600773447" duration="21665000" />
+      <workItem from="1521682295427" duration="13055000" />
+      <workItem from="1521777812903" duration="3908000" />
+      <workItem from="1522131497843" duration="8960000" />
+      <workItem from="1522217605282" duration="8325000" />
+      <workItem from="1522308563769" duration="12718000" />
+      <workItem from="1522590227625" duration="8820000" />
+      <workItem from="1522632194724" duration="6719000" />
+      <workItem from="1522649710037" duration="11642000" />
+      <workItem from="1522718171537" duration="13752000" />
+      <workItem from="1522803955660" duration="17408000" />
+      <workItem from="1522892902519" duration="12134000" />
+      <workItem from="1522999644986" duration="3886000" />
+      <workItem from="1523021182314" duration="5422000" />
+      <workItem from="1523098165208" duration="306000" />
+      <workItem from="1523233313916" duration="9878000" />
+      <workItem from="1523323558642" duration="27913000" />
+      <workItem from="1523408132876" duration="20352000" />
+      <workItem from="1523492792410" duration="18524000" />
+      <workItem from="1523586633970" duration="13077000" />
+      <workItem from="1523846879877" duration="15521000" />
+      <workItem from="1523924191009" duration="16283000" />
+      <workItem from="1524013608686" duration="17934000" />
+      <workItem from="1524102234321" duration="11345000" />
+      <workItem from="1524137219094" duration="90000" />
+      <workItem from="1524192513368" duration="13856000" />
+      <workItem from="1524475485061" duration="1748000" />
+      <workItem from="1524532771339" duration="11078000" />
+      <workItem from="1524560950660" duration="1589000" />
+      <workItem from="1524618558660" duration="1979000" />
+      <workItem from="1524626415216" duration="698000" />
+      <workItem from="1524628266416" duration="12942000" />
+      <workItem from="1524702846638" duration="13403000" />
+      <workItem from="1524807726577" duration="8419000" />
+      <workItem from="1525056843233" duration="4321000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="87869000" />
+    <option name="totallyTimeSpent" value="670111000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
+    <frame x="-8" y="22" width="1382" height="754" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info id="Remote Host" active="true" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22181553" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16105418" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980332" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="File Transfer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3258786" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24962178" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25475842" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.16105418" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980332" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24962178" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="File Transfer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32850242" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24962178" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2489019" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
+    <layout-to-restore>
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="File Transfer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3258786" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25475842" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.16105418" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2489019" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980332" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24962178" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -297,6 +511,69 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="213">
           <caret line="30" column="50" lean-forward="true" selection-start-line="30" selection-start-column="50" selection-end-line="30" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/header.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="191" column="37" lean-forward="false" selection-start-line="191" selection-start-column="37" selection-end-line="191" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/tagihan.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-153">
+          <caret line="15" column="21" lean-forward="false" selection-start-line="15" selection-start-column="21" selection-end-line="15" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/dash_slide_marshall.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/aside.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="24" column="62" lean-forward="false" selection-start-line="24" selection-start-column="62" selection-end-line="24" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/models/modelmarshall.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="2" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="6" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/marshall.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/marshall/input_form.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="17" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="138" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.htaccess">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="11" lean-forward="true" selection-start-line="5" selection-start-column="11" selection-end-line="5" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/lib/phpstorm.jar!/resources/html5-schema/html5/block.rnc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="296">
+          <caret line="59" column="16" lean-forward="false" selection-start-line="59" selection-start-column="16" selection-end-line="59" selection-end-column="16" />
         </state>
       </provider>
     </entry>

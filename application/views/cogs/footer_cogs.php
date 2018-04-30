@@ -258,9 +258,9 @@
 
                     $net_ambil  = $net[$key];
 
-                      if ($net_ambil < 0) {
+                      /*if ($net_ambil < 0) {
                         $net_ambil   = $net_ambil * $negone;
-                      } 
+                      } */
 
                     $cogs       = $fz2_ytd_cogs[$key]->cogs;
                     $arraycog[] = $cogs;

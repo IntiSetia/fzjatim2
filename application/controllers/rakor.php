@@ -7,6 +7,9 @@ class Rakor extends CI_Controller {
         $this->load->database();
         $this->load->helper('url');
         $this->load->library('session');
+
+        if ($this->session->userdata('login')!==TRUE)
+            redirect('index.php/login/viewlogin');
     }
 
     function index()

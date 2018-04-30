@@ -10,8 +10,8 @@ class Dashboard extends CI_Controller {
       $this->load->model('cogs_model');
       $this->load->library('session');
 
-      if ($this->session->userdata('login')!==TRUE)
-            redirect('index.php/login');
+        if ($this->session->userdata('login')!==TRUE)
+            redirect('index.php/login/viewlogin');
     }
 
     public function index() {

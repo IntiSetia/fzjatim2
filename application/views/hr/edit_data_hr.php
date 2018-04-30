@@ -29,7 +29,7 @@
         right: 0;
         bottom: 0;
         text-align: center;
-        font-size: 1;
+        font-size: 12;
         width:100%;
         height: 100%;
         opacity: 0;
@@ -44,7 +44,7 @@
         Edit User Profile
       </h1>
       <ol class="breadcrumb">
-        <li><a href="<?=base_url('index.php/HrPerformance/')?>"><i class="fa fa-angle-left"></i> Kembali</a></li>
+        <li><a href="<?=base_url('index.php/hrperformance/')?>"><i class="fa fa-angle-left"></i> Kembali</a></li>
       </ol>
     </section>
 
@@ -55,7 +55,7 @@
         <div class="col-md-3">
 
           <!-- Profile Image -->
-          <form method="post" action="<?php echo base_url()."index.php/HrPerformance/upload_img/".$a['nik']."";?>" enctype="multipart/form-data">
+          <form method="post" action="<?php echo base_url()."index.php/hrperformance/upload_img/".$a['nik']."";?>" enctype="multipart/form-data">
           <div class="box box-primary">
             <div class="box-body box-profile">
             <?php
@@ -87,14 +87,13 @@
         <!-- /.col -->
         <div class="col-md-9">
           <div class="nav-tabs-custom">
-            <!-- <ul class="nav nav-tabs"> -->
-              <!-- <li class="active"><a href="#activity" data-toggle="tab">Detail</a></li> -->
-              <!-- <li><a href="#timeline" data-toggle="tab">Document</a></li> -->
-              <!-- <li><a href="#settings" data-toggle="tab">Settings</a></li> -->
-            <!-- </ul> -->
+             <ul class="nav nav-tabs">
+               <li class="active"><a href="#activity" data-toggle="tab">Detail</a></li>
+               <li><a href="#document" data-toggle="tab">Document</a></li>
+             </ul>
             <div class="tab-content">
               <div class="active tab-pane" id="activity">
-                  <form class="form-horizontal" method="POST" action="<?=base_url('index.php/HrPerformance/edit/')?>">
+                  <form class="form-horizontal" method="POST" action="<?=base_url('index.php/hrperformance/edit/')?>">
                     <div class="box-body">
                       <div class="form-group">
                         <label class="col-sm-2 control-label">OBJECT ID</label>
@@ -225,12 +224,76 @@
                   </form>
               </div>
 
-              <!-- /.tab-pane -->
-              <!-- <div class="tab-pane" id="timeline"> -->
-                <!--body-->
-              <!-- </div> -->
-              <!-- /.tab-pane -->
+                <div class="tab-pane" id="document">
+                    <form class="form-horizontal" method="POST" action="<?=base_url('index.php/hrperformance/dokumen/')?>" enctype="multipart/form-data">
+                        <div class="box-body">
+                        <input class="form-control" type="hidden" name="nik" value="<?=$a['nik'];?>">
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Jenis Dokumen</label>
+                            <div class="col-sm-9">
+                                <select class="form-control" name="namadoc" id="namadoc" />
+                                    <option value="">Pilih Jenis Dokumen</option>
+                                    <option value="BASTS">BA Serah Terima Seragam</option>
+                                    <option value="BPJS">BPJS</option>
+                                </select>
+                            </div>
+                        </div>
+
+                            <div class="form-group" hidden id="merahputih">
+                                <label class="col-sm-3 control-label">Indihome Merah Putih</label>
+                                <div class="col-sm-3">
+                                    <select class="form-control" name="ukuran_merahputih" id="ukuran_merahputih" />
+                                    <option value="">Jenis Ukuran</option>
+                                    <option value="S">S</option>
+                                    <option value="M">M</option>
+                                    <option value="L">L</option>
+                                    <option value="XL">XL</option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-3">
+                                    <input class="form-control" type="number" name="total_merahputih" placeholder="Total" >
+                                </div>
+                            </div>
+
+                            <div class="form-group" hidden id="merah">
+                                <label class="col-sm-3 control-label">MyIndihome Merah</label>
+                                <div class="col-sm-3">
+                                    <select class="form-control" name="ukuran_merah" id="ukuran_merah"/>
+                                    <option value="">Jenis Ukuran</option>
+                                    <option value="S">S</option>
+                                    <option value="M">M</option>
+                                    <option value="L">L</option>
+                                    <option value="XL">XL</option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-3">
+                                    <input class="form-control" type="number" name="total_merah" placeholder="Total">
+                                </div>
+                            </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Dokumen</label>
+                            <div class="col-sm-9">
+                                <input class="form-control" type="file" name="doc">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">&nbsp;</label>
+                            <div class="col-sm-9">
+                                <p class="help-block">Format: jpg || pdf || doc || docx</p>
+                            </div>
+                        </div>
+                        </div>
+
+                        <div class="box-footer">
+                            <input type="submit" name="submit" value="Submit" class="btn btn-info pull-right">
+                        </div>
+                    </form>
+                </div>
             </div>
+
             <!-- /.tab-content -->
           </div>
           <!-- /.nav-tabs-custom -->

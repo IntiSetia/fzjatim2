@@ -2,8 +2,32 @@
 <project version="4">
   <component name="WebServers">
     <option name="servers">
-      <webServer id="b3a4d58b-95b1-4bbc-8d1f-444adc045af9" name="telkomaksesfz2" url="http://10.112.83.83">
-        <fileTransfer host="10.112.83.83" port="21" rootFolder="/var/www/html/fiberzone2">
+      <webServer id="b3a4d58b-95b1-4bbc-8d1f-444adc045af9" name="telkomaksespasuruan" url="http://10.112.17.27">
+        <fileTransfer host="10.112.17.27" port="21">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="21" />
+        </fileTransfer>
+      </webServer>
+      <webServer id="1658dfc8-8360-4c00-b156-fcf36adb87d3" name="barcodepsn" url="http://10.112.17.27">
+        <fileTransfer host="10.112.17.27" port="21">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="21" />
+        </fileTransfer>
+      </webServer>
+      <webServer id="92cdc428-f6db-42b7-8c69-a5970f837efb" name="telkomaksesfz2" url="http://10.112.83.83">
+        <fileTransfer host="10.112.83.83" port="21" rootFolder="/var/www/html/fzjatim2">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="21" />
+        </fileTransfer>
+      </webServer>
+      <webServer id="b8e4f587-6b67-46be-8faf-8376a2211ce4" name="10.112.83.83" url="http://10.112.83.83">
+        <fileTransfer host="10.112.83.83" port="21" rootFolder="/var/www/html">
           <advancedOptions>
             <advancedOptions dataProtectionLevel="Private" />
           </advancedOptions>

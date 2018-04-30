@@ -10,7 +10,7 @@ class Tagihan extends CI_Controller {
         $this->load->library('session');
 
         if ($this->session->userdata('login')!==TRUE)
-            redirect('index.php/login');
+            redirect('index.php/login/viewlogin');
     }
 
     function input(){
@@ -39,6 +39,7 @@ class Tagihan extends CI_Controller {
         $this->load->view('header');
         $this->load->view('aside');
         $this->load->view('tagihan/input_pekerjaan_baru', $data);
+        /*$this->load->view('tagihan/input_pekerjaan_baru2', $data);*/
         $this->load->view('footer');
     }
 
@@ -49,7 +50,16 @@ class Tagihan extends CI_Controller {
         $msg    = $this->uri->segment(3);
         $alert  = '';
         if($msg == 'success'){
-            $alert  = '<b>PLAN PEKERJAAN BERHASIL DITAMBAHKAN!</b>';
+            $terakhirinput  = $this->mtagihan->get_data_last('data_planper', 'id');
+            foreach ($terakhirinput as $a){
+                $nama_khs2          = $this->mtagihan->get_nama_khs('khs', $a['khs']);
+                $nama_khs           = "";
+                foreach ($nama_khs2 as $a) {
+                    $nama_khs    = $a['nama_khs'];
+                }
+
+                $alert  = "<b>PLAN PEKERJAAN BERHASIL DITAMBAHKAN!</b> ";
+            }
         }
         $data['_alert']     = $alert;
         $data['listitem']   = $this->mtagihan->get_list('list_item');
@@ -79,141 +89,69 @@ class Tagihan extends CI_Controller {
     }
 
     public function add_pekerjaan(){
+        //Tgl: 30 Jan 2018 Disini aku mau ambil nama_khs berdasarkan $khs/id_khs nya. Nah, nampilinnya gimana ya? NGAMBIL nya I mean
+
         $maker              = $this->input->post('maker');
         $tanggal            = $this->input->post('tanggal');
         $idp                = $this->input->post('idp');
-        $idv                = $this->input->post('idv');
         $pekerjaan          = $this->input->post('nama_pekerjaan');
         $jenis_pekerjaan    = $this->input->post('jenis_pekerjaan');
-        $pengawas_lapangan  = $this->input->post('pengawas_lapangan');
+        $idv                = $this->input->post('idv');
+        $id_spmk            = $this->input->post('idspmk');
+        $pengawas_lapangan  = $this->input->post('waspang');
         $nama_mitra         = $this->input->post('nama_mitra');
-        $id_spmk            = $this->input->post('id_spmk');
+        $witel              = $this->input->post('witel');
 
-        //TELKOM
-        $khs                = $this->input->post('khs');
-        $nama_khs2          = $this->mtagihan->get_nama_khs('khs', $khs);
-        $nama_khs           = "";
-        foreach ($nama_khs2 as $a) {
-            $nama_khs    = $a['nama_khs'];
-        }
-
-        //$nama_khs           = $this->mtagihan->get_nama_khs('khs', $khs);
-
-        //Tgl: 30 Jan 2018 Disini aku mau ambil nama_khs berdasarkan $khs/id_khs nya. Nah, nampilinnya gimana ya? NGAMBIL nya I mean 
-
-        //MITRA
-        
-        /*echo $tampilharga . "<br>";
-        echo $maker."<br>".$tanggal."<br>".$idp."<br>".$pekerjaan."<br>".$jenis_pekerjaan;*/
-
-        /*echo $maker."<br>".$tanggal."<br>".$idp."<br>".$idv."<br>".$idp."<br>".$pekerjaan."<br>".$jenis_pekerjaan."<br>".$pengawas_lapangan."<br>".$nama_mitra."<br>".$id_spmk."<br>".$designator."<br>".$volume."<br>".$tampilharga."<br>".$designatormitra."<br>".$volumemitra."<br>".$tampilhargamitra;*/
-
-        if ($nama_mitra == "PT TELKOM AKSES") {
-
+        if($nama_mitra == "PT TELKOM AKSES") {
+            $id_khs             = $this->input->post('khs');
             $designator         = $this->input->post('designator');
-            $tampilharga        = 0;
-
-            foreach ($designator as $key=>$item) {
+            $tampilharga = 0;
+            foreach ($designator as $key => $item) {
                 //echo $item ."<br>";
-                $mat_jas        = $this->mtagihan->get_mat_jas('list_item', $item);
+                $mat_jas    = $this->mtagihan->get_mat_jas('list_item', $item);
                 //echo $item ." ". $item2['harga_material'] ." ". $item2['harga_jasa'] . "\n";
-                    $material       = $mat_jas[0]['harga_material'];
-                    $jasa           = $mat_jas[0]['harga_jasa'];
-                    $volume         = $this->input->post('volume');
-                    $volume         = $volume[$key];
-                    $harga_total    = (($volume * $material) + ($volume * $jasa));
+                $material   = $mat_jas[0]['harga_material'];
+                $jasa       = $mat_jas[0]['harga_jasa'];
 
-                    $tampilharga    += $harga_total;
+                $volume         = $this->input->post('volume');
+                $volume         = $volume[$key];
+                $harga_total    = (($volume * $material) + ($volume * $jasa));
+                $tampilharga    += $harga_total;
 
-                    //DESIGNATOR
-                    //echo $item ."<br>";
+                /*//VolumeJasa
+                $volumejas          = $this->input->post('volumejas');
+                $volumejas          = $volumejas[$key];
+                $harga_total_jas    = $volumejas * $jasa;
+
+                //VolumeMat
+                $volumemat          = $this->input->post('volumemat');
+                $volumemat          = $volumemat[$key];
+                $harga_total_mat    = $volumemat * $material;
+
+                $total              = $harga_total_mat + $harga_total_jas;
+                $tampilharga        += $total;*/
+
+                //DESIGNATOR
+                /*echo $item."<br>".$material."<br>".$jasa."<br>".$volume;*/
             }
 
-            if(isset($_POST["designator"]) && is_array($_POST["designator"])){
-                $designator = implode(",", $_POST["designator"]);
-            }
-
-            if(isset($_POST["volume"]) && is_array($_POST["volume"])){
+            if (isset($_POST["volume"]) && is_array($_POST["volume"])) {
                 $volume = implode(",", $_POST["volume"]);
             }
 
-            $data   = array(
-                'maker'             => $maker,
-                'tanggal'           => $tanggal,
-                'idp'               => $idp,
-                'pekerjaan'         => $pekerjaan,
-                'jenis_pekerjaan'   => $jenis_pekerjaan,
-                'id_vestyna'        => $idv,
-                'id_spmk'           => $id_spmk,
-                'waspang'           => $pengawas_lapangan,
-                'mitra'             => $nama_mitra, //Ngambil disini nya langsung Pik. Mau tak masukkan database 
-                'nama_khs'          => $nama_khs,
-                'id_designatortelkom'   => $designator,
-                'volume_telkom'         => $volume,
-                'harga_telkom'          => $tampilharga,
-                'approval_pek'          => "NOK",
-                'approval_rek'          => "NOK"
-            );
-
-            $this->mtagihan->Add('boq_input', $data);
-
-            redirect(base_url('index.php/tagihan/input/success'));
-        } else {
-
-            $designator         = $this->input->post('designator');
-            $tampilharga        = 0;
-
-            foreach ($designator as $key=>$item) {
-                //echo $item ."<br>";
-                $mat_jas        = $this->mtagihan->get_mat_jas('list_item', $item);
-                //echo $item ." ". $item2['harga_material'] ." ". $item2['harga_jasa'] . "\n";
-                    $material       = $mat_jas[0]['harga_material'];
-                    $jasa           = $mat_jas[0]['harga_jasa'];
-                    $volume         = $this->input->post('volume');
-                    $volume         = $volume[$key];
-                    $harga_total    = (($volume * $material) + ($volume * $jasa));
-
-                    $tampilharga    += $harga_total;
-
-                    //DESIGNATOR
-                    //echo $item ."<br>";
+            if (isset($_POST["designator"]) && is_array($_POST["designator"])) {
+                $designator = implode(",", $_POST["designator"]);
             }
 
-            if(isset($_POST["designator"]) && is_array($_POST["designator"])){
-                $designator = implode(", ", $_POST["designator"]);
+            /*if(isset($_POST["volumemat"]) && is_array($_POST["volumemat"])){
+                $impvolumemat= implode(",", $_POST["volumemat"]);
             }
 
-            if(isset($_POST["volume"]) && is_array($_POST["volume"])){
-                $volume = implode(", ", $_POST["volume"]);
-            }
+            if(isset($_POST["volumejas"]) && is_array($_POST["volumejas"])){
+                $impvolumejas = implode(",", $_POST["volumejas"]);
+            }*/
 
-            $khsmitra                = $this->input->post('khsmitra');
-            $designatormitra         = $this->input->post('designatormitra');
-            $tampilhargamitra        = 0;
-            foreach ($designatormitra as $key=>$item) {
-                //echo $item ."<br>";
-                    $mat_jas        = $this->mtagihan->get_mat_jas('list_item', $item);
-                //echo $item ." ". $item2['harga_material'] ." ". $item2['harga_jasa'] . "\n";
-                    $material       = $mat_jas[0]['harga_material'];
-                    $jasa           = $mat_jas[0]['harga_jasa'];
-                    $volume         = $this->input->post('volumemitra');
-                    $volume         = $volume[$key];
-                    $harga_total    = (($volume * $material) + ($volume * $jasa));
-
-                    $tampilhargamitra    += $harga_total;
-
-                    //DESIGNATOR
-                    //echo $item ."<br>";
-            }
-            if(isset($_POST["designatormitra"]) && is_array($_POST["designatormitra"])){
-                $designatormitra = implode(", ", $_POST["designatormitra"]);
-            }
-
-            if(isset($_POST["volumemitra"]) && is_array($_POST["volumemitra"])){
-                $volumemitra = implode(", ", $_POST["volumemitra"]);
-            }
-
-            $data   = array(
+            $data = array(
                 'maker'             => $maker,
                 'tanggal'           => $tanggal,
                 'idp'               => $idp,
@@ -223,15 +161,116 @@ class Tagihan extends CI_Controller {
                 'id_spmk'           => $id_spmk,
                 'waspang'           => $pengawas_lapangan,
                 'mitra'             => $nama_mitra,
-                'nama_khs'          => $nama_khs,
+                'nama_khs'          => $id_khs,
                 'id_designatortelkom'   => $designator,
                 'volume_telkom'         => $volume,
                 'harga_telkom'          => $tampilharga,
+                'approval_pek'          => "NOK",
+                'approval_rek'          => "NOK",
+                'witel'                 => $witel/*,
+                'volumemat'             => $harga_total_mat,
+                'volumejas'             => $harga_total_jas*/
+            );
+
+            $this->mtagihan->Add('boq_input', $data);
+
+            redirect(base_url('index.php/tagihan/input/success'));
+
+        } else { //MITRA
+
+            $id_khsmitra            = $this->input->post('khsmitra');
+            $designatormitra        = $this->input->post('designatormitra');
+            $tampilhargamitra       = 0;
+            $tampilhargatelkom      = 0;
+            foreach ($designatormitra as $key => $item) {
+                //MITRA
+                $matjasmitra        = $this->mtagihan->get_matjasmitra('list_item', $item);
+                $materialmitra      = $matjasmitra[0]['harga_material'];
+                $jasamitra          = $matjasmitra[0]['harga_jasa'];
+
+                //TA
+                $matjastelkom       = $this->mtagihan->get_mat_jas('list_item', $item);
+                $materialtelkom     = $matjastelkom[0]['harga_material'];
+                $jasatelkom         = $matjastelkom[0]['harga_jasa'];
+
+                /*//VolumeJasa
+                $volumejas          = $this->input->post('volumejas');
+                $volumejas          = $volumejas[$key];
+                //TA
+                $harga_total_jas_ta         = $volumejas * $jasatelkom;
+                //MITRA
+                $harga_total_jas_mitra      = $volumejas * $jasamitra;
+
+                //VolumeMat
+                $volumemat          = $this->input->post('volumemat');
+                $volumemat          = $volumemat[$key];
+                //TA
+                $harga_total_mat_ta         = $volumemat * $materialtelkom;
+                //MITRA
+                $harga_total_mat_mitra      = $volumemat * $materialmitra;
+
+                //TA
+                $totalta                    = $harga_total_mat_ta + $harga_total_jas_ta;
+                $tampilhargatelkom          += $totalta;
+
+                //MITRA
+                $totalmitra                 = $harga_total_mat_mitra + $harga_total_jas_mitra;
+                $tampilhargamitra           += $totalmitra;*/
+
+                $volume             = $this->input->post('volumemitra');
+                $volume             = $volume[$key];
+
+                //MITRA
+                $harga_totalmitra   = (($volume * $materialmitra) + ($volume * $jasamitra));
+                $tampilhargamitra   += $harga_totalmitra;
+
+                //TA
+                $harga_totaltelkom  = (($volume * $materialtelkom) + ($volume * $jasatelkom));
+                $tampilhargatelkom  += $harga_totaltelkom;
+
+                //SHOW DATA
+                /*echo "MITRA ".$item."<br>".$volume."<br>".$materialmitra."<br>".$jasamitra;
+                echo "TELKOM ".$item."<br>".$volume."<br>".$materialtelkom."<br>".$jasatelkom;*/
+            }
+
+            if (isset($_POST["volumemitra"]) && is_array($_POST["volumemitra"])) {
+                $volumemitra = implode(",", $_POST["volumemitra"]);
+            }
+
+            if (isset($_POST["designatormitra"]) && is_array($_POST["designatormitra"])) {
+                $designatormitra = implode(",", $_POST["designatormitra"]);
+            }
+
+            if(isset($_POST["volumemat"]) && is_array($_POST["volumemat"])){
+                $impvolumemat   = implode(",", $_POST["volumemat"]);
+            }
+
+            if(isset($_POST["volumejas"]) && is_array($_POST["volumejas"])){
+                $impvolumejas   = implode(",", $_POST["volumejas"]);
+            }
+
+            $data = array(
+                'maker'             => $maker,
+                'tanggal'           => $tanggal,
+                'idp'               => $idp,
+                'pekerjaan'         => $pekerjaan,
+                'jenis_pekerjaan'   => $jenis_pekerjaan,
+                'id_vestyna'        => $idv,
+                'id_spmk'           => $id_spmk,
+                'waspang'           => $pengawas_lapangan,
+                'mitra'             => $nama_mitra,
+                'nama_khs'          => $id_khsmitra,
+                'id_designatortelkom'   => $designatormitra,
+                'volume_telkom'         => $volumemitra,
                 'id_designatormitra'    => $designatormitra,
                 'volume_mitra'          => $volumemitra,
+                'harga_telkom'          => $tampilhargatelkom,
                 'harga_mitra'           => $tampilhargamitra,
                 'approval_pek'          => "NOK",
-                'approval_rek'          => "NOK"
+                'approval_rek'          => "NOK",
+                'witel'                 => $witel/*,
+                'volumemat'             => $impvolumemat,
+                'volumejas'             => $impvolumejas*/
             );
 
             $this->mtagihan->Add('boq_input', $data);
@@ -241,14 +280,14 @@ class Tagihan extends CI_Controller {
     }
 
     public function add_plan_pekerjaan(){
-
-        $id                 = $this->input->post('id');
+        //$id                 = $this->input->post('id');
         $maker              = $this->input->post('maker');
         $tanggal            = $this->input->post('tanggal');
         $pekerjaan          = $this->input->post('nama_pekerjaan');
         $jenis_pekerjaan    = $this->input->post('jenis_pekerjaan');
         $id_khs             = $this->input->post('khs');
         $designator         = $this->input->post('designator');
+        $witel              = $this->input->post('witel');
 
         $tampilharga        = 0;
         foreach ($designator as $key=>$item) {
@@ -257,30 +296,66 @@ class Tagihan extends CI_Controller {
             //echo $item ." ". $item2['harga_material'] ." ". $item2['harga_jasa'] . "\n";
                 $material       = $mat_jas[0]['harga_material'];
                 $jasa           = $mat_jas[0]['harga_jasa'];
+
                 $volume         = $this->input->post('volume');
                 $volume         = $volume[$key];
                 $harga_total    = (($volume * $material) + ($volume * $jasa));
-
                 $tampilharga    += $harga_total;
 
-                //DESIGNATOR
-                //echo $item ."<br>";
-        }
+                /*$mat            = $this->input->post('material');
+                $mat            = $mat[$key];
+                if ($mat == 0){
+                    $harga_total    = $volume * $jasa;
+                } else{
+                    $harga_total    = (($volume * $material) + ($volume * $jasa));
+                }*/
 
+                //VolumeJasa
+                /*$volumejas          = $this->input->post('volumejas');
+                $volumejas          = $volumejas[$key];
+                $harga_total_jas    = $volumejas * $jasa;
+
+                //VolumeMat
+                $volumemat          = $this->input->post('volumemat');
+                $volumemat          = $volumemat[$key];
+                $harga_total_mat    = $volumemat * $material;
+
+                $total              = $harga_total_mat + $harga_total_jas;
+                $tampilharga        += $total;*/
+
+                //DESIGNATOR
+                /*echo $item."<br>".$material."<br>".$jasa."<br>".$volumejas."<br>".$volumemat."<br>".$harga_total_mat."<br>".$harga_total_jas;*/
+                /*echo $material . " " .$volume  . " " . $tampilharga . "<br>";*/
+        }
         
         /*echo $tampilharga . "<br>";
         echo $maker."<br>".$tanggal."<br>".$idp."<br>".$pekerjaan."<br>".$jenis_pekerjaan;*/
 
-        if(isset($_POST["designator"]) && is_array($_POST["designator"])){
-            $designator = implode(", ", $_POST["designator"]);
+        if(isset($_POST["volume"]) && is_array($_POST["volume"])){
+            $volume = implode(",", $_POST["volume"]);
         }
 
-        if(isset($_POST["volume"]) && is_array($_POST["volume"])){
-            $volume = implode(", ", $_POST["volume"]);
+        if(isset($_POST["designator"]) && is_array($_POST["designator"])){
+            $designator = implode(",", $_POST["designator"]);
         }
+
+        /*if(isset($_POST["designator"]) && is_array($_POST["material"])){
+            $satuanmaterial = implode(",", $_POST["material"]);
+        }
+
+        if(isset($_POST["designator"]) && is_array($_POST["jasa"])){
+            $satuanjasa = implode(",", $_POST["jasa"]);
+        }*/
+
+        /*if(isset($_POST["volumemat"]) && is_array($_POST["volumemat"])){
+            $impvolumemat= implode(",", $_POST["volumemat"]);
+        }
+
+        if(isset($_POST["volumejas"]) && is_array($_POST["volumejas"])){
+            $impvolumejas = implode(",", $_POST["volumejas"]);
+        }*/
 
         $data   = array(
-            'id'                => $id,
             'maker'             => $maker,
             'tanggal'           => $tanggal,
             'pekerjaan'         => $pekerjaan,
@@ -289,13 +364,23 @@ class Tagihan extends CI_Controller {
             'id_designator'     => $designator,
             'volume'            => $volume,
             'harga'             => $tampilharga,
-            'approval'          => "NOK"
+            'approval'          => "NOK",
+            'witel'             => $witel
+            /*,
+            'satuan_material'   => $satuanmaterial,
+            'satuan_jasa'       => $satuanjasa*/
+            /*,
+            'volumemat'         => $impvolumemat,
+            'volumejas'         => $impvolumejas*/
         );
+
+        /*echo "<pre>";
+        print_r($data);
+        echo "</pre>";*/
 
         $this->mtagihan->Add('data_planper', $data);
 
         redirect(base_url('index.php/tagihan/inputplan/success'));
-        
     }
 
     public function listitemdesignatortelkom()
@@ -352,6 +437,15 @@ class Tagihan extends CI_Controller {
 
         $this->load->view('header');
         $this->load->view('aside');
+        $this->load->view('tagihan/planpekerjaan', $data);
+        $this->load->view('footer');
+    }
+
+    function listpekerjaan_ok(){
+        $data['listapproved']   = $this->mtagihan->get_listapproved('boq_input');
+
+        $this->load->view('header');
+        $this->load->view('aside');
         $this->load->view('tagihan/list_non_approved', $data);
         $this->load->view('footer');
     }
@@ -368,12 +462,12 @@ class Tagihan extends CI_Controller {
         $plan_pek_baru   = $this->mtagihan->get_plan_pek('data_planper', $where);
 
         if ($plan_pek_baru !== NULL) {
+            echo "<option>Pilih Plan Pekerjaan</option>";
             foreach ($plan_pek_baru as $d) {
-                echo '<option value=" "> Pilih Plan Pekerjaan </option>';
                 echo "<option value='".$d['id']."'>" . $d['pekerjaan'] . "</option>";
             }
         } else {
-            echo '<option value=" ">Tidak Ada Plan Pekerjaan</option>';
+            echo "<option>Tidak Ada Plan Pekerjaan</option>";
         }
         
     }
@@ -386,34 +480,40 @@ class Tagihan extends CI_Controller {
             'id'    => $id,
         );
 
-        $detailpekerjaan   = $this->mtagihan->get_detailpek('data_planper', $where);
+        $detailpekerjaan                    = $this->mtagihan->get_detailpek('data_planper', $where);
 
-        foreach ($detailpekerjaan as $d) {
-            echo "
-            <div class'box box-primar' >
-                    <form action'" . base_url('index.php/tagihan/add_pekerjaan'). "' method='post' enctype='multipart/form-data'>
-                        <div class='form-horizontal'>
-                            <div class='box-body'>
-                                <div class='form-group'>
-                                    <input class='form-control' type='hidden' value='" . $this->session->userdata('username'). "' name='maker'/>
-                                </div>
-
-
-                        <div class='form-group'>
-                        <label class='col-sm-2 control-label'>ID Project</label>
-                            <div class='col-sm-10'>
-                                <input class='form-control' type='text' placeholder='ID Project' name='idp' value='".$d['idp']. "'required/>
-                            </div>
-                        </div>
-                            </div>
-                        </div>
-            </div>";
+        $khs    = "";
+        $jenis  = "";
+        foreach ($detailpekerjaan as $a) {
+            $jenis  = "<option value='".$a['id_designator']."'>" . $a['id_designator'] . "</option>";
+            $nakhs  = $a['khs'];
+            $khs    = $this->mtagihan->get_one_data('khs', 'nama_khs', $nakhs);
         }
+        $to_return['pekerjaan']             =  $detailpekerjaan[0]['pekerjaan'];
+        $to_return['nama_khs']              =  $khs[0]['nama_khs'];
+        $to_return['designator']            =  $detailpekerjaan[0]['id_designator'];
+        echo json_encode($to_return);
     }
 
+    //TELKOM
     function getmaterialjasa(){
-        $designator     = $this->input->post('designator');
-        $matjas         = $this->mtagihan->get_mat_jas('list_item', $designator);
+        $designator                     = $this->input->post('designator');
+        $matjas                         = $this->mtagihan->get_mat_jas('list_item', $designator);
+        $getmaterial                    = $matjas[0]['harga_material'];
+        $getjasa                        = $matjas[0]['harga_jasa'];
+
+        /*$material                       = number_format($getmaterial);
+        $jasa                           = number_format($getjasa);*/
+
+        $to_return['harga_material']    =  $getmaterial;
+        $to_return['harga_jasa']        =  $getjasa;
+        echo json_encode($to_return);
+    }
+
+    //MITRA
+    function getmaterialjasamitra(){
+        $designator                     = $this->input->post('designator');
+        $matjas                         = $this->mtagihan->get_matjasmitra('list_item', $designator);
         $to_return['harga_material']    =  $matjas[0]['harga_material'];
         $to_return['harga_jasa']        =  $matjas[0]['harga_jasa'];
         echo json_encode($to_return);
@@ -429,8 +529,11 @@ class Tagihan extends CI_Controller {
             $alert  = 'Plan Pekerjaan berhasil di Delete!';
         }
         $data['_alert']                     = $alert;
-        $data['listplanpekerjaanmanar']     = $this->mtagihan->getlistplanpekerjaanmanar('data_planper');
-        $data['listplanpekerjaanadmin']     = $this->mtagihan->getlistplanpekerjaanadmin('data_planper');
+
+        $witel  = $this->session->userdata('psa');
+
+        $data['listplanpekerjaanmanar']     = $this->mtagihan->getlistplanpekerjaanmanar('data_planper', $witel);
+        $data['listplanpekerjaanadmin']     = $this->mtagihan->getlistplanpekerjaanadmin('data_planper', $witel);
 
         /*echo "<pre>";
         print_r($data);
@@ -461,17 +564,38 @@ class Tagihan extends CI_Controller {
         redirect('index.php/tagihan/listplanpekerjaan');
     }
 
+    function approval($id){
+        $status         = $this->input->post('status_approval');
+        $keterangan     = $this->input->post('keterangan');
+
+        /*echo $status . " + " . $keterangan . " + " . $id; */
+
+        $data = array(
+            'approval_pek'  => $status,
+            'ket_approval_pek'=> $keterangan
+        );
+
+        $where = array(
+            'id' => $id
+        );
+
+        $this->mtagihan->update_approvalplan('boq_input', $data, $where);
+        redirect('index.php/tagihan/listpekerjaan');
+    }
+
     //LIST PEKERJAAN
     function listpekerjaan(){
+        if(/*$this->session->userdata('nama') == 'TEFANI DIVA WIBOWO' ||*/ $this->session->userdata('nama') == 'ANUGRAH VITO AHYA' || $this->session->userdata('nama') == 'MOH SULAIMAN YAASIIN' || $this->session->userdata('position') == 'Admin Maintenance' || $this->session->userdata('position') == 'Site Manager Maintenance' || $this->session->userdata('position') == 'Team Leader Preventive Maintenance' || $this->session->userdata('position') == 'Team Leader Corrective Maintenance & QE'){
+            $psa                    = $this->session->userdata('psa');
+            $data['listpekerjaan']  = $this->mtagihan->getlistpekerjaan('boq_input', $psa);
 
-        if($this->session->userdata('tipe_user') == "maintenance"){
-            $data['listpekerjaan']   = $this->mtagihan->getlistpekerjaan('boq_input');
             $this->load->view('header');
             $this->load->view('aside');
             $this->load->view('tagihan/listpekerjaanshow', $data);
             $this->load->view('footer');
         } else {
-            $data['listpekerjaan']   = $this->mtagihan->getlistpekerjaan('boq_input');
+            $psa                    = $this->session->userdata('psa');
+            $data['listpekerjaan']   = $this->mtagihan->getlistpekerjaan('boq_input', $psa);
             $this->load->view('header');
             $this->load->view('aside');
             $this->load->view('tagihan/listpekerjaan', $data);
@@ -481,17 +605,22 @@ class Tagihan extends CI_Controller {
 
     function listpekerjaanall(){
         $data['listpekerjaan']   = $this->mtagihan->getlistpekerjaanallok('boq_input');
+
+        $data['khs']   = "";
+        foreach ($data['listpekerjaan'] as $a) {
+            $nakhs          = $a['nama_khs'];
+            $data['khs']    = $this->mtagihan->get_one_data('khs', 'nama_khs', $nakhs);
+        }
+
             $this->load->view('header');
             $this->load->view('aside');
             $this->load->view('tagihan/list_all_pekerjaan', $data);
             $this->load->view('footer');
     }
 
-    function approval($id){
+    /*function approval($id){
         $status         = $this->input->post('status_approval');
         $keterangan     = $this->input->post('keterangan');
-
-        /*echo $status . " + " . $keterangan . " + " . $id; */
 
         $data = array(
             'approval_pek'  => $status,
@@ -504,7 +633,7 @@ class Tagihan extends CI_Controller {
 
         $this->mtagihan->update_approvalplan('boq_input', $data, $where);
         redirect('index.php/tagihan/listpekerjaan');
-    }
+    }*/
 
     //SHO
     function cek_listpekerjaan(){
@@ -743,5 +872,47 @@ class Tagihan extends CI_Controller {
         $this->mtagihan->delete_plan($id);
 
         redirect(base_url('index.php/tagihan/listplanpekerjaan/successdelete'));
+    }
+
+    function groupingpekerjaan(){
+        $msg    = $this->uri->segment(3);
+        $alert  = '';
+        if($msg == 'success'){
+            $alert  = 'Grouping Pekerjaan Berhasil Dilakukan!';
+        }
+        $data['_alert']     = $alert;
+
+        $data['listpekerjaan']   = $this->mtagihan->getlistpekerjaanallok('boq_input');
+
+        echo "<pre>";
+        print_r($data);
+        echo "</pre>";
+
+        $this->load->view('header');
+        $this->load->view('aside');
+        $this->load->view('tagihan/grouping_pekerjaan', $data);
+        $this->load->view('footer');
+    }
+
+    function search_pekerjaan(){
+        $nama_pekerjaan     = $this->input->post('pekerjaan');
+
+        echo $nama_pekerjaan;
+    }
+
+    function report_input(){
+        $data['report_plan']    = $this->mtagihan->report_plan();
+        $data['report_nonpo']   = $this->mtagihan->report_nonpo();
+        $data['report_po']      = $this->mtagihan->report_po();
+        $data['report_rekon']   = $this->mtagihan->report_rekon();
+        $data['report_pr']      = $this->mtagihan->report_pr();
+        $data['report_bast']    = $this->mtagihan->report_bast();
+        $data['report_vestyna'] = $this->mtagihan->report_vestyna();
+        $data['report_miro']    = $this->mtagihan->report_miro();
+
+        $this->load->view('header');
+        $this->load->view('aside');
+        $this->load->view('tagihan/report_input', $data);
+        $this->load->view('footer');
     }
 }

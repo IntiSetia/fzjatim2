@@ -7,12 +7,25 @@ class Modellogin extends CI_Model {
         $this->load->database();
     }
 
+    //ADD
+    function insert($table, $data){
+        $this->db->insert($table, $data);
+    }
+
     //LOGIN
     function login($data){
         $query = $this->db->select('*')
-                      ->from("data_user")
+                      ->from("data_hr")
                       ->where($data)
                       ->get();
+        return $query->result_array();
+    }
+
+    function loginsso($data){
+        $query = $this->db->select('*')
+            ->from("data_hr")
+            ->where($data)
+            ->get();
         return $query->result_array();
     }
 

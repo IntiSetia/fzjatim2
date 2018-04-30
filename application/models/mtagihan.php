@@ -13,6 +13,16 @@ class Mtagihan extends CI_Model {
         return $add_per;
     }
 
+    //GET DATA LAST
+    function get_data_last($table, $data){
+        $query = $this->db->select('*')
+            ->from($table)
+            ->order_by($data, 'DESC')
+            ->limit(1)
+            ->get();
+        return $query->result_array();
+    }
+
     //GET DATA
     function get_data($table, $data){
         $this->db->select('id')
@@ -169,79 +179,85 @@ class Mtagihan extends CI_Model {
             ->where('idp', $where);
     }*/
 
-    function get_jplan(){
+    function get_jplan($where){
         $query = $this->db
             ->select('COUNT(id) as total')
             ->from('data_planper')
             ->where('approval', "NOK")
+            ->where('witel', $where)
             ->get();
         return $query->row()->total;
     }
 
-    function get_jplanreturn(){
+    function get_jplanreturn($where){
         $query = $this->db
             ->select('COUNT(id) as total')
             ->from('data_planper')
             ->where('approval', 'RETURN')
+            ->where('witel', $where)
             ->get();
         return $query->row()->total;
     }
 
-    function get_jpek(){
+    function get_jpek($where){
         $query = $this->db
             ->select('COUNT(id) as total')
             ->from('boq_input')
             ->where('approval_pek', 'NOK')
+            ->where('witel', $where)
             ->get();
         return $query->row()->total;
     }
 
-    function get_jpekreturn(){
+    function get_jpekreturn($where){
         $query = $this->db
             ->select('COUNT(id) as total')
             ->from('boq_input')
             ->where('approval_pek', 'RETURN')
+            ->where('witel', '$where')
             ->get();
         return $query->row()->total;
     }
 
-    function get_jbarekon(){
+    function get_jbarekon($where){
         $query = $this->db
             ->select('COUNT(id) as total')
             ->from('boq_input')
             ->where('approval_rek', '')
+            ->where('witel', '$where')
             ->get();
         return $query->row()->total;
     }
 
-    function get_jbarekonreturn(){
+    function get_jbarekonreturn($where){
         $query = $this->db
             ->select('COUNT(id) as total')
             ->from('boq_input')
             ->where('approval_rek', '')
+            ->where('witel', '$where')
             ->get();
         return $query->row()->total;
     }
 
     //COMMERCE
-    function get_jppo(){
-        $query = $this->db->query("SELECT COUNT(id) as total FROM boq_input WHERE boq_real IS NOT NULL AND mitra = 'PT TELKOM AKSES'");
+    function get_jppo($where){
+        $query = $this->db->query("SELECT COUNT(id) as total FROM boq_input WHERE boq_real IS NOT NULL AND mitra = 'PT TELKOM AKSES' AND witel = '$where'");
         return $query->row()->total;
     }
 
-    function get_jpbast(){
-        $query = $this->db->query("SELECT no_po_telkom FROM boq_input WHERE no_po_telkom IS NOT NULL AND mitra = 'PT TELKOM AKSES' GROUP BY no_po_telkom");
+    function get_jpbast($where){
+        $query = $this->db->query("SELECT no_po_telkom FROM boq_input WHERE no_po_telkom IS NOT NULL AND mitra = 'PT TELKOM AKSES' AND witel = '$where' GROUP BY no_po_telkom");
         return $query->result_array();
     }
 
-    function get_jpinvoicefp(){
-        $query = $this->db->query("SELECT bast FROM boq_input WHERE bast IS NOT NULL AND mitra = 'PT TELKOM AKSES' GROUP BY bast");
+    function get_jpinvoicefp($where){
+        $query = $this->db->query("SELECT bast FROM boq_input WHERE bast IS NOT NULL AND mitra = 'PT TELKOM AKSES' AND witel = '$where' GROUP BY bast");
         return $query->result_array();
     }
 
     //PROCUREMENT
-    function get_jppomi(){
-        $query = $this->db->query("SELECT COUNT(id) as total FROM boq_input WHERE boq_real IS NOT NULL AND mitra != 'PT TELKOM AKSES'");
+    function get_jppomi($where){
+        $query = $this->db->query("SELECT COUNT(id) as total FROM boq_input WHERE boq_real IS NOT NULL AND mitra != 'PT TELKOM AKSES' AND witel = '$where'");
         return $query->row()->total;
     }
     
@@ -251,25 +267,38 @@ class Mtagihan extends CI_Model {
             ->select('harga_material, harga_jasa')
             ->from($table)
             ->where('id_designator', $where)
+            ->where('khs', 'telkom')
+            ->get();
+        return $query->result_array();
+    }
+
+    function get_matjasmitra($table, $where){
+        $query = $this->db
+            ->select('harga_material, harga_jasa')
+            ->from($table)
+            ->where('id_designator', $where)
+            ->where('khs', 'mitra')
             ->get();
         return $query->result_array();
     }
 
     //GET DATA LIST DETAIL PLAN PEKERJAAN NOOK (APPROVAL)
-    function getlistplanpekerjaanadmin($table){
+    function getlistplanpekerjaanadmin($table, $where){
         $query = $this->db
                 ->select('*')
                 ->from($table)
+                ->where('witel', $where)
                 ->order_by('approval')
                 ->get();
         return $query->result_array();
     }
 
-    function getlistplanpekerjaanmanar($table){
+    function getlistplanpekerjaanmanar($table, $where){
         $query = $this->db
                 ->select('*')
                 ->from($table)
                 ->where('approval', 'NOK')
+                ->where('witel', $where)
                 ->get();
         return $query->result_array();
     }
@@ -280,10 +309,11 @@ class Mtagihan extends CI_Model {
     }
 
     //GET DATA LIST DETAIL PEKERJAAN NOOK (APPROVAL)
-    function getlistpekerjaan($table){
+    function getlistpekerjaan($table, $where){
         $query = $this->db
                 ->select('*')
                 ->from($table)
+                ->where('witel', $where)
                 ->order_by('approval_pek')
                 ->get();
         return $query->result_array();
@@ -362,6 +392,96 @@ class Mtagihan extends CI_Model {
     function delete_plan($id){
         $this->db->where('id', $id);
         $this->db->delete('data_planper');
+    }
+
+    //DASHBOARD
+    //PLAN
+    function total_jumlah_plan(){
+        $query = $this->db->query("SELECT sum(harga), count(harga) FROM data_planper");
+        return $query->result_array();
+    }
+
+    //NON PO
+    function total_jumlah_non_po(){
+        $query = $this->db->query("SELECT sum(harga_telkom), count(harga_telkom) FROM boq_input");
+        return $query->result_array();
+    }
+
+    //PO
+    function total_jumlah_po(){
+        $query = $this->db->query("SELECT sum(harga_telkom), count(harga_telkom) FROM boq_input WHERE no_po_telkom IS NOT NULL");
+        return $query->result_array();
+    }
+
+    //PR
+    function total_jumlah_pr(){
+        $query = $this->db->query("SELECT sum(harga_telkom), count(harga_telkom) FROM boq_input WHERE nomor_pr_telkom IS NOT NULL");
+        return $query->result_array();
+    }
+
+    //BAST
+    function total_jumlah_bast(){
+        $query = $this->db->query("SELECT sum(harga_telkom), count(harga_telkom) FROM boq_input WHERE bast IS NOT NULL");
+        return $query->result_array();
+    }
+
+    //VESTYNA
+    function total_jumlah_vestyna(){
+        $query = $this->db->query("SELECT sum(harga_telkom), count(harga_telkom) FROM boq_input WHERE id_vestyna IS NOT NULL");
+        return $query->result_array();
+    }
+
+    //REKON
+    function total_jumlah_rekon(){
+        $query = $this->db->query("SELECT sum(harga_telkom), count(harga_telkom) FROM boq_input WHERE ba_realisasi IS NOT NULL");
+        return $query->result_array();
+    }
+
+    //MIRO
+    function total_jumlah_miro(){
+        $query = $this->db->query("SELECT sum(harga_telkom), count(harga_telkom) FROM boq_input WHERE status_miro IS NOT NULL");
+        return $query->result_array();
+    }
+
+    //REPORT
+    function report_plan(){
+        $query = $this->db->query("SELECT witel, sum(harga), count(harga) FROM data_planper GROUP BY witel ORDER BY witel ASC");
+        return $query->result_array();
+    }
+
+    function report_nonpo(){
+        $query = $this->db->query("SELECT witel, sum(harga_telkom), count(harga_telkom) FROM boq_input GROUP BY witel ORDER BY witel ASC");
+        return $query->result_array();
+    }
+
+    function report_po(){
+        $query = $this->db->query("SELECT witel, sum(harga_telkom), count(harga_telkom) FROM boq_input WHERE no_po_telkom IS NOT NULL GROUP BY witel ORDER BY witel ASC");
+        return $query->result_array();
+    }
+
+    function report_rekon(){
+        $query = $this->db->query("SELECT witel, sum(harga_telkom), count(harga_telkom) FROM boq_input WHERE ba_realisasi IS NOT NULL GROUP BY witel ORDER BY witel ASC");
+        return $query->result_array();
+    }
+
+    function report_pr(){
+        $query = $this->db->query("SELECT witel, sum(harga_telkom), count(harga_telkom) FROM boq_input WHERE nomor_pr_telkom IS NOT NULL GROUP BY witel ORDER BY witel ASC");
+        return $query->result_array();
+    }
+
+    function report_bast(){
+        $query = $this->db->query("SELECT witel, sum(harga_telkom), count(harga_telkom) FROM boq_input WHERE bast IS NOT NULL GROUP BY witel ORDER BY witel ASC");
+        return $query->result_array();
+    }
+
+    function report_vestyna(){
+        $query = $this->db->query("SELECT witel, sum(harga_telkom), count(harga_telkom) FROM boq_input WHERE id_vestyna IS NOT NULL GROUP BY witel ORDER BY witel ASC");
+        return $query->result_array();
+    }
+
+    function report_miro(){
+        $query = $this->db->query("SELECT witel, sum(harga_telkom), count(harga_telkom) FROM boq_input WHERE status_miro IS NOT NULL GROUP BY witel ORDER BY witel ASC");
+        return $query->result_array();
     }
 }
 ?>

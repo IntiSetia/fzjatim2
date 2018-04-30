@@ -1,7 +1,10 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+date_default_timezone_set('Asia/Jakarta');
+ini_set('max_execution_time', 100000000);
+ini_set('memory_limit', '-1');
 
-class HrPerformance extends CI_Controller {
+class hrperformance extends CI_Controller {
 	function __construct() {
       parent::__construct();
 
@@ -12,11 +15,19 @@ class HrPerformance extends CI_Controller {
       $this->load->library('PHPExcel');
       $this->load->helper('url');
       $this->load->model('hr');
+
+        if ($this->session->userdata('login')!==TRUE)
+            redirect('index.php/login/viewlogin');
     }
 
 	public function index()
 	{
-		$data['data_hr'] 	= $this->hr->get_all_data('data_hr_sec'); //All data use Data HR Sec 
+		$data['data_hr'] 	= $this->hr->get_all_data('data_hr_sec'); //All data use Data HR Sec
+
+        /*echo "<pre>";
+        print_r($data);
+        echo "</pre>";*/
+
 		$this->load->view('header');
 		$this->load->view('aside');
 		$this->load->view('hr/data_hr', $data);
@@ -92,19 +103,47 @@ class HrPerformance extends CI_Controller {
                 "cost_center"   => $rowData[0][16],
                 "status_pgs"    => $rowData[0][17]
             );
+
+            $data2  = array(
+                "nik"           => $rowData[0][0],
+                "nama"          => $rowData[0][1],
+                "position"      => $rowData[0][2],
+                "psa"           => $rowData[0][3]
+            );
             
             $insert = $this->db->insert("data_hr", $data);                   // Sesuaikan nama dengan nama tabel untuk melakukan insert data
-            $insert = $this->db->insert("data_hr_sec", $data); 
+            $insert = $this->db->insert("data_hr_sec", $data);
+            $insert = $this->db->insert("data_absen_apel", $data2);
             $update = $this->db->query("UPDATE data_hr_sec SET status_naker = 'aktif' WHERE data_hr_sec.object_id IN (SELECT object_id FROM data_hr)");
             $update1 = $this->db->query("UPDATE data_hr_sec SET status_naker = 'tidak aktif' WHERE data_hr_sec.object_id NOT IN (SELECT object_id FROM data_hr)");
             delete_files($media['file_path']);                                  // menghapus semua file .xls yang diupload
         }
         
-        redirect(base_url('HrPerformance/import/success'));
+        redirect(base_url('hrperformance/import/success'));
+    }
+
+    public function import_km(){ //All data use Data HR Sec
+        $msg    = $this->uri->segment(3);
+        $alert  = '';
+        if($msg == 'success'){
+            $alert  = 'Success!!';
+        }
+        $data['_alert'] = $alert;
+
+        $this->load->view('header');
+        $this->load->view('aside');
+        $this->load->view('hr/import_data_km', $data);
+        $this->load->view('footer');
     }
 
 	public function detail($id){
-		$data['data_hr'] 	= $this->hr->get_data_currently($id); //All data use Data HR Sec 
+		$data['data_hr'] 	= $this->hr->get_data_currently($id); //All data use Data HR Sec
+
+
+        /*echo "<pre>";
+        print_r($data);
+        echo "</pre>";*/
+
 		$this->load->view('header');
 		$this->load->view('aside');
 		$this->load->view('hr/detail_data_hr', $data);
@@ -112,7 +151,14 @@ class HrPerformance extends CI_Controller {
 	}
 
 	public function view_edit($id){
-		$data['data_hr'] 	= $this->hr->get_data_currently($id); //All data use Data HR Sec 
+        $msg    = $this->uri->segment(3);
+        $alert  = '';
+        if($msg == 'success'){
+            $alert  = 'Success!!';
+        }
+        $data['_alert']     = "success";
+		$data['data_hr'] 	= $this->hr->get_data_currently($id); //All data use Data HR Sec
+
 		$this->load->view('header');
 		$this->load->view('aside');
 		$this->load->view('hr/edit_data_hr', $data);
@@ -146,8 +192,6 @@ class HrPerformance extends CI_Controller {
 
     	$this->hr->update('data_hr', $data, $where);
     	$this->hr->update('data_hr_sec', $data, $where);
-
-
 	}
 
 	//PIK START
@@ -206,24 +250,42 @@ class HrPerformance extends CI_Controller {
         'nik' => $id
             );
         $this->hr->update('data_hr_sec', $data, $where);
-        redirect(base_url('index.php/HrPerformance/view_edit/' . $id),'refresh');
+        redirect(base_url('index.php/hrperformance/view_edit/' . $id),'refresh');
     }
 
     function input_kontrak(){
-        $nik_sm             = $this->input->post('nik');
-        $data['data_sm']    = $this->hr->get_data_sm($nik_sm);
-        $data['nik']        = $nik_sm;
-
-        $nik_tl             = $this->input->post('nik');
-        $data['data_tl']    = $this->hr->get_data_sm($nik_tl);
+        $nik                = $this->input->post('nik');
+        $data['data_sm']    = $this->hr->get_data($nik);
+        $data['nik']        = $nik;
 
         /*echo "<pre>";
         print_r($data);
         echo "</pre>";*/
 
+        /*foreach ($data['data_sm'] as $a) {
+            $level      = $a['level'];
+            if ($level !== "Site Manager" || $level !== "Team Leader" ){
+                $msg    = $this->uri->segment(3);
+                $alert  = '';
+                if($msg == 'success'){
+                    $alert  = 'Success!!';
+                }
+                $data['_alert'] = "KM untuk NIK : " . $nik_sm . " tidak tersedia";
+                $this->load->view('header');
+                $this->load->view('aside');
+                $this->load->view('hr/input_kontrak', $data);
+                $this->load->view('footer');
+            } else {
+                $this->load->view('header');
+                $this->load->view('aside');
+                $this->load->view('hr/input_kontrak', $data);
+                $this->load->view('footer');
+            }
+        }*/
+
         $this->load->view('header');
         $this->load->view('aside');
-        $this->load->view('hr/input_kontrak_sm', $data);
+        $this->load->view('hr/input_kontrak', $data);
         $this->load->view('footer');
     }
 
@@ -237,10 +299,31 @@ class HrPerformance extends CI_Controller {
         print_r($data);
         echo "</pre>";*/
 
-        $this->load->view('header');
-        $this->load->view('aside');
-        $this->load->view('hr/input_kontrak_sm', $data);
-        $this->load->view('footer');
+        foreach ($data['data_sm'] as $a) {
+            $level      = $a['level'];
+            if ($level !== "Site Manager" || $level !== "Team Leader" ){
+                $msg    = $this->uri->segment(3);
+                $alert  = '';
+                if($msg == 'success'){
+                    $alert  = 'Success!!';
+                }
+                $data['_alert'] = "KM untuk NIK : " . $nik_sm . " tidak tersedia";
+                $this->load->view('header');
+                $this->load->view('aside');
+                $this->load->view('hr/input_kontrak_sm', $data);
+                $this->load->view('footer');
+            } else {
+                $this->load->view('header');
+                $this->load->view('aside');
+                $this->load->view('hr/input_kontrak_sm', $data);
+                $this->load->view('footer');
+            }
+        }
+
+                /*$this->load->view('header');
+                $this->load->view('aside');
+                $this->load->view('hr/input_kontrak_sm', $data);
+                $this->load->view('footer');*/
     }
 
     function input_kontrak_tl(){
@@ -256,13 +339,55 @@ class HrPerformance extends CI_Controller {
     }
 
     function kontrak_management_sm($nik){
-        $data['sm']    = $this->hr->get_data_sm($nik);
+	    $data['data_km']   = $this->hr->data($nik);
+
+	    //SHOW DATA
+        /*echo "<pre>";
+        print_r($data);
+        echo "</pre>";*/
+
+        /*$data['sm']    = $this->hr->get_data_sm($nik);
         $data['km']    = $this->hr->get_data_km($nik);
+
+        $data['financial']  = "";
+        $data['customer']   = "";
+        $data['internal']   = "";
+        $data['learning']   = "";
+
+        $data['km_sm_prov']    = "";
+        foreach ($data['sm'] as $a) {
+            $position_name         = $a['position_name'];
+
+            $where                 = array(
+                'nik'   => $a['nik']
+            );
+
+            if ($position_name == "Site Manager Provisioning"){
+                $data['nilai_km']    = $this->hr->selectwhereall('data_km_sm_prov', $nik);
+            }
+            $data['financial']     = $this->hr->get_data_indikator('data_indikator_km', 'FINANCIAL', $position_name);
+            $data['customer']      = $this->hr->get_data_indikator('data_indikator_km', 'CUSTOMER', $position_name);
+            $data['internal']      = $this->hr->get_data_indikator('data_indikator_km', 'INTERNAL BUSINESS PROCESS', $position_name);
+            $data['learning']      = $this->hr->get_data_indikator('data_indikator_km', 'LEARNING & GROWTH', $position_name);
+        }*/
 
         $this->load->view('header');
         $this->load->view('aside');
         $this->load->view('hr/kontrak_management_sm', $data);
         $this->load->view('footer');
+
+        /*if ($data['km'] == NULL){
+            $data['alert']  = 'KM untuk NIK tersebut tidak tersedia!!';
+            $this->load->view('header');
+            $this->load->view('aside');
+            $this->load->view('hr/kontrak_management_sm', $data);
+            $this->load->view('footer');
+        } else {
+            $this->load->view('header');
+            $this->load->view('aside');
+            $this->load->view('hr/kontrak_management_sm', $data);
+            $this->load->view('footer');
+        }*/
     }
 
      function kontrak_management_tl(){
@@ -271,5 +396,83 @@ class HrPerformance extends CI_Controller {
         $this->load->view('hr/kontrak_management_tl');
         $this->load->view('footer');
     }
-    
+
+    function input_data_km(){
+        $this->load->view('header');
+        $this->load->view('aside');
+        $this->load->view('hr/input_data_km');
+        $this->load->view('footer');
+    }
+
+    function dokumen(){
+        $fileName = $_FILES['doc']['name'];
+
+        $config['upload_path']      = './dokumenhr/';
+        $config['file_name']        = $fileName;
+        $config['allowed_types']    = 'jpg|pdf|doc|docx';
+
+        $this->load->library('upload');
+        $this->upload->initialize($config);
+        if (!$this->upload->do_upload('doc'))
+            $this->upload->display_errors();
+        $media = $this->upload->data('doc');
+
+        $nik        = $this->input->post('nik');
+        $namadoc    = $this->input->post('namadoc');
+
+        if ($namadoc == "BPJS"){
+            $where = array(
+                'nik'   => $nik
+            );
+
+            $data   = array(
+                'bpjs'  => $fileName
+            );
+
+            $this->hr->update('data_hr_sec', $data, $where);
+            redirect(base_url('index.php/hrperformance/view_edit/'.$nik));
+        } else if ($namadoc == "BASTS"){
+            $where = array(
+                'nik'   => $nik
+            );
+
+            $data   = array(
+                'ba_serah_terima_seragam'  => $fileName
+            );
+
+            $this->hr->update('data_hr_sec', $data, $where);
+            redirect(base_url('index.php/hrperformance/view_edit/'.$nik));
+        }
+
+        /*$data       = array(
+            'nik'       => $nik,
+            'namadoc'   => $namadoc,
+            'doc'       => $fileName
+        );*/
+
+        /*echo "<pre>";
+        print_r($data);
+        echo "</pre>";*/
+    }
+
+    function apeldow(){
+        $msg    = $this->uri->segment(3);
+        $alert  = '';
+        if($msg == 'success'){
+            $alert  = 'Success!!';
+        }
+        $data['_alert'] = $alert;
+
+        $data['posisi']         = $this->hr->posisi();
+        $data['nama_naker']     = $this->hr->nama_naker();
+
+        $this->load->view('header');
+        $this->load->view('aside');
+        $this->load->view('hr/absen_apel_dow', $data);
+        $this->load->view('footer');
+    }
+
+    function apel_dow(){
+        $nik        = $this->input->post('nik');
+    }
 }

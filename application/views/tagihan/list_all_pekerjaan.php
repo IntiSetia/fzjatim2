@@ -1,3 +1,10 @@
+<?php
+    error_reporting(0);
+    foreach ($khs as $b){
+        $nama_khs   = $b['nama_khs'];
+    }
+?>
+
 
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -44,7 +51,7 @@
                     <!-- /.box-header -->
                     <div class="box-body">
                         <div>
-                            <table id="example" class="table table-bordered table-hover display nowrap" cellspacing="0" width="100%">
+                            <table id="listplan" class="table table-bordered table-hover display nowrap" cellspacing="0" width="100%">
                                 <thead>
                                 <tr>
                                     <th>No</th>
@@ -52,21 +59,11 @@
                                     <th>Nama Pekerjaan</th>
                                     <th>Jenis Pekerjaan</th>
                                     <th>Nama Mitra</th>
-                                    <!-- <th>Status Dokumen Tagihan</th>
-                                    <th>Aksi</th> -->
-                                    <th>BOQ Realisasi</th>
-                                    <th>Nomor PR</th>
-                                    <th>BA Realisasi</th>
-                                    <th>BAUT</th>
-                                    <th>No PO</th>
-                                    <th>BAST</th>
-                                    <th>Status Invoice</th>
-                                    <th>Status Faktur Pajak</th>
-                                    <th>Status GR</th>
-                                    <th>Status MIRO</th>
-                                    <th>Verifikasi Tagihan</th>
-                                    <th>Status Tagihan</th>
-                                    <th>Aksi</th>
+                                    <th>ID Vestyna</th>
+                                    <th>ID SPMK</th>
+                                    <th>Nama KHS</th>
+                                    <th>Nilai Rekon Telkom</th>
+                                    <th>Nilai Rekon Mitra</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -82,73 +79,30 @@
                                         <td><?= $a['pekerjaan'];?></td>
                                         <td><?= $a['jenis_pekerjaan'];?></td>
                                         <td><?= $a['mitra'];?></td>
-                                        <td style="text-align: center;">
-                                            <?php
-                                                $realisasi      = $a['id_designatorrealisasi'];
-                                                $boq_realisasi  = $a['boq_real'];
-                                                if ($realisasi == NULL) {
-                                            ?>
-                                                    <a href="<?php echo base_url()."index.php/tagihan/rekon/".$id;?>">Rekon</a>
-                                            <?php
-                                                } else {
-                                            ?>
-                                                    <a href="<?php echo base_url()."index.php/tagihan/viewboq/".$id;?>">View BOQ</a>
-                                            <?php
-                                                    /*echo $a['boq_real'];*/
-                                                }
+                                        <td><?= $a['id_vestyna'];?></td>
+                                        <td><?php
+                                            if ($a['id_spmk'] == NULL || $a['id_spmk'] == 0) {
+                                                echo "-";
+                                            } else {
+                                                echo $a['id_spmk'];
+                                            }
                                             ?>
                                         </td>
-                                        <td style="text-align: center;">
-                                            <?php
-                                                $nomor_pr   = $a['nomor_pr'];
-                                                if ($nomor_pr == NULL) {
-                                            ?>
-                                                    <button type='button' class='btn btn-block btn-primary btn-sm btn-pr' id-pr='<?=$id;?>' id="btn-pr">UPDATE</button>
-                                            <?php
-                                                } else {
-                                                    echo $nomor_pr;
-                                                }
-                                            ?>
-                                        </td>
-                                        <td style="text-align: center;">
-                                            <?php
-                                                $ba_realisasi   = $a['ba_realisasi'];
-                                                if ($ba_realisasi == NULL) {
-                                            ?>
-                                                    <button type='button' class='btn btn-block btn-primary btn-sm' data-toggle='modal' data-target='#modal-approval'>UPLOAD</button>
-                                            <?php
-                                                } else {
-                                            ?>
-                                                    <button type='button' class='btn btn-block btn-success btn-sm' data-toggle='modal' data-target='#modal-approval'>VIEW</button>
-                                            <?php
-                                                    /*echo $a['boq_real'];*/
-                                                }
-                                            ?>
-                                        </td>
-                                        <td style="text-align: center;">
-                                            <?php
-                                                $baut   = $a['baut'];
-                                                if ($baut == NULL) {
-                                            ?>
-                                                    <button type='button' class='btn btn-block btn-primary btn-sm' data-toggle='modal' data-target='#modal-approval'>UPLOAD</button>
-                                            <?php
-                                                } else {
-                                            ?>
-                                                    <button type='button' class='btn btn-block btn-success btn-sm' data-toggle='modal' data-target='#modal-approval'>VIEW</button>
-                                            <?php
-                                                    /*echo $a['boq_real'];*/
-                                                }
-                                            ?>
-                                        </td>
-                                        <td><?= $a['no_po']?></td>
-                                        <td><?= $a['bast']?></td>
-                                        <td><?= $a['status_invoice']?></td>
-                                        <td><?= $a['status_faktur_pajak']?></td>
-                                        <td><?= $a['status_gr']?></td>
-                                        <td><?= $a['status_miro']?></td>
-                                        <td><?= $a['verifikasi_tagihan']?></td>
-                                        <td><?= $a['status_tagihan_mitra']?></td>
-                                        <td style="text-align: center;"><a href="<?= base_url('index.php/tagihan/editpekerjaan/'.$a['id'])?>"><i class="fa fa-edit"></i></a></td>
+                                        <td><?= $nama_khs;?></td>
+                                        <td><?php
+                                            $hargatelkom    = $a['harga_telkom'];
+                                            $tampil_hargat  = number_format($hargatelkom,0,",",".");
+                                            echo $tampil_hargat;
+                                            ?></td>
+                                        <td><?php
+                                            $hargam          = $a['harga_mitra'];
+                                            $tampil_hargam   = number_format($hargam,0,",",".");
+                                            if ($a['mitra'] == "PT TELKOM AKSES") {
+                                                echo "-";
+                                            } else {
+                                                echo $tampil_hargam;
+                                            }
+                                            ?></td>
                                     </tr>
                                     <?php
                                 }
