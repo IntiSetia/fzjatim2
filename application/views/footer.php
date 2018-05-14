@@ -247,6 +247,9 @@
 <script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.html5.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.print.min.js"></script>
 
+<!-- Sweet Alert-->
+<script src="<?php echo base_url();?>assets/dist/js/sweetalert2.all.min.js"></script>
+
 <script type="text/javascript">
 
     $( "#nosn" ).keyup(function() {
@@ -499,6 +502,33 @@
     var rowCount = 1;
     var optionPublic;
 
+    function addMoreReason() {
+        rowCount++;
+        var recRow = '<div class="form-group">\n' +
+            '<label class="col-sm-2 control-label">Nama Pegawai</label>\n' +
+            '<div class="col-sm-9">\n' +
+            '<select class="js-example-placeholder-single js-states form-control"\n' +
+            'name="khs" id="khstelkom" required>' +
+            '<option value=""  selected>Nama Pegawai</option>' +
+            '<option value=""  selected>Pilih Pegawai</option>' +
+            '</select>' +
+            '</div>' +
+            '</div>' +
+            '<div class="form-group">\n' +
+            '<label class="col-sm-2 control-label">Alasan</label>\n' +
+            '<div class="col-sm-9">\n' +
+            '<select class="js-example-placeholder-single js-states form-control"\n' +
+            'name="khs" id="khstelkom" required>' +
+            '<option value=""  selected>Alpha</option>' +
+            '<option value=""  selected>Sakit</option>' +
+            '</select>' +
+            '</div>' +
+            '</div>';
+        jQuery('#addedReason').append(recRow);
+        $('select[id="namapeg' + rowCount + '"]').html(optionPublic);
+        $('select[id="namapeg' + rowCount + '"]').select2();
+    }
+
     function addMoreRows(frm) {
         rowCount++;
         var recRow = '<div class="form-group" id="rowCount' + rowCount + '"><table class="table table-condensed" id="addDesignator' + rowCount + '"><tr ><th style="text-align: center; width: 75px">&nbsp;</th><td style="text-align: center; width: 287px"><select class="js-example-placeholder-single js-states form-control designator-select" id="designator'+ rowCount +'" pos="'+ rowCount +'" name="designator[]" required/></select></td><td style="width: 230px; text-align: center;"><div id="material">&nbsp;</div></td><td style="width: 225px; text-align: center;"><div id="jasa">&nbsp;</div></td><td style="width: 214px; text-align: center;"><input class="form-control" onkeyup="myVolume()" id="volume" type="text" name="volume[]" /></td><td style="width: 214px; text-align: center;"><div id="jumlah">&nbsp;</td><td><button class="fa btn btn-danger fa-minus" onclick="removeRow(' + rowCount + ');"></button></td><th style="text-align: center">&nbsp;</th><th style="text-align: center">&nbsp;</th></tr></table></div>';
@@ -506,12 +536,10 @@
         $('select[id="designator' + rowCount + '"]').html(optionPublic);
 
         var jumlah = document.querySelector('.jumlah').value;
-        alert(jumlah);
     }
 
     function addMoreRows2(frm) {
         rowCount++;
-        alert(rowCount);
         var recRow = '<tr id="rowCount' + rowCount + '"><th style="text-align: center; width: 75px">&nbsp;</th><td style="text-align: center; width: 287px"><select class="js-example-placeholder-single js-states form-control designator-select" id="designator'+ rowCount +'" pos="'+ rowCount +'" name="designator[]" required/></select></td><td style="width: 230px; text-align: center;"><input class="form-control" style="text-align: center;" type="text" pos="'+ rowCount +'" name="material" id="material'+ rowCount +'" readonly="readonly" /></td><td style="width: 225px; text-align: center;"><input style="text-align: center;" class="form-control" type="text" pos="'+ rowCount +'" name="jasa" id="jasa'+ rowCount +'" readonly="readonly" /></td><td style="width: 214px; text-align: center;"><input class="form-control volume" style="text-align: center;" pos="'+ rowCount +'" id="volume" type="text" name="volume[]" /></td><td style="width: 214px; text-align: center;"><input style="text-align: center;" class="form-control jumlah'+ rowCount +'" type="text" pos="'+ rowCount +'" name="jumlah" id="jumlah'+ rowCount +'" readonly="readonly"/></td><td><button class="fa btn btn-danger fa-minus" onclick="removeRow(' + rowCount + ');"></button></td><th style="text-align: center">&nbsp;</th><th style="text-align: center">&nbsp;</th></tr>';
         jQuery('#addDesignator').append(recRow);
 
@@ -624,7 +652,18 @@
             $('#PT2').hide();
             $('#PT3').show();
         }
+        /*alert(jenisi);*/
+    });
 
+    $('#group').change(function () {
+        var barang = $("#group").val();
+
+        if(barang == "Seragam"){
+            $('.seragam').show();
+            $('#jumlah').hide();
+        } else {
+            $('.seragam').hide();
+        }
         /*alert(jenisi);*/
     });
 
@@ -645,9 +684,15 @@
         if (namadoc === "BASTS" ){
             $('#merahputih').show();
             $('#merah').show();
+            $('#docseragam').show();
+            $('#docbpjs').hide();
+            $('#ket').show();
         } else {
             $('#merahputih').hide();
             $('#merah').hide();
+            $('#docseragam').hide();
+            $('#docbpjs').show();
+            $('#ket').show();
         }
         //alert(namamitra);
     });
@@ -857,139 +902,6 @@
         alert(material);
     });*/
 
-    <!-- amCharts javascript code for Marshall-->
-        AmCharts.makeChart("chartmarshall",
-            {
-                "type": "serial",
-                "categoryField": "date",
-                "dataDateFormat": "YYYY-MM-DD",
-                "categoryAxis": {
-                    "parseDates": true
-                },
-                "chartCursor": {
-                    "enabled": true
-                },
-                "chartScrollbar": {
-                    "enabled": true
-                },
-                "trendLines": [],
-                "graphs": [
-                    {
-                        "bullet": "round",
-                        "id": "AmGraph-1",
-                        "title": "JEMBER",
-                        "type": "smoothedLine",
-                        "valueField": "column-1"
-                    },
-                    {
-                        "bullet": "round",
-                        "id": "AmGraph-2",
-                        "title": "KEDIRI",
-                        "type": "smoothedLine",
-                        "valueField": "column-2"
-                    },
-                    {
-                        "bullet": "round",
-                        "id": "AmGraph-3",
-                        "title": "MADIUN",
-                        "type": "smoothedLine",
-                        "valueField": "column-3"
-                    },
-                    {
-                        "bullet": "round",
-                        "id": "AmGraph-4",
-                        "title": "MALANG",
-                        "type": "smoothedLine",
-                        "valueField": "column-4"
-                    },
-                    {
-                        "bullet": "round",
-                        "id": "AmGraph-5",
-                        "title": "PASURUAN",
-                        "type": "smoothedLine",
-                        "valueField": "column-5"
-                    }
-                ],
-                "guides": [],
-                "valueAxes": [
-                    {
-                        "id": "ValueAxis-1",
-                        "title": "Jumlah Sampling"
-                    }
-                ],
-                "allLabels": [],
-                "balloon": {},
-                "legend": {
-                    "enabled": true,
-                    "useGraphSettings": true
-                },
-                "titles": [
-                    {
-                        "id": "Title-1",
-                        "size": 15,
-                        "text": "Report Statistik Marshall Fiberzone Jatim-2"
-                    }
-                ],
-                "dataProvider": [
-                    {
-                        "date": "2018-04-01",
-                        "column-1": 8,
-                        "column-2": 5,
-                        "column-3": 7,
-                        "column-4": 10,
-                        "column-5": 16
-                    },
-                    {
-                        "date": "2018-04-02",
-                        "column-1": 6,
-                        "column-2": 7,
-                        "column-3": 7,
-                        "column-4": 10,
-                        "column-5": 16
-                    },
-                    {
-                        "date": "2018-04-03",
-                        "column-1": 2,
-                        "column-2": 3,
-                        "column-3": 7,
-                        "column-4": 10,
-                        "column-5": 16
-                    },
-                    {
-                        "date": "2018-04-04",
-                        "column-1": 1,
-                        "column-2": 3,
-                        "column-3": 7,
-                        "column-4": 10,
-                        "column-5": 16
-                    },
-                    {
-                        "date": "2018-04-05",
-                        "column-1": 2,
-                        "column-2": 1,
-                        "column-3": 7,
-                        "column-4": 10,
-                        "column-5": 16
-                    },
-                    {
-                        "date": "2018-04-06",
-                        "column-1": 3,
-                        "column-2": 2,
-                        "column-3": 7,
-                        "column-4": 10,
-                        "column-5": 16
-                    },
-                    {
-                        "date": "2018-04-07",
-                        "column-1": 6,
-                        "column-2": 8,
-                        "column-3": 7,
-                        "column-4": 10,
-                        "column-5": 16
-                    }
-                ]
-            }
-        );
 </script>
 
 </body>

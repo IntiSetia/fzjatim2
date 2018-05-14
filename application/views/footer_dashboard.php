@@ -233,6 +233,11 @@
 <script src="https://www.amcharts.com/lib/3/plugins/export/export.min.js"></script>
 <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
 <script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
+<script src="https://www.amcharts.com/lib/3/themes/none.js"></script>
+<script src="https://www.amcharts.com/lib/3/themes/dark.js"></script>
+<script src="https://www.amcharts.com/lib/3/themes/black.js"></script>
+<script src="https://www.amcharts.com/lib/3/themes/chalk.js"></script>
+<script src="https://www.amcharts.com/lib/3/themes/patterns.js"></script>
 <script src="https://www.amcharts.com/lib/3/serial.js"></script>
 
 <script type="text/javascript">
@@ -286,7 +291,117 @@ foreach($fz2_ytd_rev as $key=>$value){
     $arrayrev[] = $finalrev;
     $arraynet[] = $net[$key];
 }
+//    PLAN
+    $jumlahtotalplan          = 0;
+    $jumlahlopplan            = 0;
+    foreach($report_plan as $plan){
+        $witel                = $plan['witel'];
+        $arraywitelplan[]     = $witel;
+        $arraylopplan[]       = $count = $plan['count']; $jumlahlopplan  += $count; echo $count . " LOP";
 
+        $sum                  = $plan['sum'];
+        $jumlah               = ceil($sum);
+        $jumlahtotalplan     += $sum;
+        $arraytotalplan[]     = $jumlah;
+    }
+
+//    NON PO
+    $jumlahtotalnonpo         = 0;
+    $jumlahlopnonpo           = 0;
+    foreach($report_nonpo as $nonpo){
+        $witel                = $nonpo['witel'];
+        $arraywitelnonpo[]    = $witel;
+        $arraylopnonpo[]      = $count = $nonpo['count']; $jumlahlopnonpo  += $count; echo $count . " LOP";
+
+        $sum                  = $nonpo['sum'];
+        $jumlah               = ceil($sum);
+        $jumlahtotalnonpo    += $sum;
+        $arraytotalnonpo[]    = $jumlah;
+    }
+
+//    PO
+    $jumlahtotalpo       = 0;
+    $jumlahloppo         = 0;
+    foreach($report_po as $po){
+    $witel               = $po['witel'];
+    $arraywitelpo[]      = $witel;
+    $arrayloppo[]        = $count = $po['count']; $jumlahloppo  += $count; echo $count . " LOP";
+
+    $sum                 = $po['sum'];
+    $jumlah              = ceil($sum);
+    $jumlahtotalpo      += $sum;
+    $arraytotalpo[]      = $jumlah;
+}
+
+//  REKON
+    $jumlahtotalrekon     = 0;
+    $jumlahloprekon       = 0;
+    foreach($report_rekon as $rekon){
+    $witel                = $rekon['witel'];
+    $arraywitelrekon[]    = $witel;
+    $arrayloprekon[]      = $count = $rekon['count']; $jumlahloprekon  += $count; echo $count . " LOP";
+
+    $sum                  = $rekon['sum'];
+    $jumlah               = ceil($sum);
+    $jumlahtotalrekon    += $sum;
+    $arraytotalrekon[]    = $jumlah;
+}
+
+//  PR
+    $jumlahtotalpr        = 0;
+    $jumlahloppr          = 0;
+    foreach($report_pr as $pr){
+    $witel                = $pr['witel'];
+    $arraywitelpr[]       = $witel;
+    $arrayloppr[]         = $count = $pr['count']; $jumlahloppr  += $count; echo $count . " LOP";
+
+    $sum                  = $pr['sum'];
+    $jumlah               = ceil($sum);
+    $jumlahtotalpr       += $sum;
+    $arraytotalpr[]       = $jumlah;
+}
+
+//   BAST
+    $jumlahtotalbast      = 0;
+    $jumlahlopbast        = 0;
+    foreach($report_bast as $bast){
+    $witel                = $bast['witel'];
+    $arraywitelbast[]     = $witel;
+    $arraylopbast[]       = $count = $bast['count']; $jumlahlopbast  += $count; echo $count . " LOP";
+
+    $sum                  = $bast['sum'];
+    $jumlah               = ceil($sum);
+    $jumlahtotalbast     += $sum;
+    $arraytotalbast[]     = $jumlah;
+}
+
+//   VESTYNA
+    $jumlahtotalvestyna    = 0;
+    $jumlahlopvestyna      = 0;
+    foreach($report_vestyna as $vestyna){
+    $witel                 = $vestyna['witel'];
+    $arraywitelvestyna[]   = $witel;
+    $arraylopvestyna[]     = $count = $vestyna['count']; $jumlahlopvestyna  += $count; echo $count . " LOP";
+
+    $sum                   = $vestyna['sum'];
+    $jumlah                = ceil($sum);
+    $jumlahtotalvestyna   += $sum;
+    $arraytotalvestyna[]   = $jumlah;
+}
+
+//   MIRO
+    $jumlahtotalmiro    = 0;
+    $jumlahlopmiro      = 0;
+    foreach($report_miro as $miro){
+    $witel               = $miro['witel'];
+    $arraywitelmiro[]    = $witel;
+    $arraylopmiro[]      = $count = $miro['count']; $jumlahlopmiro  += $count; echo $count . " LOP";
+
+    $sum                 = $miro['sum'];
+    $jumlah              = ceil($sum);
+    $jumlahtotalmiro    += $sum;
+    $arraytotalmiro[]    = $jumlah;
+}
 ?>
 <script>
 
@@ -417,6 +532,367 @@ foreach($fz2_ytd_rev as $key=>$value){
                 "gridPosition": "start",
                 "axisAlpha": 0,
                 "tickLength": 0
+            },
+            "export": {
+                "enabled": true
+            }
+        } );
+    });
+
+    <!--Modal Iqbal-->
+    <!-- Chart PLAN -->
+    $( document ).ready(function() {
+        var chart = AmCharts.makeChart("chartdiv_dash_slide", {
+        "theme": "light",
+        "type": "serial",
+        "dataProvider": [
+        <?php
+             foreach ($report_plan as $key => $value) {
+            ?>
+            {
+                "area": "<?= $arraywitelplan[$key];?>",
+                "total": <?= $arraytotalplan[$key];?>,
+                "jumlahlop": <?= $arraylopplan[$key];?>
+            },
+            <?php
+            }
+        ?>
+        ],
+        "valueAxes": [{
+            "title": "Total PLAN"
+        }],
+        "graphs": [{
+            "balloonText": "[[category]] : [[jumlahlop]] LOP",
+            "fillAlphas": 1,
+            "lineAlpha": 0.2,
+            "title": "PLAN",
+            "type": "column",
+            "valueField": "total",
+            "lopField": "jumlahlop"
+        }],
+        "depth3D": 20,
+        "angle": 30,
+        "rotate": true,
+        "categoryField": "area",
+        "categoryAxis": {
+            "gridPosition": "start",
+            "fillAlpha": 0.05,
+            "position": "left"
+        },
+        "export": {
+            "enabled": true
+        }
+        } );
+    });
+
+    <!-- Chart NON PO -->
+    $( document ).ready(function() {
+        var chart = AmCharts.makeChart("chartdiv_non_po", {
+            "theme": "none",
+            "type": "serial",
+            "dataProvider": [
+                <?php
+                foreach ($report_nonpo as $key => $value) {
+                ?>
+                {
+                    "area": "<?= $arraywitelnonpo[$key];?>",
+                    "total": <?= $arraytotalnonpo[$key];?>,
+                    "jumlahlop": <?= $arraylopnonpo[$key];?>
+                },
+                <?php
+                }
+                ?>
+            ],
+            "valueAxes": [{
+                "title": "Total NON PO"
+            }],
+            "graphs": [{
+                "balloonText": "[[category]] : [[jumlahlop]] LOP",
+                "fillAlphas": 1,
+                "lineAlpha": 0.2,
+                "title": "PLAN",
+                "type": "column",
+                "valueField": "total",
+                "lopField": "jumlahlop"
+            }],
+            "depth3D": 20,
+            "angle": 30,
+            "rotate": true,
+            "categoryField": "area",
+            "categoryAxis": {
+                "gridPosition": "start",
+                "fillAlpha": 0.05,
+                "position": "left"
+            },
+            "export": {
+                "enabled": true
+            }
+        } );
+    });
+
+    <!-- Chart PO -->
+    $( document ).ready(function() {
+        var chart = AmCharts.makeChart("chartdiv_po", {
+            "theme": "dark",
+            "type": "serial",
+            "dataProvider": [
+                <?php
+                foreach ($report_po as $key => $value) {
+                ?>
+                {
+                    "area": "<?= $arraywitelpo[$key];?>",
+                    "total": <?= $arraytotalpo[$key];?>,
+                    "jumlahlop": <?= $arrayloppo[$key];?>
+                },
+                <?php
+                }
+                ?>
+            ],
+            "valueAxes": [{
+                "title": "Total PO"
+            }],
+            "graphs": [{
+                "balloonText": "[[category]] : [[jumlahlop]] LOP",
+                "fillAlphas": 1,
+                "lineAlpha": 0.2,
+                "title": "PLAN",
+                "type": "column",
+                "valueField": "total",
+                "lopField": "jumlahlop"
+            }],
+            "depth3D": 20,
+            "angle": 30,
+            "rotate": true,
+            "categoryField": "area",
+            "categoryAxis": {
+                "gridPosition": "start",
+                "fillAlpha": 0.05,
+                "position": "left"
+            },
+            "export": {
+                "enabled": true
+            }
+        } );
+    });
+
+    <!-- Chart REKON -->
+    $( document ).ready(function() {
+        var chart = AmCharts.makeChart("chartdiv_rekon", {
+            "theme": "black",
+            "type": "serial",
+            "dataProvider": [
+                <?php
+                foreach ($report_rekon as $key => $value) {
+                ?>
+                {
+                    "area": "<?= $arraywitelrekon[$key];?>",
+                    "total": <?= $arraytotalrekon[$key];?>,
+                    "jumlahlop": <?= $arrayloprekon[$key];?>
+                },
+                <?php
+                }
+                ?>
+            ],
+            "valueAxes": [{
+                "title": "Total REKON"
+            }],
+            "graphs": [{
+                "balloonText": "[[category]] : [[jumlahlop]] LOP",
+                "fillAlphas": 1,
+                "lineAlpha": 0.2,
+                "title": "PLAN",
+                "type": "column",
+                "valueField": "total",
+                "lopField": "jumlahlop"
+            }],
+            "depth3D": 20,
+            "angle": 30,
+            "rotate": true,
+            "categoryField": "area",
+            "categoryAxis": {
+                "gridPosition": "start",
+                "fillAlpha": 0.05,
+                "position": "left"
+            },
+            "export": {
+                "enabled": true
+            }
+        } );
+    });
+
+    <!-- Chart PR -->
+    $( document ).ready(function() {
+        var chart = AmCharts.makeChart("chartdiv_pr", {
+            "theme": "chalk",
+            "type": "serial",
+            "dataProvider": [
+                <?php
+                foreach ($report_pr as $key => $value) {
+                ?>
+                {
+                    "area": "<?= $arraywitelpr[$key];?>",
+                    "total": <?= $arraytotalpr[$key];?>,
+                    "jumlahlop": <?= $arrayloppr[$key];?>
+                },
+                <?php
+                }
+                ?>
+            ],
+            "valueAxes": [{
+                "title": "Total PR"
+            }],
+            "graphs": [{
+                "balloonText": "[[category]] : [[jumlahlop]] LOP",
+                "fillAlphas": 1,
+                "lineAlpha": 0.2,
+                "title": "PLAN",
+                "type": "column",
+                "valueField": "total",
+                "lopField": "jumlahlop"
+            }],
+            "depth3D": 20,
+            "angle": 30,
+            "rotate": true,
+            "categoryField": "area",
+            "categoryAxis": {
+                "gridPosition": "start",
+                "fillAlpha": 0.05,
+                "position": "left"
+            },
+            "export": {
+                "enabled": true
+            }
+        } );
+    });
+
+    <!-- Chart BAST -->
+    $( document ).ready(function() {
+        var chart = AmCharts.makeChart("chartdiv_bast", {
+            "theme": "light",
+            "type": "serial",
+            "dataProvider": [
+                <?php
+                foreach ($report_bast as $key => $value) {
+                ?>
+                {
+                    "area": "<?= $arraywitelbast[$key];?>",
+                    "total": <?= $arraytotalbast[$key];?>,
+                    "jumlahlop": <?= $arraylopbast[$key];?>
+                },
+                <?php
+                }
+                ?>
+            ],
+            "valueAxes": [{
+                "title": "Total BAST"
+            }],
+            "graphs": [{
+                "balloonText": "[[category]] : [[jumlahlop]] LOP",
+                "fillAlphas": 1,
+                "lineAlpha": 0.2,
+                "title": "PLAN",
+                "type": "column",
+                "valueField": "total",
+                "lopField": "jumlahlop"
+            }],
+            "depth3D": 20,
+            "angle": 30,
+            "rotate": true,
+            "categoryField": "area",
+            "categoryAxis": {
+                "gridPosition": "start",
+                "fillAlpha": 0.05,
+                "position": "left"
+            },
+            "export": {
+                "enabled": true
+            }
+        } );
+    });
+
+    <!-- Chart VESTYNA -->
+    $( document ).ready(function() {
+        var chart = AmCharts.makeChart("chartdiv_vestyna", {
+            "theme": "patterns",
+            "type": "serial",
+            "dataProvider": [
+                <?php
+                foreach ($report_vestyna as $key => $value) {
+                ?>
+                {
+                    "area": "<?= $arraywitelvestyna[$key];?>",
+                    "total": <?= $arraytotalvestyna[$key];?>,
+                    "jumlahlop": <?= $arraylopvestyna[$key];?>
+                },
+                <?php
+                }
+                ?>
+            ],
+            "valueAxes": [{
+                "title": "Total VESTYNA"
+            }],
+            "graphs": [{
+                "balloonText": "[[category]] : [[jumlahlop]] LOP",
+                "fillAlphas": 1,
+                "lineAlpha": 0.2,
+                "title": "PLAN",
+                "type": "column",
+                "valueField": "total",
+                "lopField": "jumlahlop"
+            }],
+            "depth3D": 20,
+            "angle": 30,
+            "rotate": true,
+            "categoryField": "area",
+            "categoryAxis": {
+                "gridPosition": "start",
+                "fillAlpha": 0.05,
+                "position": "left"
+            },
+            "export": {
+                "enabled": true
+            }
+        } );
+    });
+
+    <!-- Chart MIRO -->
+    $( document ).ready(function() {
+        var chart = AmCharts.makeChart("chartdiv_miro", {
+            "theme": "black",
+            "type": "serial",
+            "dataProvider": [
+                <?php
+                foreach ($report_miro as $key => $value) {
+                ?>
+                {
+                    "area": "<?= $arraywitelmiro[$key];?>",
+                    "total": <?= $arraytotalmiro[$key];?>,
+                    "jumlahlop": <?= $arraylopmiro[$key];?>
+                },
+                <?php
+                }
+                ?>
+            ],
+            "valueAxes": [{
+                "title": "Total MIRO"
+            }],
+            "graphs": [{
+                "balloonText": "[[category]] : [[jumlahlop]] LOP",
+                "fillAlphas": 1,
+                "lineAlpha": 0.2,
+                "title": "PLAN",
+                "type": "column",
+                "valueField": "total",
+                "lopField": "jumlahlop"
+            }],
+            "depth3D": 20,
+            "angle": 30,
+            "rotate": true,
+            "categoryField": "area",
+            "categoryAxis": {
+                "gridPosition": "start",
+                "fillAlpha": 0.05,
+                "position": "left"
             },
             "export": {
                 "enabled": true

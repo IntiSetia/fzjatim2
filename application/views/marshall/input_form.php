@@ -46,7 +46,10 @@
                                     <div class="form-group">
                                         <label class="col-sm-4 control-label">Witel</label>
                                         <div class="col-sm-8">
-                                            <select class="js-example-placeholder-single js-states form-control"
+                                            <input class="form-control" type="text" name="wilayah"
+                                                   value="<?= $this->session->userdata('psa') ?>"
+                                                   readonly="readonly"/>
+                                            <!--<select class="js-example-placeholder-single js-states form-control"
                                                     name="wilayah">
                                                 <option value="">Pilih Witel</option>
                                                 <option value="JEMBER">Jember</option>
@@ -54,7 +57,7 @@
                                                 <option value="MADIUN">Madiun</option>
                                                 <option value="MALANG">Malang</option>
                                                 <option value="PASURUAN">Pasuruan</option>
-                                            </select>
+                                            </select>-->
                                         </div>
                                     </div>
 

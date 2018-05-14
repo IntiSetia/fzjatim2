@@ -42,41 +42,40 @@
 
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label">STO</label>
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-9">
                                         <select class="js-example-placeholder-single form-control" name="sto" id="sto" required/>
 
                                         </select>
                                     </div>
-                                    <button type="button" class="col-sm-2 btn btn-default btn-sm" data-toggle="modal" data-target="#modal-addsto">
-                                        Add STO
-                                    </button>
+<!--                                    <button type="button" class="col-sm-2 btn btn-default btn-sm" data-toggle="modal" data-target="#modal-addsto">-->
+<!--                                        Add STO-->
+<!--                                    </button>-->
                                 </div>
 
                                 <div class="form-group">
+                                    <label class="col-sm-3 control-label">Group Barang</label>
+                                    <div class="col-sm-9">
+                                        <select class="js-example-placeholder-single form-control" name="group" id="group" required/>
+                                        <option value="">Pilih Group Barang</option>
+                                        <?php
+                                        foreach ($barang as $b){
+                                            echo "<option value='".$b['barang']."'>".$b['barang']."</option>";
+                                        }
+                                        ?>
+                                        </select>
+                                    </div>
+                                    <!--<button type="button" class="col-sm-2 btn btn-default btn-sm" data-toggle="modal" data-target="#modal-addbarang">
+                                        Add Group
+                                    </button>-->
+                                </div>
+
+                                <div class="form-group" id="nama barang">
                                     <label class="col-sm-3 control-label">Nama Barang </label>
                                     <div class="col-sm-9">
                                         <input class="form-control" type="text" placeholder="Nama Barang"
-                                               name="namabarang" id="" required/>
+                                               name="namabarang" id= required/>
                                     </div>
                                 </div>
-
-                                <div class="form-group">
-                                    <label class="col-sm-3 control-label">Group</label>
-                                    <div class="col-sm-6">
-                                        <select class="js-example-placeholder-single form-control" name="barang" id="barang" required/>
-                                            <option value="">Pilih Group</option>
-                                            <?php
-                                                foreach ($barang as $b){
-                                                    echo "<option value='".$b['barang']."'>".$b['barang']."</option>";
-                                                }
-                                            ?>
-                                        </select>
-                                    </div>
-                                    <button type="button" class="col-sm-2 btn btn-default btn-sm" data-toggle="modal" data-target="#modal-addbarang">
-                                        Add Group
-                                    </button>
-                                </div>
-
 
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label">Penanggungjawab</label>
@@ -86,11 +85,11 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group">
+                                <div class="form-group" id="jumlah">
                                     <label class="col-sm-3 control-label">Jumlah</label>
                                     <div class="col-sm-9">
                                         <input class="form-control" type="number" placeholder="Jumlah Barang"
-                                               name="jumlah" id="" required/>
+                                               name="jumlah" id=""/>
                                     </div>
                                 </div>
 
@@ -115,7 +114,6 @@
                                         <p class="help-block">Format: jpg || pdf.</p>
                                     </div>
                                 </div>
-
 
                                 <div class="box-footer">
                                     <button type="submit" class="btn btn-primary">Submit</button>
@@ -182,37 +180,5 @@
         </div>
         <!-- /.modal -->
 
-        <div class="modal fade" id="modal-addbarang">
-            <div class="modal-dialog">
-                <form action="<?php echo base_url() . "index.php/wh/addbarang"; ?>" method="post" enctype="multipart/form-data">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title">Add Data Group</h4>
-                        </div>
-
-                        <div class="modal-body">
-                            <div class="box-body">
-                                <div class="form-group">
-                                    <label class="col-sm-3 control-label">Nama Grouping</label>
-                                    <div class="col-sm-9">
-                                        <input class="form-control" type="text" placeholder="Nama Grouping (Awali dengan huruf besar. Ex: Printer)"
-                                               name="nama_barang" id="" required/>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-                            <input type="submit" class="btn btn-primary" value="Add">
-                        </div>
-                    </div>
-                </form>
-                <!-- /.modal-content -->
-            </div>
-            <!-- /.modal-dialog -->
-        </div>
-        <!-- /.modal -->
     </section>
 </div>

@@ -56,7 +56,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label">BA Serah Terima </label>
+                                    <label class="col-sm-3 control-label">Jadwal Marshall</label>
                                     <div class="col-sm-9">
                                         <input class="form-control" type="file" name="jadwal">
                                     </div>

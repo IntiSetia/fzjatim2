@@ -235,18 +235,31 @@ date_default_timezone_set("Asia/Jakarta");
                                           <thead>
                                           <tr>
                                               <th>No</th>
-                                              <th>Nama</th>
-                                              <th>Jenis DA Serah</th>
-                                              <th>Tanggal Upload</th>
+                                              <th>Nama File</th>
+                                              <th>Jenis Document</th>
                                           </tr>
                                           </thead>
                                           <tbody>
+                                          <?php $no=1;?>
                                               <tr>
-                                                  <td><?= $no = 1 ;
-                                                            ++$no ?></td>
-                                                  <td><?= $a['nama']; ?></td>
-                                                  <td><?= $a['ba_serah_terima_seragam']; ?></td>
-                                                  <td><?= $a['tanggal_upload_ba']; ?></td>
+                                                  <?php if ($a['ba_serah_terima_seragam'] == NULL){
+
+                                                  }else{?>
+                                                  <td><?= $no++ ?></td>
+                                                  <td><a href="<?= base_url('assets/uploads/seragam/'.$a['ba_serah_terima_seragam']);?>" target="_blank"><?= $a['ba_serah_terima_seragam']; ?></a></td>
+                                                  <td>BA Serah Terima Segaram</td>
+                                                  <?php
+                                                  }?>
+                                              </tr>
+                                              <tr>
+                                                  <?php if ($a['bpjs'] == NULL){
+
+                                                  }else{?>
+                                                  <td><?= $no++ ?></td>
+                                                  <td><a href="<?= base_url('assets/uploads/bpjs/'.$a['bpjs']);?>" target="_blank"><?= $a['bpjs']; ?></a></td>
+                                                  <td>BPJS</td>
+                                                  <?php
+                                                  }?>
                                               </tr>
                                           </tbody>
                                       </table>

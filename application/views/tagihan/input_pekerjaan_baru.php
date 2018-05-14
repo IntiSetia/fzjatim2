@@ -200,6 +200,16 @@
                                                 <option value="PT ELKOKAR TIMUR">PT ELKOKAR TIMUR</option>
                                                 <option value="PT SWARNA JAVADWIPA UTAMA">PT SWARNA JAVADWIPA UTAMA</option>
                                                 <?php
+                                            } else if ($this->session->userdata('psa') == "KEDIRI") {
+                                                ?>
+                                                <option value="" selected disabled
+                                                        style="text-decoration-color: gainsboro;">Nama Mitra
+                                                </option>
+                                                <option value="PT TELKOM AKSES">PT TELKOM AKSES</option>
+                                                <option value="PT UTAMA AKSES PRIMA">PT UTAMA AKSES PRIMA</option>
+                                                <option value="PT GARUDA TELEKOMUNIKASI INDONESIA">PT GARUDA TELEKOMUNIKASI INDONESIA</option>
+                                                <option value="PT AGUS JAYA TEKNIK">PT AGUS JAYA TEKNIK</option>
+                                                <?php
                                             } else if ($this->session->userdata('psa') == "MALANG") {
                                                 ?>
                                                 <option value="" selected disabled

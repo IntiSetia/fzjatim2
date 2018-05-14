@@ -483,5 +483,10 @@ class Mtagihan extends CI_Model {
         $query = $this->db->query("SELECT witel, sum(harga_telkom), count(harga_telkom) FROM boq_input WHERE status_miro IS NOT NULL GROUP BY witel ORDER BY witel ASC");
         return $query->result_array();
     }
+
+    public function get_boq_json($where){
+        $query = $this->db->query("SELECT * FROM boq_input WHERE id = '$where'");
+        return $query->result();
+    }
 }
 ?>

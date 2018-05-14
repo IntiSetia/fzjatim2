@@ -13,6 +13,18 @@
                             <span>HOME</span>
                         </a>
                     </li>
+                    <li class="treeview">
+                        <a href="<?= base_url('index.php/dash_slide/dash_slide_marshall') ?>">
+                            <i class="fa fa-home"></i>
+                            <span>HOME MARSHALL</span>
+                        </a>
+                    </li>
+                    <li class="treeview">
+                        <a href="<?= base_url('index.php/dash_slide/dash_slide_maintenance') ?>">
+                            <i class="fa fa-home"></i>
+                            <span>HOME MAINTENANCE</span>
+                        </a>
+                    </li>
                     <li class="header">COMMERCE</li>
                     <li class="treeview">
                         <a href="#">
@@ -360,6 +372,8 @@
                             Dashboard PBS</a></li>-->
                             <li><a href="<?= base_url('index.php/hrperformance/apeldow') ?>"><i class="fa fa-plus"></i>
                                     Absen Apel DOW</a></li>
+                            <!--<li><a href="<?/*= base_url('index.php/hrperformance/apeldowe') */?>"><i class="fa fa-plus"></i>
+                                    Absen Apel DOW_</a></li>-->
                             <li class="treeview">
                                 <a href="">
                                     <i class="fa fa-cloud-upload"></i> <span>Import Data</span>
@@ -381,6 +395,11 @@
                             <li class="treeview">
                                 <a href="<?= base_url('index.php/hrperformance/input_kontrak'); ?>">
                                     <i class="fa fa-users"></i> <span>Kontrak Management</span>
+                                </a>
+                            </li>
+                            <li class="treeview">
+                                <a href="<?= base_url('index.php/hrperformance/seragam'); ?>">
+                                    <i class="fa fa-user-plus"></i> <span>Seragam</span>
                                 </a>
                             </li>
                             <li><a href="<?= base_url('index.php/hrperformance/') ?>"><i class="fa fa-circle-o"></i>
@@ -424,7 +443,7 @@
                                     </span>
                                 </a>
                                 <ul class="treeview-menu">
-                                    <li><a href="<?= base_url('index.php/marshall/edit_sampling_marshall') ?>"><i
+                                    <li><a href="<?= base_url('index.php/marshall/data_sampling_marshall') ?>"><i
                                                     class="fa fa-circle-o"></i>Sampling Marshall</a></li>
                                 </ul>
                             </li>
@@ -454,6 +473,8 @@
                                                     class="fa fa-circle-o"></i> Data Marshall</a></li>
                                     <li><a href="<?= base_url('index.php/marshall/report_statistik') ?>"><i
                                                     class="fa fa-circle-o"></i> Statistik Marshall</a></li>
+                                    <li><a href="<?= base_url('index.php/marshall/report_jadwal_marshall') ?>"><i
+                                                    class="fa fa-circle-o"></i> Jadwal Marshall</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -659,7 +680,7 @@
                                 </span>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="<?=base_url('index.php/wh/input_ba') ?>"><i class="fa fa-circle-o"></i> Input Data BA</a></li>
+                            <li><a href="<?=base_url('index.php/wh/input_ba') ?>"><i class="fa fa-plus"></i> Input Data BA</a></li>
                             <li><a href=""><i class="fa fa-circle-o"></i> Report Data BA</a></li>
                         </ul>
                     </li>
@@ -671,8 +692,9 @@
                                 </span>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="<?=base_url('index.php/wh/inventaris_nonproject') ?>"><i class="fa fa-circle-o"></i> Input Data</a></li>
-                            <li><a href="<?=base_url('index.php/wh/data_invent') ?>"><i class="fa fa-circle-o"></i> Report </a></li>
+                            <li><a href="<?=base_url('index.php/wh/inventaris_nonproject') ?>"><i class="fa fa-plus"></i> Input Data</a></li>
+                            <li><a href="<?=base_url('index.php/wh/data_invent') ?>"><i class="fa fa-list-alt"></i> Report Asset </a></li>
+<!--                            <li><a href="--><?//=base_url('index.php/wh/data_peminjaman') ?><!--"><i class="fa fa-circle-o"></i> Report Peminjaman</a></li>-->
                         </ul>
                     </li>
                     <li class="header"></li>
@@ -696,7 +718,7 @@
                                 </span>
                             </a>
                             <ul class="treeview-menu">
-                                <li><a href="<?=base_url('index.php/wh/input_ba') ?>"><i class="fa fa-circle-o"></i> Input Data BA </a></li>
+                                <li><a href="<?=base_url('index.php/wh/input_ba') ?>"><i class="fa fa-plus"></i> Input Data BA </a></li>
                                 <li><a href=""><i class="fa fa-circle-o"></i> Report Data BA</a></li>
                             </ul>
                         </li>
@@ -708,8 +730,8 @@
                                 </span>
                             </a>
                             <ul class="treeview-menu">
-                                <li><a href="<?=base_url('index.php/wh/inventaris_nonproject')?>"><i class="fa fa-circle-o"></i> Input Data</a></li>
-                                <li><a href=""><i class="fa fa-circle-o"></i> Report </a></li>
+                                <li><a href="<?=base_url('index.php/wh/inventaris_nonproject')?>"><i class="fa fa-plus"></i> Input Data</a></li>
+                                <li><a href=""><i class="fa fa-list-alt"></i> Report Asset </a></li>
                             </ul>
                         </li>
                     </ul>
@@ -732,7 +754,7 @@
                                 </span>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="<?=base_url('index.php/wh/input_ba') ?>"><i class="fa fa-circle-o"></i> Input Data BA </a></li>
+                            <li><a href="<?=base_url('index.php/wh/input_ba') ?>"><i class="fa fa-plus"></i> Input Data BA </a></li>
                             <li><a href=""><i class="fa fa-circle-o"></i> Report Data BA</a></li>
                         </ul>
                     </li>
@@ -744,8 +766,8 @@
                                 </span>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="<?=base_url('index.php/wh/inventaris_nonproject')?>"><i class="fa fa-circle-o"></i> Input Data</a></li>
-                            <li><a href=""><i class="fa fa-circle-o"></i> Report </a></li>
+                            <li><a href="<?=base_url('index.php/wh/inventaris_nonproject')?>"><i class="fa fa-plus"></i> Input Data</a></li>
+                            <li><a href=""><i class="fa fa-list-alt"></i> Report Asset </a></li>
                         </ul>
                     </li>
                 </ul>

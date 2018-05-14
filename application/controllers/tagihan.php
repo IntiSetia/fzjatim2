@@ -53,7 +53,7 @@ class Tagihan extends CI_Controller {
             $terakhirinput  = $this->mtagihan->get_data_last('data_planper', 'id');
             foreach ($terakhirinput as $a){
                 $nama_khs2          = $this->mtagihan->get_nama_khs('khs', $a['khs']);
-                $nama_khs           = "";
+                $nama_khs           = "" ;
                 foreach ($nama_khs2 as $a) {
                     $nama_khs    = $a['nama_khs'];
                 }
@@ -564,7 +564,8 @@ class Tagihan extends CI_Controller {
         redirect('index.php/tagihan/listplanpekerjaan');
     }
 
-    function approval($id){
+    function approval(){
+        $id             = $this->input->post('id');
         $status         = $this->input->post('status_approval');
         $keterangan     = $this->input->post('keterangan');
 
@@ -914,5 +915,12 @@ class Tagihan extends CI_Controller {
         $this->load->view('aside');
         $this->load->view('tagihan/report_input', $data);
         $this->load->view('footer');
+    }
+
+    function boq_json()
+    {
+        $id = $this->uri->segment(3);
+        $data = $this->mtagihan->get_boq_json($id);
+        echo json_encode($data);
     }
 }

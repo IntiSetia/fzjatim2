@@ -99,16 +99,37 @@ class Wh extends CI_Controller
             $this->upload->display_errors();
         $media = $this->upload->data('ba_serah_terima');
 
-        $data       = array(
-            'item'      => $this->input->post('barang'),
-            'namabarang'=> $this->input->post('namabarang'),
-            'jumlah'    => $this->input->post('jumlah'),
-            'sto'       => $this->input->post('sto'),
-            'witel'     => $this->input->post('witel'),
-            'penanggungjawab'   => $this->input->post('penanggung'),
-            'sn'        =>  $this->input->post('sn'),
-            'ba'  => $fileName
-        );
+
+        $group     = $this->input->post('group');
+        //echo $group;
+        /*if ($group == "Seragam"){
+            $s      = $this->input->post('s');
+            $m      = $this->input->post('m');
+            $l      = $this->input->post('l');
+            $xl      = $this->input->post('xl');
+            $xl2      = $this->input->post('2xl');
+            $xl3      = $this->input->post('3xl');
+            $xl4      = $this->input->post('4xl');
+            $xl5      = $this->input->post('5xl');
+
+            echo $s . " " . $m . " " . $l . " " . $xl . " "  .$xl2 . " " . $xl3 . " " . $xl4 . " " . $xl5;
+         } else {*/
+
+            $data = array(
+                'item' => $this->input->post('group'),
+                'namabarang' => $this->input->post('namabarang'),
+                'jumlah' => $this->input->post('jumlah'),
+                'sto' => $this->input->post('sto'),
+                'witel' => $this->input->post('witel'),
+                'penanggungjawab' => $this->input->post('penanggung'),
+                'sn' => $this->input->post('sn'),
+                'ba' => $fileName
+            );
+
+        /*echo "<pre>";
+        print_r($data);
+        echo "</pre>";*/
+        /*}*/
 
         $this->model_wh->add('data_inventnonproject', $data);
         redirect(base_url('index.php/wh/inventaris_nonproject/success'));
@@ -212,4 +233,75 @@ class Wh extends CI_Controller
         print_r($data);
         echo "</pre>";*/
     }
+
+    public function view_edit($no){
+        $msg    = $this->uri->segment(3);
+        $alert  = '';
+        if($msg == 'success'){
+            $alert  = 'Success!!';
+        }
+        $data['_alert']     = "success";
+        $data['data_hr'] 	= $this->model_wh->get_data_currently($no); //All data use data_inventnonproject
+
+        $this->load->view('header');
+        $this->load->view('aside');
+        $this->load->view('warehouse/pinjam', $data);
+        $this->load->view('footer');
+    }
+
+    public function edit()
+    {
+        $no = $this->input->post('no');
+        $jml_barang = $this->input->post('jml_barang');
+        $jumlah = $this->model_wh->kurangijumlah($no);
+        $kurangijumlah = $jumlah - $jml_barang;
+
+        $data = array(
+            'no' 		    => $this->input->post('no'),
+            'jml_barang' 	=> $this->input->post('jml_barang'),
+            'an' 	        => $this->input->post('an'),
+            'tgl_peminjaman'=> $this->input->post('tgl_peminjaman'),
+            'status'        => 'Belum Dikembalikan'
+        );
+
+        $this->model_wh->add('data_peminjaman', $data);
+
+        $datakurangijumlah = array(
+            'jumlah' => $kurangijumlah
+        );
+
+        $where = array(
+            'no' 	=> $this->input->post('no')
+        );
+
+        $this->model_wh->update('data_inventnonproject', $datakurangijumlah, $where);
+
+        $data['invent']     = $this->model_wh->selectnonwhere('data_inventnonproject');
+
+        redirect('index.php/wh/data_invent');
+    }
+
+    function data_peminjaman(){
+        //Get list inventaris
+        //$data['invent'] = $this->model_wh->selectnonwhere('data_peminjaman');
+        $data['invent'] = $this->model_wh->data_peminjaman();
+
+        $this->load->view('header');
+        $this->load->view('aside');
+        $this->load->view('warehouse/data_peminjaman', $data);
+        $this->load->view('footer');
+    }
+
+    function kembali()
+    {
+        $id_peminjaman      = $this->input->post("id_oke");
+        $id_barang          = $this->input->post("id_eko");
+        $tgl_pengembalian   = $this->input->post("tgl_pengembalian");
+        $this->model_wh->kembali($id_peminjaman, $id_barang, $tgl_pengembalian);
+        $data['invent'] = $this->model_wh->data_peminjaman();
+
+        redirect('index.php/wh/data_peminjaman');
+    }
+
 }
+

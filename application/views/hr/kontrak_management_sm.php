@@ -1,16 +1,16 @@
           <?php
           date_default_timezone_set("Asia/Jakarta");
 
-                /*foreach ($sm as $a) {
+                foreach ($sm as $a) {
                   $sm = $a['nik'];
                   $position_name = $a['position_name'];
                   $psa = $a['psa'];
-                }*/
+                }
 
-              /*foreach ($position_name as $d){
+              foreach ($position_name as $d){
                   $indikator  = $d['indikator'];
                   $ind        = explode(",", $indikator);
-              }*/
+              }
 
               date_default_timezone_set('Asia/Jakarta');
               ?>
@@ -39,7 +39,7 @@
                   </section>
                   <section class="content-header col-xs-6">
                       <h1 style="text-align: center;">
-                          Kontrak Management
+                          Kontrak Management <?=$position_name;?>
                       </h1>
                   </section>
                   <section class="content-header col-xs-3">
@@ -108,6 +108,20 @@
                                                   <td>&nbsp;</td>
                                               </tr>
 
+                                              <tr class="bg-gray color-palette">
+                                                  <th></th>
+                                                  <td>Cost Leadership</td>
+                                                  <td>&nbsp;</td>
+                                                  <td>&nbsp;</td>
+                                                  <th style="text-align: center;">
+
+                                                  </th>
+                                                  <td>&nbsp;</td>
+                                                  <td>&nbsp;</td>
+                                                  <td>&nbsp;</td>
+                                                  <td>&nbsp;</td>
+                                              </tr>
+
                                               <tr class="bg-red color-palette">
                                                   <th>II.</th>
                                                   <th>CUSTOMER</th>
@@ -125,6 +139,30 @@
                                               <tr class="bg-gray-active color-palette">
                                                   <th></th>
                                                   <th><b>Customer Experience</b></th>
+                                                  <td>&nbsp;</td>
+                                                  <td>&nbsp;</td>
+                                                  <th style="text-align: center;">
+
+                                                  </th>
+                                                  <td>&nbsp;</td>
+                                                  <td>&nbsp;</td>
+                                                  <td>&nbsp;</td>
+                                                  <td>&nbsp;</td>
+                                              </tr>
+
+                                              <tr class="bg-gray color-palette">
+                                                  <th></th>
+                                                  <td>
+                                                      <?php
+                                                      if ($position_name == "Site Manager Provisioning") {
+                                                          echo "SLG Fulfillment";
+                                                      } else if ($position_name == "Site Manager Assurance Consumer Services") {
+                                                          echo "SLG Assurance";
+                                                      } else if ($position_name == "Site Manager Maintenance") {
+                                                          echo "SLG Maintenance";
+                                                      }
+                                                      ?>
+                                                  </td>
                                                   <td>&nbsp;</td>
                                                   <td>&nbsp;</td>
                                                   <th style="text-align: center;">
@@ -164,6 +202,20 @@
                                                   <td>&nbsp;</td>
                                               </tr>
 
+                                              <tr class="bg-gray color-palette">
+                                                  <th></th>
+                                                  <td>Service Excellence Achievement</td>
+                                                  <td>&nbsp;</td>
+                                                  <td>&nbsp;</td>
+                                                  <th style="text-align: center;">
+
+                                                  </th>
+                                                  <td>&nbsp;</td>
+                                                  <td>&nbsp;</td>
+                                                  <td>&nbsp;</td>
+                                                  <td>&nbsp;</td>
+                                              </tr>
+
                                               <tr class="bg-red color-palette">
                                                   <th>IV.</th>
                                                   <th>LEARNING & GROWTH</th>
@@ -192,8 +244,6 @@
                                                   <td>&nbsp;</td>
                                               </tr>
 
-
-                                                  </tr>
                                               <tr class="bg-black color-palette">
                                                   <th colspan="4">Total</th>
                                                   <th style="text-align: center;">

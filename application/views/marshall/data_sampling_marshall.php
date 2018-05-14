@@ -6,7 +6,15 @@ date_default_timezone_set("Asia/Jakarta");
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-        <h1>Form Marshall</h1>
+        <h1 style="margin-bottom: 10px;"><?php echo 'Data Marshall PSA '; echo $this->session->userdata('psa'); ?></h1>
+        <?php
+        if($this->session->flashdata('notif') != '')
+        {
+            echo '<div class="alert alert-danger" style="width:30%">';
+            echo $this->session->flashdata('notif');
+            echo '</div>';
+        }
+        ?>
         <!-- <ol class="breadcrumb">
           <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
           <li><a href="#">Forms</a></li>
@@ -14,13 +22,16 @@ date_default_timezone_set("Asia/Jakarta");
         </ol> -->
     </section>
 
+    <section class="content">
     <div class="row">
-        <div class="col-lg-12">
-            <div class="panel panel-default">
-
-                <!-- /.panel-heading -->
-                <div class="panel-body">
-                    <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+        <div class="col-xs-12">
+            <div class="box">
+                <!--<div class="box-header">
+                  <h3 class="box-title">Hover Data Table</h3>
+                </div>-->
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <table id="listplan" class="table table-bordered table-hover display wrap" cellspacing="0" width="100%">
                         <thead>
                         <tr>
                             <th>No</th>
@@ -39,11 +50,13 @@ date_default_timezone_set("Asia/Jakarta");
                         </thead>
                         <tbody>
                         <?php
+                        $no = 1;
+                        $alert = "'Apakah anda yakin menghapus data ini ?'";
                         foreach ($sampling_marshall as $data)
                         {
                             echo '
                             <tr>
-                                <td>'.$data->no.'</td>
+                                <td>'.$no.'</td>
                                 <td>'.$data->tgl.'</td>
                                 <td>'.$data->psa.'</td>
                                 <td>'.$data->jenis_finding.'</td>
@@ -54,8 +67,12 @@ date_default_timezone_set("Asia/Jakarta");
                                 <td>'.$data->target.'</td>
                                 <td>'.$data->status.'</td>
                                 <td>'.$data->catatan.'</td>
-                                <td>'.$data->jenis_finding.'</td>
+                                <td>
+                                     <a href="'.base_url().'index.php/marshall/update_sampling_marshall/'.$data->no.'" class="btn btn-info btn-medium"><i class="glyphicon glyphicon-edit"></i></a>
+                                     <a style="margin-top: 10px;" href="'.base_url().'index.php/marshall/delete_sampling_marshall/'.$data->no.'" class="btn btn-danger btn-medium" onclick="return confirm('.$alert.')"><i class="glyphicon glyphicon-trash"></i></a>
+                                </td>
                             ';
+                            $no++;
                         }
                         ?>
                         </tbody>
@@ -67,8 +84,10 @@ date_default_timezone_set("Asia/Jakarta");
         </div>
         <!-- /.col-lg-12 -->
     </div>
+    </section>
     <!-- /.content -->
 </div>
+
 <!-- /.content-wrapper -->
 
 <script>

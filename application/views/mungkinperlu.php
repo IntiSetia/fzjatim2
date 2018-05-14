@@ -320,3 +320,37 @@ GET ID FROM DATABASE FOR INPUT PLAN
         <td>".$nama_khs."</td>
     </tr>
 </table>
+
+
+<!--        <div class="modal fade" id="modal-addbarang">-->
+<!--            <div class="modal-dialog">-->
+<!--                <form action="--><?php //echo base_url() . "index.php/wh/addbarang"; ?><!--" method="post" enctype="multipart/form-data">-->
+<!--                    <div class="modal-content">-->
+<!--                        <div class="modal-header">-->
+<!--                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+<!--                                <span aria-hidden="true">&times;</span></button>-->
+<!--                            <h4 class="modal-title">Add Data Group</h4>-->
+<!--                        </div>-->
+<!---->
+<!--                        <div class="modal-body">-->
+<!--                            <div class="box-body">-->
+<!--                                <div class="form-group">-->
+<!--                                    <label class="col-sm-3 control-label">Nama Grouping</label>-->
+<!--                                    <div class="col-sm-9">-->
+<!--                                        <input class="form-control" type="text" placeholder="Nama Grouping (Awali dengan huruf besar. Ex: Printer)"-->
+<!--                                               name="nama_barang" id="" required/>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="modal-footer">-->
+<!--                            <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>-->
+<!--                            <input type="submit" class="btn btn-primary" value="Add">-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </form>-->
+<!--                <!-- /.modal-content -->-->
+<!--            </div>-->
+<!--            <!-- /.modal-dialog -->-->
+<!--        </div>-->
+<!-- /.modal -->

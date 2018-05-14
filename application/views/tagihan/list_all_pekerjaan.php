@@ -10,7 +10,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            List All Pekerjaan
+            List Of Project
             <!--<small>advanced tables</small>-->
         </h1>
         <!--<ol class="breadcrumb">
@@ -55,6 +55,7 @@
                                 <thead>
                                 <tr>
                                     <th>No</th>
+                                    <th>Witel</th>
                                     <th>ID Project</th>
                                     <th>Nama Pekerjaan</th>
                                     <th>Jenis Pekerjaan</th>
@@ -62,8 +63,8 @@
                                     <th>ID Vestyna</th>
                                     <th>ID SPMK</th>
                                     <th>Nama KHS</th>
-                                    <th>Nilai Rekon Telkom</th>
-                                    <th>Nilai Rekon Mitra</th>
+                                    <th>Nilai Pekerjaan</th>
+                                    <th>Nilai Rekon</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -75,6 +76,7 @@
                                     ?>
                                     <tr>
                                         <td><?= $no;?></td>
+                                        <td><?= $a['witel'];?></td>
                                         <td><?= $a['idp'];?></td>
                                         <td><?= $a['pekerjaan'];?></td>
                                         <td><?= $a['jenis_pekerjaan'];?></td>

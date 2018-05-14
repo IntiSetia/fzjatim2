@@ -22,7 +22,8 @@ class hrperformance extends CI_Controller {
 
 	public function index()
 	{
-		$data['data_hr'] 	= $this->hr->get_all_data('data_hr_sec'); //All data use Data HR Sec
+
+        $data['data_hr'] 	= $this->hr->get_all_data('data_hr_sec'); //All data use Data HR Sec
 
         /*echo "<pre>";
         print_r($data);
@@ -105,21 +106,23 @@ class hrperformance extends CI_Controller {
             );
 
             $data2  = array(
-                "nik"           => $rowData[0][0],
-                "nama"          => $rowData[0][1],
-                "position"      => $rowData[0][2],
-                "psa"           => $rowData[0][3]
+                "object_id"     => $rowData[0][0],
+                "nik"           => $rowData[0][2],
+                "nama"          => $rowData[0][3],
+                "position_name" => $rowData[0][1],
+                "psa"           => $rowData[0][4]
             );
             
             $insert = $this->db->insert("data_hr", $data);                   // Sesuaikan nama dengan nama tabel untuk melakukan insert data
             $insert = $this->db->insert("data_hr_sec", $data);
-            $insert = $this->db->insert("data_absen_apel", $data2);
+            $insert = $this->db->insert("data_absendow", $data2);
             $update = $this->db->query("UPDATE data_hr_sec SET status_naker = 'aktif' WHERE data_hr_sec.object_id IN (SELECT object_id FROM data_hr)");
             $update1 = $this->db->query("UPDATE data_hr_sec SET status_naker = 'tidak aktif' WHERE data_hr_sec.object_id NOT IN (SELECT object_id FROM data_hr)");
+            $update2 = $this->db->query("UPDATE data_absendow SET status_naker = 'tidak aktif' WHERE data_absendow.object_id NOT IN (SELECT object_id FROM data_hr)");
             delete_files($media['file_path']);                                  // menghapus semua file .xls yang diupload
         }
         
-        redirect(base_url('hrperformance/import/success'));
+        redirect(base_url('index.php/hrperformance/import/success'));
     }
 
     public function import_km(){ //All data use Data HR Sec
@@ -158,6 +161,7 @@ class hrperformance extends CI_Controller {
         }
         $data['_alert']     = "success";
 		$data['data_hr'] 	= $this->hr->get_data_currently($id); //All data use Data HR Sec
+        $data['id']         = $id;
 
 		$this->load->view('header');
 		$this->load->view('aside');
@@ -466,13 +470,120 @@ class hrperformance extends CI_Controller {
         $data['posisi']         = $this->hr->posisi();
         $data['nama_naker']     = $this->hr->nama_naker();
 
+        /*echo "<pre>";
+        print_r($data['nama_naker']);
+        echo "</pre>";*/
+
         $this->load->view('header');
         $this->load->view('aside');
-        $this->load->view('hr/absen_apel_dow', $data);
+        $this->load->view('hr/absen_apeldow', $data);
         $this->load->view('footer');
     }
 
+    /*function apeldowe(){
+        $msg    = $this->uri->segment(3);
+        $alert  = '';
+        if($msg == 'success'){
+            $alert  = 'Success!!';
+        }
+        $data['_alert'] = $alert;
+
+        $data['posisi']         = $this->hr->posisi();
+        $data['nama_naker']     = $this->hr->nama_naker();
+
+        $this->load->view('header');
+        $this->load->view('aside');
+        $this->load->view('hr/Absen_Apel', $data);
+        $this->load->view('footer');
+    }*/
+
     function apel_dow(){
-        $nik        = $this->input->post('nik');
+        $tgl    = $this->input->post('tanggal');
+        $nama   = $this->input->post('nama');
+        $nik    = $this->input->post('nik');
+        $alasan = $this->input->post('alasan');
+
+        foreach ($nama as $key => $item){
+                 $data = array(
+                     "nik"      => $nik[$key],
+                     "tanggal"  => $tgl,
+                     "alasan"   => $alasan[$key]
+                 );
+        }
+
+        echo "<pre>";
+        print_r($nama);
+        echo "</pre>";
+
+//        if ($this->hr->add_tgl('data_absendowbaru', $data) == TRUE) {
+//            redirect(base_url('index.php/hrperformance/apeldow/success'));
+//        };
+
+    }
+
+    function seragam(){
+	    $data['dt_seragam'] = $this->hr->get_data_seragam();
+        $this->load->view('header');
+        $this->load->view('aside');
+        $this->load->view('hr/seragam', $data);
+        $this->load->view('footer');
+    }
+
+    function tambah_seragam(){
+	    if ($this->input->post('submit')){
+	        if ($this->hr->add_seragam() == TRUE){
+                $this->session->set_flashdata('notif','Tambah Seragam Berhasil !');
+                redirect(base_url('index.php/hrperformance/seragam'));
+            } else {
+                $this->load->view('header');
+                $this->load->view('aside');
+                $this->load->view('hr/seragam');
+                $this->load->view('footer');
+            }
+        }
+    }
+
+    function input_ba($id){
+        if ($this->input->post('submit')){
+            $configs['upload_path'] = './assets/uploads/bpjs/';
+            $configs['allowed_types'] = 'gif|jpg|png|jpeg|pdf|doc|docx';
+            $configs['max_size']  = '1000000';
+
+            $this->upload->initialize($configs);
+
+            if ($this->upload->do_upload('docbpjs')){
+                if ($this->hr->kirim_bpjs($this->upload->data()) == TRUE){
+                    $this->session->set_flashdata('notif','Input BPJS Berhasil !');
+                    redirect('index.php/hrperformance/view_edit/'.$id);
+                } else {
+                    redirect('index.php/hrperformance/view_edit/'.$id);
+                }
+            } else {
+                /*$this->session->set_flashdata('notif',$this->upload->display_errors());
+                redirect('index.php/hrperformance/view_edit/'.$id);*/
+                $config['upload_path'] = './assets/uploads/seragam/';
+                $config['allowed_types'] = 'gif|jpg|png|jpeg|pdf|doc|docx';
+                $config['max_size']  = '1000000';
+
+                $this->upload->initialize($config);
+
+                if ($this->upload->do_upload('docseragam')){
+                    if ($this->hr->kurang_stok($this->upload->data()) == TRUE){
+                        $this->session->set_flashdata('notif','Input BA Seragam Berhasil !');
+                        redirect('index.php/hrperformance/view_edit/'.$id);
+                    } else {
+                        $this->session->set_flashdata('notif','gagal');
+                        redirect('index.php/hrperformance/view_edit/'.$id);
+                    }
+                } else {
+                    if ($this->hr->kurang_stok('kosong') == TRUE){
+                        redirect('index.php/hrperformance/view_edit/'.$id);
+                    } else {
+                        $this->session->set_flashdata('notif',$this->upload->display_errors());
+                        redirect('index.php/hrperformance/view_edit/'.$id);
+                    }
+                }
+            }
+        }
     }
 }

@@ -91,7 +91,7 @@
                                                 if ($a['approval_pek'] == "RETURN") {
                                                     echo "<button type='button' class='btn btn-block btn-warning btn-sm' data-toggle='modal' data-target='#modal-approval'>RETURNED</button></td>";
                                                 } else if ($a['approval_pek'] == "NOK") {
-                                                    echo "<button type='button' class='btn btn-block btn-danger btn-sm btn-modal' pos='0' approv='".$id."' id='approval'>NOT APPROVED</button></td>";
+                                                    echo '<button type="button" class="btn btn-block btn-danger btn-sm" onclick="prepare_modal('.$id.')" data-toggle="modal" data-target="#modal-approval">NOT APPROVED</button></td>';
                                                 } else {
                                                     echo "<p class='text-green'><b>APPROVED</b></p>";
                                                 }
@@ -117,7 +117,7 @@
                                 <div class="modal fade" id="modal-approval">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
-                                            <form action="" method="post" enctype="multipart/form-data" id="form-approval">
+                                            <form action="<?php echo base_url(); ?>index.php/tagihan/approval" method="post" enctype="multipart/form-data" id="form-approval">
                                                 <div class="modal-header">
                                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                         <span aria-hidden="true">&times;</span></button>
@@ -126,6 +126,9 @@
                                                 <div class="modal-body">
                                                     <div class="form-horizontal">
                                                         <div class="form-group">
+                                                            <div hidden>
+                                                            <input class="form-control" type="text" id="id" name="id"/>
+                                                            </div>
                                                             <label class="col-sm-2 control-label" style="width: 150px;">Status Approval</label>
                                                             <div class="col-sm-10" style="width: 450px;">
                                                                 <select class="form-control" name="status_approval" required id="status_approval">
@@ -167,4 +170,13 @@
     </section>
     <!-- /.content -->
 </div>
-<!-- /.content-wrapper
+<!-- /.content-wrapper -->
+
+<script>
+    function prepare_modal(id) {
+        $('#id').empty();
+        $.getJSON('<?php echo base_url(); ?>index.php/tagihan/boq_json/' + id, function(data){
+            $('#id').val(data[0].id);
+        });
+    }
+</script>

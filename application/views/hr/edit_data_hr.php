@@ -35,7 +35,6 @@
         opacity: 0;
     }
   </style>
-
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -86,6 +85,19 @@
         </div>
         <!-- /.col -->
         <div class="col-md-9">
+            <?php
+            if($this->session->flashdata('notif')){
+                ?>
+                <script>
+                    swal(
+                        '<?= $this->session->flashdata("notif");?>',
+                        '',
+                        'success'
+                    )
+                </script>
+                <?php
+            }
+            ?>
           <div class="nav-tabs-custom">
              <ul class="nav nav-tabs">
                <li class="active"><a href="#activity" data-toggle="tab">Detail</a></li>
@@ -225,15 +237,15 @@
               </div>
 
                 <div class="tab-pane" id="document">
-                    <form class="form-horizontal" method="POST" action="<?=base_url('index.php/hrperformance/dokumen/')?>" enctype="multipart/form-data">
+                    <form class="form-horizontal" method="POST" action="<?=base_url('index.php/hrperformance/input_ba/'.$id)?>" enctype="multipart/form-data">
                         <div class="box-body">
                         <input class="form-control" type="hidden" name="nik" value="<?=$a['nik'];?>">
 
                         <div class="form-group">
                             <label class="col-sm-3 control-label">Jenis Dokumen</label>
                             <div class="col-sm-9">
-                                <select class="form-control" name="namadoc" id="namadoc" />
-                                    <option value="">Pilih Jenis Dokumen</option>
+                                <select class="form-control" name="namadoc" id="namadoc" required />
+                                    <option value="" selected disabled>Pilih Jenis Dokumen</option>
                                     <option value="BASTS">BA Serah Terima Seragam</option>
                                     <option value="BPJS">BPJS</option>
                                 </select>
@@ -244,11 +256,11 @@
                                 <label class="col-sm-3 control-label">Indihome Merah Putih</label>
                                 <div class="col-sm-3">
                                     <select class="form-control" name="ukuran_merahputih" id="ukuran_merahputih" />
-                                    <option value="">Jenis Ukuran</option>
-                                    <option value="S">S</option>
-                                    <option value="M">M</option>
-                                    <option value="L">L</option>
-                                    <option value="XL">XL</option>
+                                    <option value="" selected disabled>Jenis Ukuran</option>
+                                    <option value="s">S</option>
+                                    <option value="m">M</option>
+                                    <option value="l">L</option>
+                                    <option value="xl">XL</option>
                                     </select>
                                 </div>
                                 <div class="col-sm-3">
@@ -260,11 +272,11 @@
                                 <label class="col-sm-3 control-label">MyIndihome Merah</label>
                                 <div class="col-sm-3">
                                     <select class="form-control" name="ukuran_merah" id="ukuran_merah"/>
-                                    <option value="">Jenis Ukuran</option>
-                                    <option value="S">S</option>
-                                    <option value="M">M</option>
-                                    <option value="L">L</option>
-                                    <option value="XL">XL</option>
+                                    <option value="" selected disabled>Jenis Ukuran</option>
+                                    <option value="s">S</option>
+                                    <option value="m">M</option>
+                                    <option value="l">L</option>
+                                    <option value="xl">XL</option>
                                     </select>
                                 </div>
                                 <div class="col-sm-3">
@@ -272,14 +284,21 @@
                                 </div>
                             </div>
 
-                        <div class="form-group">
+                        <div class="form-group" id="docseragam" hidden>
                             <label class="col-sm-3 control-label">Dokumen</label>
                             <div class="col-sm-9">
-                                <input class="form-control" type="file" name="doc">
+                                <input class="form-control" type="file" name="docseragam">
                             </div>
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group" id="docbpjs" hidden>
+                            <label class="col-sm-3 control-label">Dokumen</label>
+                            <div class="col-sm-9">
+                                <input class="form-control" type="file" name="docbpjs">
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="ket" hidden>
                             <label class="col-sm-3 control-label">&nbsp;</label>
                             <div class="col-sm-9">
                                 <p class="help-block">Format: jpg || pdf || doc || docx</p>

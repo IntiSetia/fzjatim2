@@ -16,19 +16,20 @@
                 <div class="box">
                     <div class="box-body">
                         <div>
-                            <table id="realtable" class="display nowrap" style="width:100%">
+                            <table id="realtable" class="display wrap" style="width:100%">
                                 <thead>
                                 <tr>
                                     <th style="text-align: center">No</th>
                                     <th style="text-align: center">Witel</th>
                                     <th style="text-align: center">STO</th>
                                     <th style="text-align: center">Nama Barang</th>
-<!--                                    <th style="text-align: center">Nama Group</th>-->
-<!--                                    <th style="text-align: center">Penanggungjawab</th>-->
+                                    <th style="text-align: center">Nama Group</th>
+                                    <th style="text-align: center">Penanggungjawab</th>
                                     <th style="text-align: center">Jumlah Barang</th>
                                     <th style="text-align: center">Serial Number</th>
                                     <th style="text-align: center">BA Serah Terima</th>
-                                    <th style="text-align: center">Update</th>
+                                    <!--<th style="text-align: center">Lihat Bukti</th>-->
+                                    <!--<th style="text-align: center">Pinjam Barang</th>-->
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -43,23 +44,17 @@
                                         <td style="text-align: center"><?=$a['witel'];?></td>
                                         <td style="text-align: center"><?=$a['sto'];?></td>
                                         <td style="text-align: center"><?=$a['namabarang'];?></td>
-<!--                                        <td style="text-align: center">--><?//=$a['item'];?><!--</td>-->
-<!--                                        <td style="text-align: center">--><?//=$a['penanggungjawab'];?><!--</td>-->
+                                        <td style="text-align: center"><?=$a['item'];?></td>
+                                        <td style="text-align: center"><?=$a['penanggungjawab'];?></td>
                                         <td style="text-align: center"><?=$a['jumlah'];?></td>
                                         <td style="text-align: center"><?=$a['sn'];?></td>
                                         <td style="text-align: center">
-                                            <a href="base_url();../../../../uploads/<?=$a['ba'];?>" target="_blank"><?=$a['ba'];?>
+                                            <a href="<?= base_url('/dokumenhr/' . $a['ba']) ?>" target="_blank"><?=$a['ba'];?>
                                             </a>
                                         </td>
-                                        <td style="text-align: center">
-                                            <?php
-                                            if ($a['jumlah'] !== NULL){
-                                                echo "<button type='button' class='btn btn-block btn-warning btn-xs' id-witel='".$a['witel']."' id-sto='".$a['sto']."' id-item='".$a['item']."' id-update='".$a['no']."' id='updatedata'>Update Data</button></td>";
-                                            } else {
-                                                echo "-";
-                                            }
-                                            ?>
-                                        </td>
+                                        <!--<td style="text-align: center">
+                                            <a href="<?/*= base_url('/dokumenhr/' . $a['ba']) */?>"><button type="button" class="btn btn-block btn-primary btn-xs">Lihat</button></a>
+                                        </td>-->
                                     </tr>
                                     <?php
                                 }

@@ -1,6 +1,31 @@
 <?php
 date_default_timezone_set("Asia/Jakarta");
 ?>
+<style>
+    .hiding{
+        display: none ;
+    }
+    .showing{
+        display: block ;
+    }
+    .selectallnone{
+        padding-left: 30px;
+        padding-right: 30px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        color: white;
+        margin: 15px;
+        height: 50px;
+        width: 50px;
+        background-color: #3c8dbc ;
+        text-decoration: none;
+    }
+    input[type=date]::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        display: none;
+    }
+</style>
+
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -13,7 +38,7 @@ date_default_timezone_set("Asia/Jakarta");
     </section>
 
     <section class="content">
-        <form action="<?php echo base_url() . "index.php/hrperformance/apel_dow"; ?>" method="post"
+        <form onsubmit=mdy() action="<?php echo base_url() . "index.php/hrperformance/apel_dow"; ?>" method="post"
               enctype="multipart/form-data">
             <div class="row">
                 <!-- left column -->
@@ -26,7 +51,7 @@ date_default_timezone_set("Asia/Jakarta");
                                     <input class="form-control" type="hidden"
                                            value="<?php echo $this->session->userdata('nama') ?>" name="maker"/>
                                     <input class="form-control" type="hidden"
-                                           value="<?php echo date("Y-m-d h:m:s"); ?>" name="tanggal"/>
+                                           value="<?php echo date("MdY"); ?>" name="tanggal"/>
                                 </div>
 
                                 <div class="form-group">
@@ -36,12 +61,27 @@ date_default_timezone_set("Asia/Jakarta");
                                                name="witel" value="<?php echo $this->session->userdata('psa');?>" readonly="readonly"/>
                                     </div>
                                 </div>
-
                                 <div class="form-group">
                                     <label class="col-sm-4 control-label">Tanggal Apel</label>
                                     <div class="col-sm-6">
-                                        <input class="form-control" type="date" placeholder=""
-                                               name="tgl_apel"/>
+<!--                                        <input class="form-control" type="date" placeholder=""
+                                               name="tgl_apel" value="" pattern="[A-Za-z]{3}"/>-->
+                                        <input class="form-control" type="input" placeholder="Tuliskan Tanggal Disini"
+                                               name="tanggal" value="<?php echo date('MdY') ; ?>" /><span>Format : bulan(english)tgltahun </span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label">&nbsp;</label>
+                                    <div class="col-sm-6">
+
+                                <?php
+                                if ($_alert != NULL) {
+                                    echo "<h3 class='box-title' style='color: green;'>" . $_alert . "</h3>";
+                                } else {
+                                    echo " ";
+                                }
+                                ?>
                                     </div>
                                 </div>
 
@@ -73,10 +113,6 @@ date_default_timezone_set("Asia/Jakarta");
                         <!-- /.box-header -->
                         <div class="box-body no-padding">
                             <table class="table table-condensed">
-                                <tr>
-                                    <td>&nbsp;</td>
-                                    <td><input type="checkbox" name="selectall" value="" id="select_all"> SELECT ALL</td>
-                                </tr>
 
                                 <?php
                                 $total = count($nama_naker);
@@ -85,16 +121,22 @@ date_default_timezone_set("Asia/Jakarta");
 
                                     <tr>
                                         <td>&nbsp;</td>
-                                        <td><input type="checkbox" id="nama" name="nik[]" value="<?=$a['nik']?>">
+                                        <td>
+                                            <fieldset id="group_1">
+                                            <input type="checkbox" id="1<?=$a['nik']?>" name="nama[]" value="<?=$a['nama']?>" onchange="hidereason(<?=$a['nik']?>) ">
+                                            <input class="form-control" type="hidden" value="<?=$a['nik']?>" name="nik[]"/>
                                             <?=$a['nama']?>
+                                            </fieldset>
                                         </td>
                                         <td>
-                                            <select class="js-example-placeholder-single js-states form-control" style="width: 450px; align-content: right" name="alasan" id="witel" required/>
-                                                <option value="" >Alasan</option>
+                                            <select class="js-example-placeholder-single js-states form-control" style="width: 450px; align-content: right" name="alasan[]" id="<?=$a['nik']?>"/>
+                                                <option value="Masuk" >Masuk</option>
                                                 <option value="Alpha">Alpha</option>
                                                 <option value="Sakit">Sakit</option>
+                                                <option value="Izin">Izin</option>
                                             </select>
                                         </td>
+
                                     </tr>
 
                                     <?php
@@ -106,11 +148,12 @@ date_default_timezone_set("Asia/Jakarta");
 
                         <!-- /.box-body -->
                     </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
                     <!-- /.box -->
                 </div>
             </div>
 
-            <input type="submit" id="submit" class="btn btn-primary" style="width: 150px;" value="Submit">
+<!--            <input type="submit" id="submit" class="btn btn-primary" style="width: 150px;" value="Submit">-->
             <!--<button type="submit" class="btn btn-default" data-toggle="modal" data-target="#modal-default" id="inputplan" style="width: 150px;" value="Buat Plan"> Buat Plan
             </button>-->
             <?php
@@ -126,4 +169,39 @@ date_default_timezone_set("Asia/Jakarta");
     </section>
     <!-- /.content -->
 </div>
+<script type="text/javascript">
+    $(document).ready( function() {
+
+        // Select all
+        $("#select_all").click( function() {
+            $("#" + $(this).attr('rel') + " INPUT[type='checkbox']").attr('checked', true);
+            $('.reason').addClass("showing");
+            $('.reason').removeClass("hiding");
+            return false;
+        });
+        // Select none
+        // $('#select_none').click( function() {
+        //     $("#" + $(this).attr('rel') + " INPUT[type='checkbox']").attr('checked', false);
+        //     $('.reason').addClass("showing");
+        //     $('.reason').removeClass("hiding");
+        //     return false;
+        // });
+});
+    function hidereason(nik)
+    {
+        if (this.checked == true) {
+            $('#' + nik).addClass("showing");
+            $('#' + nik).removeClass("hiding");
+        }
+        else{
+            $('#' + nik).addClass("hiding");
+            $('#' + nik).removeClass("showing");
+
+
+        }
+
+    }
+
+
+</script>
 <!-- /.content-wrapper -->

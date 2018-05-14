@@ -179,7 +179,7 @@
                                         ?>
                                     </td>
                                     <td style="text-align: center;">
-                                        <a href="<?= base_url('index.php/marshall/detail_marshall/' . $a['no']) ?>">
+                                        <a href="<?= base_url('index.php/marshall/detail_marshall/' . $a['no']) ?>" hidden>
                                             <i class="fa fa-bars">
                                             </i>
                                         </a>
@@ -388,6 +388,25 @@
             $('#latitude_modal').val(data[0].latitude);
             $('#longitude_modal').val(data[0].longitude);
             $('#unit_marshall_modal').val(data[0].unit_marshall);
+            $('#jenis_instalasi_modal').val(data[0].jenis_instalasi);
+            $('#jenis_pelanggaran_modal').val(data[0].jenis_pelanggaran);
+            $('#inputer_modal').val(data[0].inputer);
+            $('#object_id_modal').val(data[0].object_id);
+            $('#position_name_modal').val(data[0].position_name);
+            $('#nik_modal').val(data[0].nik);
+            $('#nama_modal').val(data[0].nama);
+            $('#witel_modal').val(data[0].witel);
+            $('#teritory_modal').val(data[0].teritory);
+            $('#regional_modal').val(data[0].regional);
+            $('#level_modal').val(data[0].level);
+            $('#bizpart_id_modal').val(data[0].bizpart_id);
+            $('#unit_modal').val(data[0].unit);
+            $('#sub_unit_modal').val(data[0].sub_unit);
+            $('#group_modal').val(data[0].group);
+            $('#sub_group_modal').val(data[0].sub_group);
+            $('#group_fungsi_modal').val(data[0].group_fungsi);
+            $('#cost_center_modal').val(data[0].cost_center);
+            $('#status_pgs_modal').val(data[0].status_pgs);
 
 
 

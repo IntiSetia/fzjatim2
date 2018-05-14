@@ -43,6 +43,9 @@
     <!-- JQUERY -->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <script src="http://demo.itsolutionstuff.com/plugin/jquery.js"></script>
+    <!-- Sweet Alert -->
+    <script src="<?= base_url();?>assets/dist/js/sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="<?= base_url();?>assets/dist/css/sweetalert2.min.css">
 
     <!--START DASHBOARD COGS-->
     <style>
@@ -111,6 +114,78 @@
     </style>
     <!--END-->
 
+    <!--START DASH SLIDE-->
+    <style>
+        #chartdiv_dash_slide {
+            width: 100%;
+            height: 500px;
+        }
+    </style>
+    <!--END-->
+
+    <!--START NON PO-->
+    <style>
+        #chartdiv_non_po {
+            width: 100%;
+            height: 500px;
+        }
+    </style>
+    <!--END-->
+
+    <!--START PO-->
+    <style>
+        #chartdiv_po {
+            width: 100%;
+            height: 500px;
+        }
+    </style>
+    <!--END-->
+
+    <!--START REKON-->
+    <style>
+        #chartdiv_rekon {
+            width: 100%;
+            height: 500px;
+        }
+    </style>
+    <!--END-->
+
+    <!--START PR-->
+    <style>
+        #chartdiv_pr {
+            width: 100%;
+            height: 500px;
+        }
+    </style>
+    <!--END-->
+
+    <!--START BAST-->
+    <style>
+        #chartdiv_bast {
+            width: 100%;
+            height: 500px;
+        }
+    </style>
+    <!--END-->
+
+    <!--START VESTYNA-->
+    <style>
+        #chartdiv_vestyna {
+            width: 100%;
+            height: 500px;
+        }
+    </style>
+    <!--END-->
+
+    <!--START MIRO-->
+    <style>
+        #chartdiv_miro {
+            width: 100%;
+            height: 500px;
+        }
+    </style>
+    <!--END-->
+
     <style>
         div.dataTables_wrapper {
             width: auto;
@@ -121,6 +196,14 @@
     <style>
         .tokenizationSelect2{
             width: 300px;
+        }
+    </style>
+
+
+    <style>
+        .chartdiv .modal {
+            width: 100%;
+            height: 500px;
         }
     </style>
 
